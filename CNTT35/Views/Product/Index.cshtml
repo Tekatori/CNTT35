@@ -1,0 +1,428 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<CNTT35.Data.SANPHAM>
+
+<div class="collection-hero collection-hero--with-image collection-hero--contrast section-template--15208910487684__banner-padding">
+    <div class="collection-hero__inner">
+        <div class="collection-hero__image-container">
+            <use-animate data-animate="zoom-fade" class="media-wrapper" animate="">
+                <lazy-image class="collection-hero__image image-animate media media--adapt media-mobile--250px " style="--image-ratio-percent: 21.9672131147541%;">
+                    <img class="img-product" width="900" height="600" srcset="//cdn.shopify.com/s/files/1/0579/7924/0580/collections/Sub_Category_Banners_Planters__Plastic_Desk.jpg?v=1662558821&amp;width=375 375w,//cdn.shopify.com/s/files/1/0579/7924/0580/collections/Sub_Category_Banners_Planters__Plastic_Desk.jpg?v=1662558821&amp;width=750 750w,//cdn.shopify.com/s/files/1/0579/7924/0580/collections/Sub_Category_Banners_Planters__Plastic_Desk.jpg?v=1662558821&amp;width=1100 1100w,//cdn.shopify.com/s/files/1/0579/7924/0580/collections/Sub_Category_Banners_Planters__Plastic_Desk.jpg?v=1662558821&amp;width=1500 1500w,
+                //cdn.shopify.com/s/files/1/0579/7924/0580/collections/Sub_Category_Banners_Planters__Plastic_Desk.jpg?v=1662558821 2135w" src="//cdn.shopify.com/s/files/1/0579/7924/0580/collections/Sub_Category_Banners_Planters__Plastic_Desk.jpg?v=1662558821&amp;width=1100" sizes="(min-width: 1400px) 1300px, (min-width: 750px) calc(100vw - 10rem), 100vw" alt="Plastic Pots" width="2135" height="469">
+                </lazy-image>
+            </use-animate>
+        </div><div class="page-width">
+            <div class="collection-hero__text-wrapper">
+                <h1 class="collection-hero__title">
+                    <span class="visually-hidden">Collection:</span>
+                    Sản Phẩm
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-5">
+                <div class="sidebar">
+                    <div class="sidebar__item">
+                        <h4>Danh mục</h4>
+                        <ul>
+                            <li><a href="#">Hạt giống</a></li>
+                            <li><a href="#">Phân bón lá</a></li>
+                            <li><a href="#">Phân bón gốc</a></li>
+                            <li><a href="#">Phân bón vô cơ</a></li>
+                            <li><a href="#">Phân hữu cơ</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="sidebar__item">
+                        <h4>Giá tiền</h4>
+                        <div class="range-slider">
+                            <span class="rangeValues"></span>
+                            <input value="1000" min="1000" max="500000" step="500" type="range">
+                            <input class="rangeInput" value="50000" min="1000" max="500000" step="1000" type="range">
+
+
+                        </div>
+                    </div>
+                    <div class="sidebar__item">
+                        <button type="button" class="btn btn-secondary btn-search">Tìm kiếm</button>
+                    </div>
+                    <div class="sidebar__item">
+                        <div class="latest-product__text">
+                            <h4>Sản phẩm gợi ý</h4>
+                            <div class="latest-product__slider owl-carousel owl-loaded owl-drag">
+
+
+                                <div class="owl-stage-outer">
+                                    <div class="owl-stage" style="transform: translate3d(-525px, 0px, 0px); transition: all 1.2s ease 0s; width: 1575px;">
+                                        <div class="owl-item cloned" style="width: 262.5px;">
+                                            <div class="latest-prdouct__slider__item">
+                                                <a href="#" class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="~/Content/img/categories/HCBAODOI.jpg" />
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>Bao dơi</h6>
+                                                        <span>250.000đ</span>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="~/Content/img/categories/HCBAOKHUNGLONG.jpg" />
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>Bao khủng long</h6>
+                                                        <span>260.000đ</span>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="~/Content/img/categories/HCBAOCHUOTTUI.jpg" />
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>Bao chuột túi</h6>
+                                                        <span>240.000đ</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="owl-item active" style="width: 262.5px;">
+                                            <div class="latest-prdouct__slider__item">
+                                                <a href="#" class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="~/Content/img/featured/DAMCHOI.jpg" />
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>Đâm chồi</h6>
+                                                        <span>$30.00</span>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="~/Content/img/featured/FulvicExtra.jpg" />
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>Fulvic Extra</h6>
+                                                        <span>$30.00</span>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="~/Content/img/featured/SieuKem.jpg" />
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>Siêu kẽm</h6>
+                                                        <span>$30.00</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="owl-item" style="width: 262.5px;">
+                                            <div class="latest-prdouct__slider__item">
+                                                <a href="#" class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="~/Content/img/featured/xa-lach.jpg" />
+
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>Hạt giống xà lách</h6>
+                                                        <span>$30.00</span>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="~/Content/img/featured/VC-kali-1-rong.png" />
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>Kali MOP</h6>
+                                                        <span>$30.00</span>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="~/Content/img/featured/VC-phan-bon-kali-trang.png" />
+
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>Kali trắng</h6>
+                                                        <span>$30.00</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-nav">
+                                    <button type="button" role="presentation" class="owl-prev">
+                                        <span class="fa fa-angle-left"><span></span><i class="bi bi-caret-left-square"></i></span>
+                                    </button>
+                                    <button type="button" role="presentation" class="owl-next">
+                                        <span class="fa fa-angle-right"><span></span><i class="bi bi-caret-right-square"></i></span>
+                                    </button>
+                                </div>
+                                <div class="owl-dots disabled"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-7">
+                <div class="product__discount">
+                    <div class="section-title product__discount__title">
+                        <h2>Sản phẩm giảm giá</h2>
+                    </div>
+                    <div class="row">
+                        <div class="product__discount__slider owl-carousel owl-loaded owl-drag">
+                            <div class="owl-stage-outer">
+                                <div class="owl-stage" style="transform: translate3d(-2340px, 0px, 0px); transition: all 1.2s ease 0s; width: 3510px;">
+                                    <div class="owl-item cloned" style="width: 292.5px;">
+                                        <div class="col-lg-4">
+                                            <div class="product__discount__item">
+                                                <div class="product__discount__item__pic set-bg" data-setbg="Content/img/featured/SH_BORON.jpg" style="background-image: url(&quot;Content/img/featured/SH_BORON.jpg&quot;);">
+                                                    <div class="product__discount__percent">-30%</div>
+                                                    <ul class="product__item__pic__hover">
+                                                        <li>
+                                                            <a href="#">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                                </svg>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../Product/Detail">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                                                    <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
+                                                                </svg>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                                                </svg>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="product__discount__item__text">
+                                                    <span>Phân bón lá</span>
+                                                    <h5><a href="#">SH Boron</a></h5>
+                                                    <div class="product__item__price">45.000đ <span>55.000đ</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 292.5px;">
+                                        <div class="col-lg-4">
+                                            <div class="product__discount__item">
+                                                <div class="product__discount__item__pic set-bg" data-setbg="Content/img/featured/hat-giong-dua-hau-tao-ruot-do.jpg" style="background-image: url(&quot;Content/img/featured/hat-giong-dua-hau-tao-ruot-do.jpg&quot;);">
+                                                    <div class="product__discount__percent">-20%</div>
+                                                    <ul class="product__item__pic__hover">
+                                                        <li>
+                                                            <a href="#">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                                </svg>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../Product/Detail">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                                                    <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
+                                                                </svg>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                                                </svg>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="product__discount__item__text">
+                                                    <span>Hạt giống</span>
+                                                    <h5><a href="#">Dưa hấu ruột đỏ</a></h5>
+                                                    <div class="product__item__price">15.000đ <span>20.000đ</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item active" style="width: 292.5px;">
+                                        <div class="col-lg-4">
+                                            <div class="product__discount__item">
+                                                <div class="product__discount__item__pic set-bg" data-setbg="Content/img/categories/HCBAOCUU.jpg" style="background-image: url(&quot;Content/img/categories/HCBAOCUU.jpg&quot;);">
+                                                    <div class="product__discount__percent">-20%</div>
+                                                    <ul class="product__item__pic__hover">
+                                                        <li>
+                                                            <a href="#">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                                </svg>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../Product/Detail">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                                                    <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
+                                                                </svg>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                                                </svg>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="product__discount__item__text">
+                                                    <span>Phân hữu cơ</span>
+                                                    <h5><a href="#">Bao cừu</a></h5>
+                                                    <div class="product__item__price">55.000đ <span>65.000đ</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned active" style="width: 292.5px;">
+                                        <div class="col-lg-4">
+                                            <div class="product__discount__item">
+                                                <div class="product__discount__item__pic set-bg" data-setbg="Content/img/featured/VC-kali-1-rong.png" style="background-image: url(&quot;Content/img/featured/VC-kali-1-rong.png&quot;);">
+                                                    <div class="product__discount__percent">-20%</div>
+                                                    <ul class="product__item__pic__hover">
+                                                        <li>
+                                                            <a href="#">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                                </svg>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="../Product/Detail">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                                                    <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
+                                                                </svg>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                                                </svg>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="product__discount__item__text">
+                                                    <span>Phân vô cơ</span>
+                                                    <h5><a href="#">Kali trắng MOP</a></h5>
+                                                    <div class="product__item__price">60.000đ <span>75.000đ</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter__item">
+                    <div class="section-title product__discount__title">
+                        <h2>Sản phẩm chính</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-5">
+                            <div class="filter__sort">
+                                <span>Sắp xếp theo</span>
+                                <select>
+                                    <option value="0">A - Z</option>
+                                    <option value="0">Z - A</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="filter__found">
+                                <h6><span>1</span> Sản phẩm được tìm thấy</h6>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-3">
+                            <div class="filter__option">
+                                <a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-grid" viewBox="0 0 16 16">
+                                        <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
+                                    </svg>
+                                </a>
+                                <a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            string[] listHinhAnh = item.HINHANH.ToString().Split(',');
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">         
+                                    <div class="product__item__pic set-bg" data-setbg="/Content/img/featured/@listHinhAnh[0].ToString()">
+                                        <ul class="product__item__pic__hover">
+                                            <li>
+                                                <a href="#">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="../Product/Detail/@item.IDSP">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                                        <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="product__item__text">
+                                        <h6><a href="../Product/Detail/@item.IDSP">@item.TENSP</a></h6>
+                                        <h5>@string.Format("{0:#,### đ}", item.DONGIA)</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="product__pagination">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product Section End -->

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3675b29b9b52474081bbb2cc183c41c0" Name="Diagram1">
+        <EntityTypeShape EntityType="QL_PHANBONModel.CTDONHANG" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_PHANBONModel.DANHMUC" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_PHANBONModel.DONHANG" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_PHANBONModel.KHACHHANG" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_PHANBONModel.KHUYENMAI" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_PHANBONModel.MUCGIAOTIEP" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_PHANBONModel.NGUOIDUNG" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_PHANBONModel.NHACUNGCAP" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_PHANBONModel.PHANHOI" Width="1.5" PointX="3" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_PHANBONModel.QLVANCHUYEN" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_PHANBONModel.SANPHAM" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_PHANBONModel.SANPHAMKHUYENMAI" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_PHANBONModel.THANHTOAN" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_CTDONHANG_IDDH" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_CTDONHANG_IDSP" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_SANPHAM_IDDM" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_DONHANG_IDKM" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_DONHANG_IDND" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_QLVANCHUYEN_IDDH" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_THANHTOAN_IDDH" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_KHACHHANG_IDND" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_MUCGIAOTIEP_IDND" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_PHANHOI_IDND" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_SANPHAM_IDNCC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_SANPHAMKHUYENMAI_IDSP" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

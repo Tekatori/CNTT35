@@ -1,0 +1,348 @@
+﻿
+@model IEnumerable<CNTT35.Data.SANPHAM>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@Styles.Render("~/Content/site.css")
+@Styles.Render("~/Content/bootstrap.min.css")
+@Styles.Render("~/Content/lib/bootstrap/dist/css/bootstrap.min.css")
+@Styles.Render("~/Content/owl.carousel.min.css")
+@Styles.Render("~/Content/jquery-ui.min.css")
+@Styles.Render("~/Content/owl.carousel.min.css")
+@Scripts.Render("~/bundles/modernizr")
+
+
+
+
+<div id="slideshow">
+    <div class="slide-wrapper">
+
+        <div class="slide"><img src="~/Content/img/banner/banner-contact.jpg"></div>
+        <div class="slide"><img src="https://images.pexels.com/photos/3578393/pexels-photo-3578393.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></div>
+        <div class="slide"><img src="https://images.pexels.com/photos/4484184/pexels-photo-4484184.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></div>
+
+    </div>
+</div>
+@*<div class="collection-hero collection-hero--with-image collection-hero--contrast section-template--15208910487684__banner-padding">
+        <div class="collection-hero__inner">
+            <div class="collection-hero__image-container">
+                <use-animate data-animate="zoom-fade" class="media-wrapper" animate="">
+                    <lazy-image class="collection-hero__image image-animate media media--adapt media-mobile--250px " style="--image-ratio-percent: 21.9672131147541%;">
+                        <img class="img-product" wid th="900" height="600" srcset="Content/img/banner/banner-slide-1.jpg" src="Content/img/banner/banner-slide-1.jpg" sizes="(min-width: 1400px) 1300px, (min-width: 750px) calc(100vw - 10rem), 100vw" alt="Plastic Pots" width="2135" height="469">
+
+                    </lazy-image>
+                </use-animate>
+            </div><div class="page-width">
+                <div class="collection-hero__text-wrapper">
+                    <h1 class="collection-hero__title">
+                        <span class="visually-hidden">Collection:</span>
+                        Phân bón
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+    </div>*@
+<div class="rich-text" style="background-color: #fff6f4;">
+
+    <div class="page-width page-width--inner section-template--15208910782596__rich-text-0-padding">
+
+        <div class="rich-text__blocks center mobile-center">
+            <h2 class="h2" style="color: #000000;">Phân bón cây trồng, bạn của nhà nông <br>  Xem các sản phẩm ưu đãi và bán chạy nhất</h2>
+            <button class="btn" onclick="location.href='@Url.Action("Index","Product")'"> Xem thêm</button>
+        </div>
+
+    </div>
+</div>
+<section class="categories">
+    <div class="container">
+        <div class="row">
+            <div class="categories__slider owl-carousel owl-loaded owl-drag">
+
+
+                <div class="owl-stage-outer">
+                    <div class="owl-stage" style="transform: translate3d(-1462px, 0px, 0px); transition: all 1.2s ease 0s; width: 3803px;">
+                        <div class="owl-item cloned" style="width: 292.5px;">
+
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="Content/img/categories/HCBAOCUU.jpg" style="background-image: url(&quot;Content/img/categories/HCBAOCUU.jpg&quot;);">
+                                    <h5><a href="#">Bao Cừu</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-item cloned" style="width: 292.5px;">
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="Content/img/categories/HCBAODOI.jpg" style="background-image: url(&quot;Content/img/categories/HCBAODOI.jpg&quot;);">
+                                    <h5><a href="#">Bao Dơi</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-item cloned" style="width: 292.5px;">
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="Content/img/categories/HCBAOKHUNGLONG.jpg" style="background-image: url(&quot;Content/img/categories/HCBAOKHUNGLONG.jpg&quot;);">
+                                    <h5><a href="#">Bao Khủng Long</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-item cloned" style="width: 292.5px;">
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="Content/img/categories/HCDUC.jpg" style="background-image: url(&quot;Content/img/categories/HCDUC.jpg&quot;);">
+                                    <h5><a href="#">Bao Đức</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-item active" style="width: 292.5px;">
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="Content/img/categories/HCBAOCUU.jpg" style="background-image: url(&quot;Content/img/categories/HCBAOCUU.jpg&quot;);">
+                                    <h5><a href="#">Bao Cừu</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-item active" style="width: 292.5px;">
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="Content/img/categories/HCBAODOI.jpg" style="background-image: url(&quot;Content/img/categories/HCBAODOI.jpg&quot;);">
+                                    <h5><a href="#">Bao Dơi</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-item active" style="width: 292.5px;">
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="Content/img/categories/HCBAOKHUNGLONG.jpg" style="background-image: url(&quot;Content/img/categories/HCBAOKHUNGLONG.jpg&quot;);">
+                                    <h5><a href="#">Bao Khủng Long</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-item active" style="width: 292.5px;">
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="Content/img/categories/HCDUC.jpg" style="background-image: url(&quot;Content/img/categories/HCDUC.jpg&quot;);">
+                                    <h5><a href="#">Bao Đức</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-item cloned" style="width: 292.5px;">
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="Content/img/categories/HCBAOCHUOTTUI.jpg" style="background-image: url(&quot;Content/img/categories/HCBAOCHUOTTUI.jpg&quot;);">
+                                    <h5><a href="#">Bao Chuột Túi</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-item cloned" style="width: 292.5px;">
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="Content/img/categories/HCBAOCUU.jpg" style="background-image: url(&quot;Content/img/categories/HCBAOCUU.jpg&quot;);">
+                                    <h5><a href="#">Bao Cừu</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-item cloned" style="width: 292.5px;">
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="Content/img/categories/HCBAODOI.jpg" style="background-image: url(&quot;Content/img/categories/HCBAODOI.jpg&quot;);">
+                                    <h5><a href="#">Bao Dơi</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="owl-item cloned" style="width: 292.5px;">
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="Content/img/categories/HCBAOKHUNGLONG.jpg" style="background-image: url(&quot;Content/img/categories/HCBAOKHUNGLONG.jpg&quot;);">
+                                    <h5><a href="#">Bao Khủng Long</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="owl-nav">
+                    <button type="button" role="presentation" class="owl-prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6B6C6E" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                        </svg>
+                    </button>
+                    <button type="button" role="presentation" class="owl-next">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6B6C6E" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                    </button>
+                </div><div class="owl-dots disabled"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Featured Section Begin -->
+<section class="featured spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Sản Phẩm Nổi Bật</h2>
+                </div>
+                <div class="featured__controls">
+                    <ul>
+                        <li class="active" data-filter="*">Tất cả</li>
+                        <li data-filter=".seeds">Hạt giống</li>
+                        <li data-filter=".inorganic-fertilizers">Phân vô cơ</li>
+                        <li data-filter=".foliar-fertilizer">Phân bón lá</li>
+                        <li data-filter=".organic-fertilizer">Phân hữu cơ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row featured__filter">
+            @foreach (var item in Model)
+            {
+
+                if (item.IDDM == 1)
+                {
+                    string[] listHinhAnh = item.HINHANH.ToString().Split(',');
+                    <div class="col-lg-3 col-md-4 col-sm-6 mix seeds">
+                        <div class="featured__item">
+                            <div class="featured__item__pic set-bg" data-setbg="Content/img/featured/@listHinhAnh[0].ToString()">
+                                <ul class="featured__item__pic__hover">
+                                    <li>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../Product/Detail/@item.IDSP">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                                <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="featured__item__text">
+                                <h6><a href="#">@item.TENSP</a></h6>
+                                <h5> @string.Format("{0:#,### đ}", item.DONGIA)</h5>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else if (item.IDDM == 4)
+                {
+                    string[] listHinhAnh = item.HINHANH.ToString().Split(',');
+                    <div class="col-lg-3 col-md-4 col-sm-6 mix inorganic-fertilizers">
+                        <div class="featured__item">
+                            <div class="featured__item__pic set-bg" data-setbg="Content/img/featured/@listHinhAnh[0].ToString()">
+                                <ul class="featured__item__pic__hover">
+                                    <li>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../Product/Detail/@item.IDSP">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                                <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="featured__item__text">
+                                <h6><a href="#">@item.TENSP</a></h6>
+                                <h5> @string.Format("{0:#,### đ}", item.DONGIA)</h5>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else if (item.IDDM == 2)
+                {
+                    string[] listHinhAnh = item.HINHANH.ToString().Split(',');
+                    <div class="col-lg-3 col-md-4 col-sm-6 mix foliar-fertilizer">
+                        <div class="featured__item">
+                            <div class="featured__item__pic set-bg" data-setbg="Content/img/featured/@listHinhAnh[0].ToString()">
+                                <ul class="featured__item__pic__hover">
+                                    <li>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../Product/Detail/@item.IDSP">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                                <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="featured__item__text">
+                                <h6><a href="#">@item.TENSP</a></h6>
+                                <h5> @string.Format("{0:#,### đ}", item.DONGIA)</h5>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else if (item.IDDM == 3)
+                {
+                    string[] listHinhAnh = item.HINHANH.ToString().Split(',');
+                    <div class="col-lg-3 col-md-4 col-sm-6 mix organic-fertilizer">
+                        <div class="featured__item">
+                            <div class="featured__item__pic set-bg" data-setbg="Content/img/featured/@listHinhAnh[0].ToString()">
+                                <ul class="featured__item__pic__hover">
+                                    <li>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../Product/Detail/@item.IDSP">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                                <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="featured__item__text">
+                                <h6><a href="#">@item.TENSP</a></h6>
+                                <h5> @string.Format("{0:#,### đ}", item.DONGIA)</h5>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+<!-- Featured Section End -->
+@Scripts.Render("~/Content/js/main.js")
