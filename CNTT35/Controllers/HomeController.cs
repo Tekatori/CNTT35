@@ -8,6 +8,7 @@ using PagedList;
 using CNTT35.Service.Service;
 using System.Web.Security;
 using CNTT35.Session;
+using CNTT35.ViewModel;
 
 namespace CNTT35.Controllers
 {
@@ -86,5 +87,15 @@ namespace CNTT35.Controllers
             LoginSession.clear();
             return RedirectToAction("Index", "Product");
         }
+        public ActionResult ChonMua(int id)
+        {
+            GioHang gh = (GioHang)Session["gh"];
+            if (gh == null)
+                gh = new GioHang();
+            int kq = gh.Them(id);
+            Session["gh"] = gh;
+            return RedirectToAction("Index");
+        }
+
     }
 }

@@ -33,5 +33,12 @@ namespace CNTT35.Service.Service
                 return db.SANPHAM.Where(t => t.IDDM == id).ToList();
             }
         }
+        public List<SANPHAM> SearchSP(string tensp)
+        {
+            using (var db = new QL_PHANBONEntities())
+            {
+                return db.SANPHAM.Where(t => t.TENSP.Contains(tensp)).ToList();
+            }
+        }
     }
 }

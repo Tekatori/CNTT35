@@ -75,17 +75,20 @@
                         <p>
                             @item.MOTA
                         </p>
+                       
                         <div class="product__details__quantity">
-                            <form id='myform' method='POST' class='quantity' action='#'>
+                            <form id='myform' method='POST' class='quantity' action='../ChonMua2'>
                                 <div class="quantity-form">
                                     <input type='button' value='-' class='qtyminus minus' field='quantity' />
                                     <input type='text' name='quantity' value='0' class='qty' />
                                     <input type='button' value='+' class='qtyplus plus' field='quantity' />
                                 </div>
+                                <button type="submit" class="primary-btn">THÊM VÀO GIỎ HÀNG</button>
+                                @{TempData["id"] = @item.IDSP;}
                             </form>
                         </div>
-                        <a href="#" class="primary-btn">THÊM VÀO GIỎ HÀNG</a>
-
+                            
+                       
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>
                             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
