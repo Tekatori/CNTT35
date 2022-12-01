@@ -10,6 +10,7 @@ using Autofac.Integration.Mvc;
 using System.Reflection;
 using CNTT35.Service.Service;
 using System.Web.Mvc;
+using CNTT35.ViewModel;
 
 namespace CNTT35.Unility
 {
@@ -21,7 +22,7 @@ namespace CNTT35.Unility
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterType<ProductService>().As<IProductService>();
             builder.RegisterType<AccountService>().As<IAccountService>();
-
+            builder.RegisterType<CartItem>().As<ICartItem>();
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }

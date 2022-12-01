@@ -8,5 +8,6 @@ namespace CNTT35.Service.Service
         List<SANPHAM> GetAllSanPham();
         List<SANPHAM> GetSANPHAM(int id);
         List<SANPHAM> GetSanPhamHatGiong(int id);
+        List<SANPHAM> SearchSP(string tensp);
     }
 }
