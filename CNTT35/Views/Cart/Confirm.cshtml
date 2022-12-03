@@ -39,19 +39,19 @@
                             </div>
                             <div class="checkout__input">
                                 <p>Tỉnh/ thành<span>*</span></p>
-                                <select class="form-select form-select-sm mb-3 select-address" id="city" aria-label=".form-select-sm">
+                                <select class="form-select form-select-sm mb-3 select-address" id="city" aria-label=".form-select-sm" required>
                                     <option value="@diachi[3].ToString()" selected>Chọn tỉnh thành</option>
                                 </select>
                             </div>
                             <div class="checkout__input">
                                 <p>Quận/ huyện<span>*</span></p>
-                                <select class="form-select form-select-sm mb-3 select-address" id="district" aria-label=".form-select-sm">
+                                <select class="form-select form-select-sm mb-3 select-address" id="district" aria-label=".form-select-sm" required>
                                     <option value="@diachi[2].ToString()" selected>Chọn quận huyện</option>
                                 </select>
                             </div>
                             <div class="checkout__input">
                                 <p>Phường/ xã<span>*</span></p>
-                                <select class="form-select form-select-sm select-address" id="ward" aria-label=".form-select-sm">
+                                <select class="form-select form-select-sm select-address" id="ward" aria-label=".form-select-sm" required>
                                     <option value="@diachi[1].ToString()" selected>Chọn phường xã</option>
                                 </select>
                             </div>
@@ -125,7 +125,9 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                            <button type="submit" class="site-btn">XÁC NHẬN</button>
+                          
+                            <button type="submit" class="site-btn">XÁC NHẬN</button> 
+                         
                         </div>
 
                     </div>
