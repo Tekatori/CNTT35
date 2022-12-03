@@ -309,14 +309,14 @@
     <Content Include="Content\img\featured\HCHALANNUTRIFERT2.jpg" />
     <Content Include="Content\img\featured\HCHALANNUTRIFERT3.jpg" />
     <Content Include="Content\img\featured\HCHUMAX.png" />
-    <Content Include="Content\img\featured\HCHUMAX2.jpg" />
-    <Content Include="Content\img\featured\HCHUMAX3.jpg" />
+    <Content Include="Content\img\featured\HCHUMAX2.png" />
+    <Content Include="Content\img\featured\HCHUMAX3.png" />
     <Content Include="Content\img\featured\HCNPKDAUTRAU.jpg" />
     <Content Include="Content\img\featured\HCNPKDAUTRAU2.jpg" />
     <Content Include="Content\img\featured\HCNPKDAUTRAU3.jpg" />
     <Content Include="Content\img\featured\HCNPKHALANHUMAX.png" />
-    <Content Include="Content\img\featured\HCNPKHALANHUMAX2.jpg" />
-    <Content Include="Content\img\featured\HCNPKHALANHUMAX3.jpg" />
+    <Content Include="Content\img\featured\HCNPKHALANHUMAX2.png" />
+    <Content Include="Content\img\featured\HCNPKHALANHUMAX3.png" />
     <Content Include="Content\img\featured\HCNPK_CSv_OZERI.jpg" />
     <Content Include="Content\img\featured\HCNPK_CSv_OZERI2.jpg" />
     <Content Include="Content\img\featured\HCNPK_CSv_OZERI3.jpg" />
@@ -544,6 +544,8 @@
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\Confirm.cshtml" />
+    <Content Include="Views\Cart\paymentSucces.cshtml" />
+    <Content Include="Views\Cart\paymentHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
