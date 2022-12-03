@@ -17,7 +17,8 @@
 </head>
 @using CNTT35.ViewModel;
 <body>
-    <header>
+    <header> 
+        <div class=".position"> </div>
         <div class="announcement-bar">
             <div class="page-width">
                 <announcement-bar id="AnnouncementSlider-announcement-bar" data-compact="false" data-autorotate="true" data-autorotate-speed="5" data-block-count="1">
@@ -133,7 +134,10 @@
                             </a>
                             <p style="margin-top:11px">Xin Chào,@nd.TENND  </p> <br />
 
-                            @Html.ActionLink("Thoát", "Logout")
+                            
+                               <p style="margin:10px 10px ">  @Html.ActionLink("Thoát", "Logout")  
+                               
+                           </p>
                             <a href="../Home/Account" id="myBtn" class="header__icon header__icon--account focus-inset">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
                                     <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
@@ -519,7 +523,8 @@
     @Scripts.Render("~/Content/js/owl.carousel.min.js")
     @Scripts.Render("~/Content/js/site.js")
 
-
+   
+   
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
