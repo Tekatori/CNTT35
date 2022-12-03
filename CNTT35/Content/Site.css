@@ -1689,6 +1689,7 @@ tr:hover {
     margin: 2%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .quantity-form {
