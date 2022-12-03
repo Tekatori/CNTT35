@@ -59,6 +59,12 @@
     <Compile Include="DONHANG.cs">
       <DependentUpon>PhanBon.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetTop10KM_Result.cs">
+      <DependentUpon>PhanBon.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetTop10_Result.cs">
+      <DependentUpon>PhanBon.tt</DependentUpon>
+    </Compile>
     <Compile Include="KHACHHANG.cs">
       <DependentUpon>PhanBon.tt</DependentUpon>
     </Compile>

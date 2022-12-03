@@ -40,5 +40,38 @@ namespace CNTT35.Service.Service
                 return db.SANPHAM.Where(t => t.TENSP.Contains(tensp)).ToList();
             }
         }
+        public List<GetTop10_Result> GetTop10SanPham()
+        {
+            using (var db = new QL_PHANBONEntities())
+            {
+                return db.GetTop10().ToList();
+            }
+        }
+        public List<GetTop10KM_Result> GetTop10SanPhamKM()
+        {
+            using (var db = new QL_PHANBONEntities())
+            {
+                return db.GetTop10KM().ToList();
+            }
+        }
+        public Decimal GetGiaTienSPKM(int id)
+        {
+            using (var db = new QL_PHANBONEntities())
+            {
+                try
+                {
+                    var g = db.SANPHAMKHUYENMAI.First(t => t.IDSP == id).GIATIENKM;
+                    if (g != null)
+                    {
+                        return (decimal)g;
+                    }
+                    return 0;
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+        }
     }
 }

@@ -10,132 +10,216 @@
 @Styles.Render("~/Content/jquery-ui.min.css")
 @Styles.Render("~/Content/owl.carousel.min.css")
 @Scripts.Render("~/bundles/modernizr")
-
+<script src="~/Scripts/jquery-3.4.1.js"></script>
 @*<div class="collection-hero collection-hero--with-image collection-hero--contrast section-template--15208910487684__banner-padding">
-    <div class="collection-hero__inner">
-        <div class="collection-hero__image-container">
-            <use-animate data-animate="zoom-fade" class="media-wrapper" animate="">
-                <lazy-image class="collection-hero__image image-animate media media--adapt media-mobile--250px " style="--image-ratio-percent: 21.9672131147541%;">
-                    <img class="img-product" width="900" height="315"
-                         src="https://agrilifetoday.tamu.edu/wp-content/uploads/2020/09/fetilizer-1366x598.jpg" sizes="(min-width: 1400px) 1300px, (min-width: 750px) calc(100vw - 10rem), 100vw" alt="Plastic Pots" width="2135" height="315">
-                </lazy-image>
-            </use-animate>
-        </div><div class="page-width">
-            <div class="collection-hero__text-wrapper">
-                <h1 class="collection-hero__title">
-                    <span class="visually-hidden">Collection:</span>
-                    Giỏ hàng
-                </h1>
+        <div class="collection-hero__inner">
+            <div class="collection-hero__image-container">
+                <use-animate data-animate="zoom-fade" class="media-wrapper" animate="">
+                    <lazy-image class="collection-hero__image image-animate media media--adapt media-mobile--250px " style="--image-ratio-percent: 21.9672131147541%;">
+                        <img class="img-product" width="900" height="315"
+                             src="https://agrilifetoday.tamu.edu/wp-content/uploads/2020/09/fetilizer-1366x598.jpg" sizes="(min-width: 1400px) 1300px, (min-width: 750px) calc(100vw - 10rem), 100vw" alt="Plastic Pots" width="2135" height="315">
+                    </lazy-image>
+                </use-animate>
+            </div><div class="page-width">
+                <div class="collection-hero__text-wrapper">
+                    <h1 class="collection-hero__title">
+                        <span class="visually-hidden">Collection:</span>
+                        Giỏ hàng
+                    </h1>
+                </div>
             </div>
         </div>
-    </div>
-</div>*@
+    </div>*@
 
 <!-- Shoping Cart Section Begin -->
-<section class="">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="shoping__cart__table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="shoping__product">Sản phẩm</th>
-                                <th>Giá tiền</th>
-                                <th>Số lượng</th>
-                                <th>Thành tiền</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (CNTT35.ViewModel.CartItem item in Model.ds)
-                            {
-                                if (item.iSoLuong > 0)
+@if (Model != null)
+{
+    <section class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="shoping__product">Sản phẩm</th>
+                                    <th>Giá tiền</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (CNTT35.ViewModel.CartItem item in Model.ds)
                                 {
-                                    string[] listHinhAnh = item.sAnh.ToString().Split(',');
-                                    <tr>
-                                        <td class="shoping__cart__item">
-                                            <img src="~/Content/img/featured/@listHinhAnh[0].ToString()" alt="">
-                                            <h5>@item.sTenSP</h5>
-                                        </td>
-                                        <td class="shoping__cart__price">
-                                            @string.Format("{0:#,### đ}", item.dDonGia)
-                                        </td>
-                                        @*class="shoping__cart__quantity"*@
-                                        <td>
-                                            <form id='myform' method='POST' class='quantity' action='#'>
-                                                <div class="quantity-form">
-                                                    <input type='button' value='-' class='qtyminus minus' field='quantity' onclick="location.href='@Url.Action("DesSL/"+@item.iMaSP,"Cart")'" />
-                                                    <input type='text' name='quantity' value='@item.iSoLuong' class='qty' />
-                                                    <input type='button' value='+' class='qtyplus plus' field='quantity' onclick="location.href='@Url.Action("AddSL/"+@item.iMaSP,"Cart")'" />
-                                                </div>
-                                            </form>
+                                    if (item.iSoLuong > 0)
+                                    {
+                                        string[] listHinhAnh = item.sAnh.ToString().Split(',');
+                                        <tr>
+                                            <td class="shoping__cart__item">
+                                                <img src="~/Content/img/featured/@listHinhAnh[0].ToString()" alt="">
+                                                <h5>@item.sTenSP</h5>
+                                            </td>
+                                            <td class="shoping__cart__price">
+                                                @string.Format("{0:#,### đ}", item.dDonGia)
+                                            </td>
+                                            @*class="shoping__cart__quantity"*@
+                                            <td>
+                                                <form id='myform' method='POST' class='quantity' action='#'>
+                                                    <div class="quantity-form">
+                                                        <input type='button' value='-' class='qtyminus minus' field='quantity' onclick="location.href='@Url.Action("DesSL/" + @item.iMaSP, "Cart")'" />
+                                                        <input type='text' name='quantity' value='@item.iSoLuong' class='qty' />
+                                                        <input type='button' value='+' class='qtyplus plus' field='quantity' onclick="location.href='@Url.Action("AddSL/" + @item.iMaSP, "Cart")'" />
+                                                    </div>
+                                                </form>
+                                            </td>
+                                            <td class="shoping__cart__total">
+                                                @string.Format("{0:#,### đ}", item.ThanhTien)
+                                            </td>
 
+                                            <td class="shoping__cart__item__close">
+                                                <a onclick="return confirmAction()" href="/Cart/DeleteSP/@item.iMaSP">
+                                                    <script type="text/javascript">
+                                                        function confirmAction() {
+                                                            return confirm("Bạn Muốn xoá sản phẩm này khỏi giỏ hàng không?")
+                                                        }
+                                                    </script>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                                    </svg>
+                                                </a>
+                                            </td>
+                                        </tr>
 
-                                        </td>
-                                        <td class="shoping__cart__total">
-                                            @string.Format("{0:#,### đ}", item.ThanhTien)
-                                        </td>
-                                        <td class="shoping__cart__item__close">
-                                            <a href="../Cart/DeleteSP/@item.iMaSP">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                                </svg>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    }
+
                                 }
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="shoping__cart__btns">
-                    <a href="../Product/Index" class="primary-btn cart-btn">Tiếp tục mua sắm</a>
-                    <a href="/Cart/XoaGio" class="primary-btn cart-btn cart-btn-right">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
-                            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
-                        </svg>
-                        Xoá giỏ hàng
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="shoping__continue">
-                    <div class="shoping__discount">
-                        <h5>Mã giảm giá</h5>
-                        @using (Html.BeginForm("GiamGia", "Cart", FormMethod.Post))
-                        {
-                            <input type="text" name="magiam" placeholder="Nhập Voucher ở đây">
-                            <button type="submit" class="site-btn">Áp dụng Voucher</button>
-                        }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="shoping__checkout">
-                    <h5>Tổng tiền</h5>
-                    <ul>
-                        <li>Tổng<span> @string.Format("{0:#,### đ}", Model.TongThanhTien())</span></li>
-                        @if (@TempData["giamgia"] == null)
-                        {
-                            <li>Tổng cộng <span>@string.Format("{0:#,### đ}", Model.TongThanhTien())</span></li>
-                        }
-                        else
-                        {
-                            <li>Tổng cộng <span>@string.Format("{0:#,### đ}", @TempData["giamgia"])</span></li>
-                        }
-                    </ul>
-                    <a href="../Cart/Confirm" class="primary-btn">Xác nhận thanh toán</a>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__btns">
+                        <a href="../Product/Index" class="primary-btn cart-btn">Tiếp tục mua sắm</a>
+                        <a href="/Cart/XoaGio" class="primary-btn cart-btn cart-btn-right" onclick="return confirmAction2()">
+                            <script type="text/javascript">
+                                function confirmAction2() {
+                                    return confirm("Bạn Muốn xoá tất cả sản phẩm khỏi giỏ hàng không?")
+                                }
+                            </script>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+                            </svg>
+                            Xoá giỏ hàng
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__continue">
+                        <div class="shoping__discount">
+                            <h5>Mã giảm giá</h5>
+                            @using (Html.BeginForm("GiamGia", "Cart", FormMethod.Post))
+                            {
+                                <input type="text" name="magiam" placeholder="Nhập Voucher ở đây">
+                                <button type="submit" class="site-btn">Áp dụng Voucher</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__checkout">
+                        <h5>Tổng tiền</h5>
+                        <ul>
+                            <li>Tổng<span> @string.Format("{0:#,### đ}", Model.TongThanhTien())</span></li>
+                            @if (@Session["giamgia"] == null)
+                            {
+                                Session["tien"] = 0;
+                                Session["tienKM"] = 0;
+                                <li>Tổng cộng <span>@string.Format("{0:#,### đ}", Model.TongThanhTien())</span></li>
+                            }
+                            else
+                            {
+                                Session["tien"] = Session["giamgia"];
+                                Session["tienKM"] = Model.TongThanhTien() - double.Parse(Session["giamgia"].ToString());
+                                <li>Tổng cộng <span>@string.Format("{0:#,### đ}", Session["giamgia"])</span></li>
+                            }
+                        </ul>
+                        <a href="../Cart/Confirm" class="primary-btn">Xác nhận thanh toán</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+}
+else
+{
+    <section class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="shoping__product">Sản phẩm</th>
+                                    <th>Giá tiền</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__btns">
+                        <a href="../Product/Index" class="primary-btn cart-btn">Tiếp tục mua sắm</a>
+                        <a href="#" class="primary-btn cart-btn cart-btn-right" onclick="return confirmAction2()">
+                            <script type="text/javascript">
+                                function confirmAction2() {
+                                    return confirm("Bạn Muốn xoá tất cả sản phẩm khỏi giỏ hàng không?")
+                                }
+                            </script>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+                            </svg>
+                            Xoá giỏ hàng
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__continue">
+                        <div class="shoping__discount">
+                            <h5>Mã giảm giá</h5>
+   
+                                <input type="text" name="magiam" placeholder="Nhập Voucher ở đây">
+                                <button type="submit" class="site-btn">Áp dụng Voucher</button>
+ 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__checkout">
+                        <h5>Tổng tiền</h5>
+                        <ul>
+                            <li>Tổng<span> @string.Format("{0:#,### đ}", 0)</span></li>
+                             <li>Tổng cộng <span>@string.Format("{0:#,### đ}", 0)</span></li>
+                        </ul>
+                        <a href="#" class="primary-btn">Xác nhận thanh toán</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
 <!-- Shoping Cart Section End -->
 @Scripts.Render("~/Content/js/main.js")
 

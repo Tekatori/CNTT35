@@ -1,4 +1,5 @@
 ﻿using CNTT35.Data;
+using CNTT35.Service.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace CNTT35.ViewModel
 
         }
         QL_PHANBONEntities db = new QL_PHANBONEntities();
-
+        ProductService ProductService = new ProductService();
         public CartItem(int id)
         {
             SANPHAM sanpham = db.SANPHAM.Single(n => n.IDSP == id);
@@ -33,7 +34,11 @@ namespace CNTT35.ViewModel
                 sTenSP = sanpham.TENSP;
                 string[] arrListStr = sanpham.HINHANH.ToString().Split(',');
                 sAnh = arrListStr[0].ToString();
-                dDonGia = double.Parse(sanpham.DONGIA.ToString());
+                var res = ProductService.GetGiaTienSPKM(id);
+                if(res == 0)
+                    dDonGia = double.Parse(sanpham.DONGIA.ToString());
+                else
+                    dDonGia = double.Parse(res.ToString());
                 itags = sanpham.MOTA;
                 iSoLuong = 1;
             }
@@ -47,7 +52,11 @@ namespace CNTT35.ViewModel
                 sTenSP = sanpham.TENSP;
                 string[] arrListStr = sanpham.HINHANH.ToString().Split(',');
                 sAnh = arrListStr[0].ToString();
-                dDonGia = double.Parse(sanpham.DONGIA.ToString());
+                var res = ProductService.GetGiaTienSPKM(id);
+                if (res == 0)
+                    dDonGia = double.Parse(sanpham.DONGIA.ToString());
+                else
+                    dDonGia = double.Parse(res.ToString());
                 itags = sanpham.MOTA;
                 iSoLuong = soluong;
             }

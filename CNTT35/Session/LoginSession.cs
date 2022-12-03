@@ -6,25 +6,9 @@ using System.Web;
 
 namespace CNTT35.Session
 {
-    public class LoginSession
+    public static class LoginSession
     {
         private static string SessionName = "UserLoginSession";
-        public static NGUOIDUNG GetSessionInfoLogin { 
-            get { 
-                NGUOIDUNG nd = new NGUOIDUNG();
-                if(HttpContext.Current.Request.IsAuthenticated)
-                {
-                    if (HttpContext.Current.Session[SessionName] != null)
-                    {
-                        nd = HttpContext.Current.Session[SessionName] as NGUOIDUNG;
-                    }
-                }
-                else
-                {
-                    HttpContext.Current.Response.Redirect("/Home/Index");
-                }
-                return nd;
-            } }
         public static void createSession(NGUOIDUNG nd)
         {
             if (HttpContext.Current.Session[SessionName] == null)
@@ -38,6 +22,17 @@ namespace CNTT35.Session
             HttpContext.Current.Session.Abandon();
             HttpContext.Current.Session.Clear();
         }
-       
+
+        public static NGUOIDUNG GetSessionInfoLogin()
+        {
+            NGUOIDUNG nd = new NGUOIDUNG();
+            if (HttpContext.Current.Session[SessionName] != null)
+            {
+                nd = HttpContext.Current.Session[SessionName] as NGUOIDUNG;
+            }
+            else
+                return null;
+            return nd;
+        }
     }
 }

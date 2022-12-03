@@ -22,30 +22,39 @@ namespace CNTT35.Controllers
         }
         public ActionResult Index(int? page, int? pagesize)
         {
+            Session["giamgia"] = null;
             var sp = _productService.GetAllSanPham();
 
             if (page == null)
                 page = 1;
             if (pagesize == null)
                 pagesize = 12;
+            //top 10 SP khuyen mai
+            List<GetTop10KM_Result> top10KM = _productService.GetTop10SanPhamKM();
+            ViewBag.top10KM = top10KM;
+            //
             return View(sp.ToPagedList((int)page, (int)pagesize));
         }
 
         public ActionResult Detail(string id)
         {
+            Session["giamgia"] = null;
             var sp = _productService.GetSANPHAM(int.Parse(id));
+            Decimal giakm = _productService.GetGiaTienSPKM(int.Parse(id));
+            TempData["giakm"] = giakm;
             return View(sp);
         }
         [HttpPost]
         public ActionResult Search(int? page, int? pagesize,FormCollection c)
         {
+            Session["giamgia"] = null;
             string tim = c["st"].ToString();
             var sp = _productService.SearchSP(tim);
             if (page == null)
                 page = 1;
             if (pagesize == null)
                 pagesize = 100;
-
+            ViewBag.top10KM = null;
             return View("Index",sp.ToPagedList((int)page, (int)pagesize));
         }
         //public ActionResult Index(int? page, int? pagesize,string id)
@@ -71,12 +80,19 @@ namespace CNTT35.Controllers
         {
             string soluong = c["quantity"].ToString();
             string id = TempData["id"].ToString();
-            GioHang gh = (GioHang)Session["gh"];
-            if (gh == null)
-                gh = new GioHang();
-            int kq = gh.Them(int.Parse(id),int.Parse(soluong));
-            Session["gh"] = gh;
-            return RedirectToAction("Detail/"+id,"Product");
+            if (int.Parse(soluong) > 0)
+            {
+                GioHang gh = (GioHang)Session["gh"];
+                if (gh == null)
+                    gh = new GioHang();
+                int kq = gh.Them(int.Parse(id), int.Parse(soluong));
+                Session["gh"] = gh;
+                return RedirectToAction("Detail/" + id, "Product");
+            }
+            else
+            {
+                return RedirectToAction("Detail/" + id, "Product");
+            }    
         }
     }
 }
