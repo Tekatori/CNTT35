@@ -19,6 +19,20 @@ namespace CNTT35.Service.Service
                 return db.SANPHAM.ToList();
             }
         }
+        public List<SANPHAM> SearchSPTheoDonGia(int val,int val2)
+        {
+            using (var db = new QL_PHANBONEntities())
+            {
+                return db.SANPHAM.ToList().Where(t => t.DONGIA >= val && t.DONGIA <= val2).ToList();
+            }
+        }
+        public List<GetTop30Random_Result> Get30ProductRandom()
+        {
+            using (var db = new QL_PHANBONEntities())
+            {
+                return db.GetTop30Random().ToList();
+            }
+        }
         public List<SANPHAM> GetSANPHAM(int id)
         {
             using (var db = new QL_PHANBONEntities())
@@ -71,6 +85,13 @@ namespace CNTT35.Service.Service
                 {
                     return 0;
                 }
+            }
+        }
+        public List<GetTop10Category_Result> GetTop10SanPhamCategory(int id)
+        {
+            using (var db = new QL_PHANBONEntities())
+            {
+                return db.GetTop10Category(id).ToList();
             }
         }
     }

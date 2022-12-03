@@ -13,5 +13,8 @@ namespace CNTT35.Service.Service
         List<GetTop10_Result> GetTop10SanPham();
         List<GetTop10KM_Result> GetTop10SanPhamKM();
         Decimal GetGiaTienSPKM(int id);
+        List<GetTop10Category_Result> GetTop10SanPhamCategory(int id);
+        List<GetTop30Random_Result> Get30ProductRandom();
+        List<SANPHAM> SearchSPTheoDonGia(int val, int val2);
     }
 }

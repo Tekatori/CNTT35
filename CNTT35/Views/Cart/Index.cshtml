@@ -32,8 +32,6 @@
     </div>*@
 
 <!-- Shoping Cart Section Begin -->
-@if (Model != null)
-{
     <section class="">
         <div class="container">
             <div class="row">
@@ -151,75 +149,27 @@
                     </div>
                 </div>
             </div>
+            @{
+                var parameter2 = Request.QueryString["ac147"];
+                //Check parameter here and display Message
+                if (parameter2 == "error147")
+                {
+                    <div class="alert alert-success alert-dismissable" style="text-align:center">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Không có gì trong Giỏ Hàng !</strong>
+                    </div>
+                }
+                else if (parameter2 == "usernull")
+                {
+                    <div class="alert alert-success alert-dismissable" style="text-align:center">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Bạn chưa đăng nhập,làm ơn hãy đăng nhập để tiếp tục</strong>
+                    </div>
+                }
+
+            }
         </div>
     </section>
-}
-else
-{
-    <section class="">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="shoping__cart__table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th class="shoping__product">Sản phẩm</th>
-                                    <th>Giá tiền</th>
-                                    <th>Số lượng</th>
-                                    <th>Thành tiền</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="shoping__cart__btns">
-                        <a href="../Product/Index" class="primary-btn cart-btn">Tiếp tục mua sắm</a>
-                        <a href="#" class="primary-btn cart-btn cart-btn-right" onclick="return confirmAction2()">
-                            <script type="text/javascript">
-                                function confirmAction2() {
-                                    return confirm("Bạn Muốn xoá tất cả sản phẩm khỏi giỏ hàng không?")
-                                }
-                            </script>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
-                                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
-                            </svg>
-                            Xoá giỏ hàng
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="shoping__continue">
-                        <div class="shoping__discount">
-                            <h5>Mã giảm giá</h5>
-   
-                                <input type="text" name="magiam" placeholder="Nhập Voucher ở đây">
-                                <button type="submit" class="site-btn">Áp dụng Voucher</button>
- 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="shoping__checkout">
-                        <h5>Tổng tiền</h5>
-                        <ul>
-                            <li>Tổng<span> @string.Format("{0:#,### đ}", 0)</span></li>
-                             <li>Tổng cộng <span>@string.Format("{0:#,### đ}", 0)</span></li>
-                        </ul>
-                        <a href="#" class="primary-btn">Xác nhận thanh toán</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-}
 <!-- Shoping Cart Section End -->
 @Scripts.Render("~/Content/js/main.js")
 

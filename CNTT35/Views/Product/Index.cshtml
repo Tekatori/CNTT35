@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var top10random = ViewBag.top10Random as List<CNTT35.Data.GetTop10_Result>;
 }
 @using PagedList.Mvc;
 @using PagedList;
@@ -42,137 +43,95 @@
 
                         </ul>
                     </div>
-                    <div class="sidebar__item">
-                        <h4>Giá tiền</h4>
-                        <div class="range-slider">
-                            <span class="rangeValues"></span>
-                            <input value="1000" min="1000" max="500000" step="500" type="range">
-                            <input class="rangeInput" value="50000" min="1000" max="500000" step="1000" type="range">
-
-
-                        </div>
-                    </div>
-                    <div class="sidebar__item">
-                        <button type="button" class="btn btn-secondary btn-search">Tìm kiếm</button>
-                    </div>
-                    <div class="sidebar__item">
-                        <div class="latest-product__text">
-                            <h4>Sản phẩm gợi ý</h4>
-                            <div class="latest-product__slider owl-carousel owl-loaded owl-drag">
-                                <div class="owl-stage-outer">
-                                    <div class="owl-stage" style="transform: translate3d(-525px, 0px, 0px); transition: all 1.2s ease 0s; width: 1575px;">
-                                        <div class="owl-item cloned" style="width: 262.5px;">
-                                            <div class="latest-prdouct__slider__item">
-                                                <a href="#" class="latest-product__item">
-                                                    <div class="latest-product__item__pic">
-                                                        <img src="~/Content/img/categories/HCBAODOI.jpg" />
-                                                    </div>
-                                                    <div class="latest-product__item__text">
-                                                        <h6>Bao dơi</h6>
-                                                        <span>250.000đ</span>
-                                                    </div>
-                                                </a>
-                                                <a href="#" class="latest-product__item">
-                                                    <div class="latest-product__item__pic">
-                                                        <img src="~/Content/img/categories/HCBAOKHUNGLONG.jpg" />
-                                                    </div>
-                                                    <div class="latest-product__item__text">
-                                                        <h6>Bao khủng long</h6>
-                                                        <span>260.000đ</span>
-                                                    </div>
-                                                </a>
-                                                <a href="#" class="latest-product__item">
-                                                    <div class="latest-product__item__pic">
-                                                        <img src="~/Content/img/categories/HCBAOCHUOTTUI.jpg" />
-                                                    </div>
-                                                    <div class="latest-product__item__text">
-                                                        <h6>Bao chuột túi</h6>
-                                                        <span>240.000đ</span>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="owl-item active" style="width: 262.5px;">
-                                            <div class="latest-prdouct__slider__item">
-                                                <a href="#" class="latest-product__item">
-                                                    <div class="latest-product__item__pic">
-                                                        <img src="~/Content/img/featured/DAMCHOI.jpg" />
-                                                    </div>
-                                                    <div class="latest-product__item__text">
-                                                        <h6>Đâm chồi</h6>
-                                                        <span>$30.00</span>
-                                                    </div>
-                                                </a>
-                                                <a href="#" class="latest-product__item">
-                                                    <div class="latest-product__item__pic">
-                                                        <img src="~/Content/img/featured/FulvicExtra.jpg" />
-                                                    </div>
-                                                    <div class="latest-product__item__text">
-                                                        <h6>Fulvic Extra</h6>
-                                                        <span>$30.00</span>
-                                                    </div>
-                                                </a>
-                                                <a href="#" class="latest-product__item">
-                                                    <div class="latest-product__item__pic">
-                                                        <img src="~/Content/img/featured/SieuKem.jpg" />
-                                                    </div>
-                                                    <div class="latest-product__item__text">
-                                                        <h6>Siêu kẽm</h6>
-                                                        <span>$30.00</span>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="owl-item" style="width: 262.5px;">
-                                            <div class="latest-prdouct__slider__item">
-                                                <a href="#" class="latest-product__item">
-                                                    <div class="latest-product__item__pic">
-                                                        <img src="~/Content/img/featured/xa-lach.jpg" />
-
-                                                    </div>
-                                                    <div class="latest-product__item__text">
-                                                        <h6>Hạt giống xà lách</h6>
-                                                        <span>$30.00</span>
-                                                    </div>
-                                                </a>
-                                                <a href="#" class="latest-product__item">
-                                                    <div class="latest-product__item__pic">
-                                                        <img src="~/Content/img/featured/VC-kali-1-rong.png" />
-                                                    </div>
-                                                    <div class="latest-product__item__text">
-                                                        <h6>Kali MOP</h6>
-                                                        <span>$30.00</span>
-                                                    </div>
-                                                </a>
-                                                <a href="#" class="latest-product__item">
-                                                    <div class="latest-product__item__pic">
-                                                        <img src="~/Content/img/featured/VC-phan-bon-kali-trang.png" />
-
-                                                    </div>
-                                                    <div class="latest-product__item__text">
-                                                        <h6>Kali trắng</h6>
-                                                        <span>$30.00</span>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-nav">
-                                    <button type="button" role="presentation" class="owl-prev">
-                                        <span class="fa fa-angle-left"><span></span><i class="bi bi-caret-left-square"></i></span>
-                                    </button>
-                                    <button type="button" role="presentation" class="owl-next">
-                                        <span class="fa fa-angle-right"><span></span><i class="bi bi-caret-right-square"></i></span>
-                                    </button>
-                                </div>
-                                <div class="owl-dots disabled"></div>
+                    @using (Html.BeginForm("SearchMoney", "Product", FormMethod.Post))
+                    {
+                        <div class="sidebar__item">
+                            <h4>Giá tiền</h4>
+                            <div class="range-slider">
+                                <span class="rangeValues"></span>
+                                <input value="1000" min="1000" max="500000" step="500" type="range" name="value1">
+                                <input class="rangeInput" value="50000" min="1000" max="500000" step="1000" type="range" name="value2">
                             </div>
                         </div>
-                    </div>
 
-                </div>
+                        <div class="sidebar__item">
+                            <button type="submit" class="btn btn-secondary btn-search">Tìm kiếm</button>
+                        </div>
+                    }
+                        <div class="sidebar__item">
+                            <div class="latest-product__text">
+                                <h4>Sản phẩm gợi ý</h4>
+                                <div class="latest-product__slider owl-carousel owl-loaded owl-drag">
+                                    <div class="owl-stage-outer">
+                                        <div class="owl-stage" style="transform: translate3d(-525px, 0px, 0px); transition: all 1.2s ease 0s; width: 1575px;">
+                                            <div class="owl-item cloned" style="width: 262.5px;">
+                                                <div class="latest-prdouct__slider__item">
+                                                    @for (int i = 0; i < 3; i++)
+                                                    {
+                                                        string[] listHinhAnhrandom = top10random[i].HINHANH.ToString().Split(',');
+                                                        <a href="/Product/Detail/@top10random[i].IDSP" class="latest-product__item">
+                                                            <div class="latest-product__item__pic">
+                                                                <img src="~/Content/img/featured/@listHinhAnhrandom[0].ToString()" />
+                                                            </div>
+                                                            <div class="latest-product__item__text">
+                                                                <h6>@top10random[i].TENSP</h6>
+                                                                <span>@string.Format("{0:#,### đ}", top10random[i].DONGIA)</span>
+                                                            </div>
+                                                        </a>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="owl-item active" style="width: 262.5px;">
+                                                <div class="latest-prdouct__slider__item">
+                                                    @for (int i = 3; i < 6; i++)
+                                                    {
+                                                        string[] listHinhAnhrandom = top10random[i].HINHANH.ToString().Split(',');
+                                                        <a href="/Product/Detail/@top10random[i].IDSP" class="latest-product__item">
+                                                            <div class="latest-product__item__pic">
+                                                                <img src="~/Content/img/featured/@listHinhAnhrandom[0].ToString()" />
+                                                            </div>
+                                                            <div class="latest-product__item__text">
+                                                                <h6>@top10random[i].TENSP</h6>
+                                                                <span>@string.Format("{0:#,### đ}", top10random[i].DONGIA)</span>
+                                                            </div>
+                                                        </a>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="owl-item" style="width: 262.5px;">
+                                                <div class="latest-prdouct__slider__item">
+                                                    @for (int i = 6; i < 9; i++)
+                                                    {
+                                                        string[] listHinhAnhrandom = top10random[i].HINHANH.ToString().Split(',');
+                                                        <a href="/Product/Detail/@top10random[i].IDSP" class="latest-product__item">
+                                                            <div class="latest-product__item__pic">
+                                                                <img src="~/Content/img/featured/@listHinhAnhrandom[0].ToString()" />
+                                                            </div>
+                                                            <div class="latest-product__item__text">
+                                                                <h6>@top10random[i].TENSP</h6>
+                                                                <span>@string.Format("{0:#,### đ}", top10random[i].DONGIA)</span>
+                                                            </div>
+                                                        </a>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="owl-nav">
+                                        <button type="button" role="presentation" class="owl-prev">
+                                            <span class="fa fa-angle-left"><span></span><i class="bi bi-caret-left-square"></i></span>
+                                        </button>
+                                        <button type="button" role="presentation" class="owl-next">
+                                            <span class="fa fa-angle-right"><span></span><i class="bi bi-caret-right-square"></i></span>
+                                        </button>
+                                    </div>
+                                    <div class="owl-dots disabled"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
             </div>
             <div class="col-lg-9 col-md-7">
                 @if (ViewBag.top10KM != null)
@@ -206,7 +165,7 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="../Product/Detail/@listkm[0].IDSP">
+                                                                <a href="/Product/Detail/@listkm[0].IDSP">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
                                                                         <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
                                                                     </svg>
@@ -249,7 +208,7 @@
                                                                     </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="../Product/Detail/@listkm[i].IDSP">
+                                                                    <a href="/Product/Detail/@listkm[i].IDSP">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
                                                                             <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
                                                                         </svg>
@@ -290,7 +249,7 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="../Product/Detail/@listkm[listkm.Count() - 2].IDSP">
+                                                                <a href="/Product/Detail/@listkm[listkm.Count() - 2].IDSP">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
                                                                         <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
                                                                     </svg>
@@ -327,7 +286,7 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="../Product/Detail/@listkm[listkm.Count() - 1].IDSP">
+                                                                <a href="/Product/Detail/@listkm[listkm.Count() - 1].IDSP">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
                                                                         <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
                                                                     </svg>
@@ -358,6 +317,10 @@
                     </div>
                 </div>
                                     }
+
+
+
+
                 <div class="filter__item">
                     <div class="section-title product__discount__title">
                         <h2>Sản phẩm chính</h2>
@@ -374,7 +337,7 @@
                         </div>
                         <div class="col-lg-4 col-md-4">
                             <div class="filter__found">
-                                <h6><span>1</span> Sản phẩm được tìm thấy</h6>
+                                <h6><span>@Model.Count</span> Sản phẩm được tìm thấy</h6>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-3">
@@ -411,14 +374,14 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="../Product/Detail/@item.IDSP">
+                                                <a href="/Product/Detail/@item.IDSP">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
                                                         <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
                                                     </svg>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="../Product/ChonMua/@item.IDSP">
+                                                <a href="/Product/ChonMua/@item.IDSP">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
                                                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                                                     </svg>
@@ -427,7 +390,7 @@
                                         </ul>
                                     </div>
                                        <div class="product__item__text">
-                                            <h6><a href="../Product/Detail/@item.IDSP">@item.TENSP</a></h6>
+                                            <h6><a href="/Product/Detail/@item.IDSP">@item.TENSP</a></h6>
                                             <h5>@string.Format("{0:#,### đ}", item.DONGIA)</h5>
                                         </div>                                   
                                 </div>

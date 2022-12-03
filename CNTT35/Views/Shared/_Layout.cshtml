@@ -104,6 +104,14 @@
                                 <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Tài khoản Hoặc email đã Có , làm ơn bạn hãy đăng ký lại!</strong>
                             </div>
                         }
+                        else if (parameter == "GioHangNull")
+                        {
+                            <div class="alert alert-success alert-dismissable" style="text-align:center">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Giỏ Hàng trống Hãy mua gì đó,cảm ơn!</strong>
+                            </div>
+                        }
+
                     }
                     <div class="navbar-left">
                         @using (Html.BeginForm("Search", "Product", FormMethod.Post))

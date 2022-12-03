@@ -27,7 +27,7 @@ namespace CNTT35.Controllers
         public ActionResult Index()
         {
             Session["giamgia"] = null;
-            var sp = _productService.GetAllSanPham();
+            var sp = _productService.Get30ProductRandom();
             List<GetTop10_Result> top10 = _productService.GetTop10SanPham();
             ViewBag.Greeting = top10;
             return View(sp);

@@ -25,26 +25,37 @@ namespace CNTT35.Controllers
             _accountService = account;
         }
         public ActionResult Index()
-        {
+        {          
             GioHang gh = (GioHang)Session["gh"];
+            if (gh == null)
+                return RedirectToAction("Index", "Home", new { ac = "GioHangNull" });
             return View(gh);
         }
         public ActionResult Confirm()
         {
             GioHang gh = (GioHang)Session["gh"];
-            if(gh == null)
-                return RedirectToAction("Index", "Cart");
-            NGUOIDUNG nd2 = LoginSession.GetSessionInfoLogin();
-            if (nd2 == null)
-                return RedirectToAction("Index", "Cart");
-            var nd = _accountService.GetAccount(nd2.IDND);
-            ViewBag.kh = nd;
-            decimal tongtien = decimal.Parse(Session["tien"].ToString());
-            double tienkm = double.Parse(Session["tienKM"].ToString());
-            TempData["tienkm"] = tienkm;
-            TempData["sum"] = tongtien;
 
-            return View(gh);
+            if (gh == null)
+                return RedirectToAction("Index", "Cart", new { ac147 = "error147" });
+            int sl = gh.SoMatHang();
+            if (sl <= 0)
+            {
+                return RedirectToAction("Index", "Cart", new { ac147 = "error147" });
+            }
+            else
+            {
+                NGUOIDUNG nd2 = LoginSession.GetSessionInfoLogin();
+                if (nd2 == null)
+                    return RedirectToAction("Index", "Cart", new { ac147 = "usernull" });
+                var nd = _accountService.GetAccount(nd2.IDND);
+                ViewBag.kh = nd;
+                decimal tongtien = decimal.Parse(Session["tien"].ToString());
+                double tienkm = double.Parse(Session["tienKM"].ToString());
+                TempData["tienkm"] = tienkm;
+                TempData["sum"] = tongtien;
+
+                return View(gh);
+            }
         }
         public ActionResult ChonMua(int id)
         {

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="QL_PHANBONModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QL_PHANBONModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CTDONHANG">
           <Key>
             <PropertyRef Name="IDCTDH" />
@@ -137,6 +137,11 @@
           <Property Name="THANHTIEN" Type="money" />
           <Property Name="HINHTHUCTT" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="GetNewID">
+          <Property Name="NewID" Type="uniqueidentifier" />
+        </EntityType>-->
         <Association Name="FK_CTDONHANG_IDDH">
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="0..1" />
           <End Role="CTDONHANG" Type="Self.CTDONHANG" Multiplicity="*" />
@@ -299,6 +304,20 @@
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="GetTop10Category" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iddm" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IDSP" Type="int" Nullable="false" />
+                <Property Name="TENSP" Type="nvarchar" MaxLength="50" />
+                <Property Name="DONGIA" Type="money" />
+                <Property Name="HINHANH" Type="nvarchar" MaxLength="200" />
+                <Property Name="TENDM" Type="nvarchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="GetTop10KM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <ReturnType>
             <CollectionType>
@@ -309,6 +328,20 @@
                 <Property Name="HINHANH" Type="nvarchar" MaxLength="200" />
                 <Property Name="GIATIENKM" Type="money" />
                 <Property Name="TENDM" Type="nvarchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetTop30Random" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IDSP" Type="int" Nullable="false" />
+                <Property Name="TENSP" Type="nvarchar" MaxLength="50" />
+                <Property Name="DONGIA" Type="money" />
+                <Property Name="HINHANH" Type="nvarchar" MaxLength="200" />
+                <Property Name="TENDM" Type="nvarchar" MaxLength="50" />
+                <Property Name="IDDM" Type="int" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -376,10 +409,46 @@
             <End Role="THANHTOAN" EntitySet="THANHTOAN" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QL_PHANBONModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="GetTop10_Result">
+          <Property Name="IDSP" Type="Int32" Nullable="false" />
+          <Property Name="IDDM" Type="Int32" />
+          <Property Name="IDNCC" Type="Int32" />
+          <Property Name="TENSP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DONGIA" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SOLUONGTON" Type="Int32" />
+          <Property Name="HINHANH" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MOTA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CACHDUNG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NHASANXUAT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </ComplexType>
+        <ComplexType Name="GetTop10Category_Result">
+          <Property Name="IDSP" Type="Int32" Nullable="false" />
+          <Property Name="TENSP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DONGIA" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="HINHANH" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TENDM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </ComplexType>
+        <ComplexType Name="GetTop10KM_Result">
+          <Property Name="IDSP" Type="Int32" Nullable="false" />
+          <Property Name="TENSP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DONGIA" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="HINHANH" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="GIATIENKM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TENDM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </ComplexType>
+        <ComplexType Name="GetTop30Random_Result">
+          <Property Name="IDSP" Type="Int32" Nullable="false" />
+          <Property Name="TENSP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DONGIA" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="HINHANH" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TENDM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDDM" Type="Int32" />
+        </ComplexType>
         <EntityType Name="CTDONHANG">
           <Key>
             <PropertyRef Name="IDCTDH" />
@@ -743,28 +812,12 @@
             <End Role="SANPHAMKHUYENMAI" EntitySet="SANPHAMKHUYENMAI" />
           </AssociationSet>
           <FunctionImport Name="GetTop10" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.GetTop10_Result)" />
+          <FunctionImport Name="GetTop10Category" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.GetTop10Category_Result)">
+            <Parameter Name="iddm" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="GetTop10KM" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.GetTop10KM_Result)" />
+          <FunctionImport Name="GetTop30Random" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.GetTop30Random_Result)" />
         </EntityContainer>
-        <ComplexType Name="GetTop10_Result">
-          <Property Type="Int32" Name="IDSP" Nullable="false" />
-          <Property Type="Int32" Name="IDDM" Nullable="true" />
-          <Property Type="Int32" Name="IDNCC" Nullable="true" />
-          <Property Type="String" Name="TENSP" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="DONGIA" Nullable="true" Precision="19" Scale="4" />
-          <Property Type="Int32" Name="SOLUONGTON" Nullable="true" />
-          <Property Type="String" Name="HINHANH" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="MOTA" Nullable="true" MaxLength="Max" />
-          <Property Type="String" Name="CACHDUNG" Nullable="true" MaxLength="Max" />
-          <Property Type="String" Name="NHASANXUAT" Nullable="true" MaxLength="Max" />
-        </ComplexType>
-        <ComplexType Name="GetTop10KM_Result">
-          <Property Type="Int32" Name="IDSP" Nullable="false" />
-          <Property Type="String" Name="TENSP" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="DONGIA" Nullable="true" Precision="19" Scale="4" />
-          <Property Type="String" Name="HINHANH" Nullable="true" MaxLength="200" />
-          <Property Type="Decimal" Name="GIATIENKM" Nullable="true" Precision="19" Scale="4" />
-          <Property Type="String" Name="TENDM" Nullable="true" MaxLength="50" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -916,7 +969,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="GetTop10" FunctionName="QL_PHANBONModel.Store.GetTop10">
+          <FunctionImportMapping FunctionName="QL_PHANBONModel.Store.GetTop10" FunctionImportName="GetTop10">
             <ResultMapping>
               <ComplexTypeMapping TypeName="QL_PHANBONModel.GetTop10_Result">
                 <ScalarProperty Name="IDSP" ColumnName="IDSP" />
@@ -932,7 +985,18 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetTop10KM" FunctionName="QL_PHANBONModel.Store.GetTop10KM">
+          <FunctionImportMapping FunctionName="QL_PHANBONModel.Store.GetTop10Category" FunctionImportName="GetTop10Category">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QL_PHANBONModel.GetTop10Category_Result">
+                <ScalarProperty Name="IDSP" ColumnName="IDSP" />
+                <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+                <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+                <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
+                <ScalarProperty Name="TENDM" ColumnName="TENDM" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QL_PHANBONModel.Store.GetTop10KM" FunctionImportName="GetTop10KM">
             <ResultMapping>
               <ComplexTypeMapping TypeName="QL_PHANBONModel.GetTop10KM_Result">
                 <ScalarProperty Name="IDSP" ColumnName="IDSP" />
@@ -941,6 +1005,18 @@
                 <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
                 <ScalarProperty Name="GIATIENKM" ColumnName="GIATIENKM" />
                 <ScalarProperty Name="TENDM" ColumnName="TENDM" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QL_PHANBONModel.Store.GetTop30Random" FunctionImportName="GetTop30Random">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QL_PHANBONModel.GetTop30Random_Result">
+                <ScalarProperty Name="IDSP" ColumnName="IDSP" />
+                <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+                <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+                <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
+                <ScalarProperty Name="TENDM" ColumnName="TENDM" />
+                <ScalarProperty Name="IDDM" ColumnName="IDDM" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -47,10 +47,26 @@ namespace CNTT35.Data
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetTop10_Result>("[QL_PHANBONEntities].[GetTop10]()");
         }
     
+        [DbFunction("QL_PHANBONEntities", "GetTop10Category")]
+        public virtual IQueryable<GetTop10Category_Result> GetTop10Category(Nullable<int> iddm)
+        {
+            var iddmParameter = iddm.HasValue ?
+                new ObjectParameter("iddm", iddm) :
+                new ObjectParameter("iddm", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetTop10Category_Result>("[QL_PHANBONEntities].[GetTop10Category](@iddm)", iddmParameter);
+        }
+    
         [DbFunction("QL_PHANBONEntities", "GetTop10KM")]
         public virtual IQueryable<GetTop10KM_Result> GetTop10KM()
         {
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetTop10KM_Result>("[QL_PHANBONEntities].[GetTop10KM]()");
+        }
+    
+        [DbFunction("QL_PHANBONEntities", "GetTop30Random")]
+        public virtual IQueryable<GetTop30Random_Result> GetTop30Random()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetTop30Random_Result>("[QL_PHANBONEntities].[GetTop30Random]()");
         }
     }
 }

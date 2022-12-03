@@ -2,6 +2,10 @@
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var spkm = ViewBag.top10KMCate as List<CNTT35.Data.GetTop10Category_Result>;
+    string[] listHinhAnh0 = spkm[0].HINHANH.ToString().Split(',');
+    string[] listHinhAnhgancuoi = spkm[spkm.Count -2].HINHANH.ToString().Split(',');
+    string[] listHinhAnhcuoi = spkm[spkm.Count-1].HINHANH.ToString().Split(',');
 }
 @model IEnumerable<CNTT35.Data.SANPHAM>
 
@@ -130,7 +134,7 @@
                                         <div class="owl-item cloned" style="width: 292.5px;">
                                             <div class="col-lg-4">
                                                 <div class="product__discount__item">
-                                                    <div class="product__discount__item__pic set-bg" data-setbg="/Content/img/featured/SIEUDONG.jpg" style="background-image: url(&quot;/Content/img/featured/SIEUDONG.jpg&quot;);background-size:56%!important">
+                                                    <div class="product__discount__item__pic set-bg" data-setbg="/Content/img/featured/@listHinhAnh0[0].ToString()" style="background-image: url(&quot;/Content/img/featured/SIEUDONG.jpg&quot;);background-size:56%!important">
                                                         <ul class="product__item__pic__hover">
                                                             <li>
                                                                 <a href="#">
@@ -138,59 +142,63 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="../Product/Detail">
+                                                                <a href="/Product/Detail/@spkm[0].IDSP">
                                                                     <i class="bi bi-reply-fill"></i>
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">
+                                                                <a href="/Product/ChonMua/@spkm[0].IDSP">
                                                                     <i class="bi bi-cart-fill"></i>
                                                                 </a>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                     <div class="product__discount__item__text">
-                                                        <span>Phân bón lá</span>
-                                                        <h5><a href="#">Siêu đồng</a></h5>
-                                                        <div class="product__item__price">45.000đ <span>55.000đ</span></div>
+                                                        <span>@spkm[0].TENDM</span>
+                                                        <h5><a href="Product/Detail/@spkm[spkm.Count - 1].IDSP">@spkm[0].TENSP</a></h5>
+                                                        <div class="product__item__price"> @string.Format("{0:#,### đ}", spkm[0].DONGIA) </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="owl-item" style="width: 292.5px;">
-                                            <div class="col-lg-4">
-                                                <div class="product__discount__item">
-                                                    <div class="product__discount__item__pic set-bg" data-setbg="/Content/img/featured/hat-giong-dua-hau-tao-ruot-do.jpg" style="background-image: url(&quot;/Content/img/featured/hat-giong-dua-hau-tao-ruot-do.jpg&quot;);background-size:56%!important">
-                                                        <ul class="product__item__pic__hover">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="bi bi-heart-fill"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="../Product/Detail">
-                                                                    <i class="bi bi-reply-fill"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="bi bi-cart-fill"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="product__discount__item__text">
-                                                        <span>Phân bón lá</span>
-                                                        <h5><a href="#">Siêu đồng</a></h5>
-                                                        <div class="product__item__price">45.000đ <span>55.000đ</span></div>
+                                        @for (int i = 1;i<spkm.Count -2;i++)
+                                        {
+                                            string[] listHinhAnhkm = spkm[i].HINHANH.ToString().Split(',');
+                                            <div class="owl-item" style="width: 292.5px;">
+                                                <div class="col-lg-4">
+                                                    <div class="product__discount__item">
+                                                        <div class="product__discount__item__pic set-bg" data-setbg="/Content/img/featured/@listHinhAnhkm[0].ToString()" style="background-image: url(&quot;/Content/img/featured/hat-giong-dua-hau-tao-ruot-do.jpg&quot;);background-size:56%!important">
+                                                            <ul class="product__item__pic__hover">
+                                                                <li>
+                                                                    <a href="#">
+                                                                        <i class="bi bi-heart-fill"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/Product/Detail/@spkm[i].IDSP">
+                                                                        <i class="bi bi-reply-fill"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/Product/ChonMua/@spkm[i].IDSP">
+                                                                        <i class="bi bi-cart-fill"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="product__discount__item__text">
+                                                            <span>@spkm[i].TENSP</span>
+                                                            <h5><a href="Product/Detail/@spkm[spkm.Count - 1].IDSP">@spkm[i].TENSP</a></h5>
+                                                            <div class="product__item__price">@string.Format("{0:#,### đ}", spkm[i].DONGIA)</div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        }
                                         <div class="owl-item active" style="width: 292.5px;">
                                             <div class="col-lg-4">
                                                 <div class="product__discount__item">
-                                                    <div class="product__discount__item__pic set-bg" data-setbg="/Content/img/categories/HCBAOCUU.jpg" style="background-image: url(&quot;/Content/img/categories/HCBAOCUU.jpg&quot;); background-size:56%!important">
+                                                    <div class="product__discount__item__pic set-bg" data-setbg="/Content/img/featured/@listHinhAnhgancuoi[0].ToString()" style="background-image: url(&quot;/Content/img/categories/HCBAOCUU.jpg&quot;); background-size:56%!important">
                                                         <ul class="product__item__pic__hover">
                                                             <li>
                                                                 <a href="#">
@@ -198,21 +206,21 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="../Product/Detail">
+                                                                <a href="/Product/Detail/@spkm[spkm.Count -2].IDSP">
                                                                     <i class="bi bi-reply-fill"></i>
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">
+                                                                <a href="/Product/ChonMua/@spkm[spkm.Count -2].IDSP">
                                                                     <i class="bi bi-cart-fill"></i>
                                                                 </a>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                     <div class="product__discount__item__text">
-                                                        <span>Phân hữu cơ</span>
-                                                        <h5><a href="#">Bao cừu</a></h5>
-                                                        <div class="product__item__price">55.000đ <span>65.000đ</span></div>
+                                                        <span> @spkm[spkm.Count - 2].TENDM 33</span>
+                                                        <h5><a href="Product/Detail/@spkm[spkm.Count - 1].IDSP">@spkm[spkm.Count - 2].TENSP </a></h5>
+                                                        <div class="product__item__price">@string.Format("{0:#,### đ}", @spkm[spkm.Count - 2].DONGIA)</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -220,7 +228,7 @@
                                         <div class="owl-item cloned active" style="width: 292.5px;">
                                             <div class="col-lg-4">
                                                 <div class="product__discount__item">
-                                                    <div class="product__discount__item__pic set-bg" data-setbg="/Content/img/featured/VC-kali-1-rong.png" style="background-image: url(&quot;/Content/img/featured/VC-kali-1-rong.png&quot;); background-size:56%!important">
+                                                    <div class="product__discount__item__pic set-bg" data-setbg="/Content/img/featured/@listHinhAnhcuoi[0].ToString()" style="background-image: url(&quot;/Content/img/featured/VC-kali-1-rong.png&quot;); background-size:56%!important">
                                                         <ul class="product__item__pic__hover">
                                                             <li>
                                                                 <a href="#">
@@ -228,21 +236,21 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="../Product/Detail">
+                                                                <a href="/Product/Detail/@spkm[spkm.Count - 1].IDSP">
                                                                     <i class="bi bi-reply-fill"></i>
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">
+                                                                <a href="/Product/ChonMua/@spkm[spkm.Count -2].IDSP">
                                                                     <i class="bi bi-cart-fill"></i>
                                                                 </a>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                     <div class="product__discount__item__text">
-                                                        <span>Phân vô cơ</span>
-                                                        <h5><a href="#">Kali trắng MOP</a></h5>
-                                                        <div class="product__item__price">60.000đ <span>75.000đ</span></div>
+                                                        <span>@spkm[spkm.Count - 1].TENDM</span>
+                                                        <h5><a href="Product/Detail/@spkm[spkm.Count - 1].IDSP">@spkm[spkm.Count - 1].TENSP</a></h5>
+                                                        <div class="product__item__price">@string.Format("{0:#,### đ}", @spkm[spkm.Count - 1].DONGIA)</div>
                                                     </div>
                                                 </div>
                                             </div>
