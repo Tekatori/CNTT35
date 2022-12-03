@@ -46,6 +46,18 @@ namespace CNTT35.Controllers
 
             return View(gh);
         }
+        public ActionResult paymentSucces()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+        public ActionResult paymentHistory()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
         public ActionResult ChonMua(int id)
         {
             GioHang gh = (GioHang)Session["gh"];
