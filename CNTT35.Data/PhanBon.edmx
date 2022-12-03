@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QL_PHANBONModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QL_PHANBONModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CTDONHANG">
           <Key>
             <PropertyRef Name="IDCTDH" />
@@ -281,6 +281,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetTop10" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IDSP" Type="int" Nullable="false" />
+                <Property Name="IDDM" Type="int" />
+                <Property Name="IDNCC" Type="int" />
+                <Property Name="TENSP" Type="nvarchar" MaxLength="50" />
+                <Property Name="DONGIA" Type="money" />
+                <Property Name="SOLUONGTON" Type="int" />
+                <Property Name="HINHANH" Type="nvarchar" MaxLength="200" />
+                <Property Name="MOTA" Type="ntext" />
+                <Property Name="CACHDUNG" Type="ntext" />
+                <Property Name="NHASANXUAT" Type="ntext" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetTop10KM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IDSP" Type="int" Nullable="false" />
+                <Property Name="TENSP" Type="nvarchar" MaxLength="50" />
+                <Property Name="DONGIA" Type="money" />
+                <Property Name="HINHANH" Type="nvarchar" MaxLength="200" />
+                <Property Name="GIATIENKM" Type="money" />
+                <Property Name="TENDM" Type="nvarchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <EntityContainer Name="QL_PHANBONModelStoreContainer">
           <EntitySet Name="CTDONHANG" EntityType="Self.CTDONHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DANHMUC" EntityType="Self.DANHMUC" Schema="dbo" store:Type="Tables" />
@@ -344,8 +376,7 @@
             <End Role="THANHTOAN" EntitySet="THANHTOAN" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QL_PHANBONModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -649,7 +680,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QL_PHANBONEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="QL_PHANBONEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CTDONHANG" EntityType="Self.CTDONHANG" />
           <EntitySet Name="DANHMUC" EntityType="Self.DANHMUC" />
           <EntitySet Name="DONHANG" EntityType="Self.DONHANG" />
@@ -711,13 +742,35 @@
             <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="SANPHAMKHUYENMAI" EntitySet="SANPHAMKHUYENMAI" />
           </AssociationSet>
+          <FunctionImport Name="GetTop10" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.GetTop10_Result)" />
+          <FunctionImport Name="GetTop10KM" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.GetTop10KM_Result)" />
         </EntityContainer>
+        <ComplexType Name="GetTop10_Result">
+          <Property Type="Int32" Name="IDSP" Nullable="false" />
+          <Property Type="Int32" Name="IDDM" Nullable="true" />
+          <Property Type="Int32" Name="IDNCC" Nullable="true" />
+          <Property Type="String" Name="TENSP" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="DONGIA" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="SOLUONGTON" Nullable="true" />
+          <Property Type="String" Name="HINHANH" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="MOTA" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="CACHDUNG" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="NHASANXUAT" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="GetTop10KM_Result">
+          <Property Type="Int32" Name="IDSP" Nullable="false" />
+          <Property Type="String" Name="TENSP" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="DONGIA" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="String" Name="HINHANH" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="GIATIENKM" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="String" Name="TENDM" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QL_PHANBONModelStoreContainer" CdmEntityContainer="QL_PHANBONEntities1">
+        <EntityContainerMapping StorageEntityContainer="QL_PHANBONModelStoreContainer" CdmEntityContainer="QL_PHANBONEntities">
           <EntitySetMapping Name="CTDONHANG">
             <EntityTypeMapping TypeName="QL_PHANBONModel.CTDONHANG">
               <MappingFragment StoreEntitySet="CTDONHANG">
@@ -863,6 +916,34 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetTop10" FunctionName="QL_PHANBONModel.Store.GetTop10">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QL_PHANBONModel.GetTop10_Result">
+                <ScalarProperty Name="IDSP" ColumnName="IDSP" />
+                <ScalarProperty Name="IDDM" ColumnName="IDDM" />
+                <ScalarProperty Name="IDNCC" ColumnName="IDNCC" />
+                <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+                <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+                <ScalarProperty Name="SOLUONGTON" ColumnName="SOLUONGTON" />
+                <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
+                <ScalarProperty Name="MOTA" ColumnName="MOTA" />
+                <ScalarProperty Name="CACHDUNG" ColumnName="CACHDUNG" />
+                <ScalarProperty Name="NHASANXUAT" ColumnName="NHASANXUAT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetTop10KM" FunctionName="QL_PHANBONModel.Store.GetTop10KM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QL_PHANBONModel.GetTop10KM_Result">
+                <ScalarProperty Name="IDSP" ColumnName="IDSP" />
+                <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+                <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+                <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
+                <ScalarProperty Name="GIATIENKM" ColumnName="GIATIENKM" />
+                <ScalarProperty Name="TENDM" ColumnName="TENDM" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

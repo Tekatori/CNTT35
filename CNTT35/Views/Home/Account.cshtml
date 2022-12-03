@@ -3,79 +3,142 @@
     ViewBag.Title = "Account";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@model IEnumerable<CNTT35.Service.Model.AccountInfo>
 <section class="checkout spad">
     <div class="container">
         <div class="checkout__form">
             <h4>Quản lí hồ sơ của bạn</h4>
+            @foreach (var item in Model)
+            {
+                string[] diachi;
+                if (item.DIACHI != null)
+                {
+                    diachi = item.DIACHI.ToString().Split(',');
+                }
+                else
+                {
+                    diachi = new String[] { "", "", "","" };
+                }
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        @using (Html.BeginForm("ChangeInfo", "Home", FormMethod.Post))
+                        {
+                            <div class="row">
+                                <h6>Tên người dùng : @item.TENND</h6>
+                            </div>
+                            <div class="row" style="margin-top:-68px">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Tên<span>*</span></p>
+                                        <input type="text" value="@item.HOTEN" placeholder="Chưa có Thông tin" name="hoten">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Ngày Đăng Ký</p>
+                                        <p style="padding:15px">@String.Format("{0:MM/dd/yyyy}", @item.NGAYDK)</p>
+                                    </div>
+                                </div>
 
-            <div class="row">
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Số Nhà<span>*</span></p>
+                                        <input type="text" value="@diachi[0].ToString()" placeholder="Chưa có Thông tin" name="sonha">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Phường/Xã<span>*</span></p>
+                                        <input type="text" value="@diachi[1].ToString()" placeholder="Chưa có Thông tin" name="xa">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Quận/Huyện<span>*</span></p>
+                                        <input type="text" value="@diachi[2].ToString()" placeholder="Chưa có Thông tin" name="huyen">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Thành Phố/Tỉnh<span>*</span></p>
+                                        <input type="text" value="@diachi[3].ToString()" placeholder="Chưa có Thông tin" name="tinh">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Điện thoại<span>*</span></p>
+                                        <input type="text" value="@item.SDT" placeholder="Chưa có Thông tin" name="sdt">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Email<span>*</span></p>
+                                        <input type="text" value="@item.EMAIL" placeholder="Chưa có Thông tin" name="email">
+                                    </div>
+                                </div>
+                                <button type="submit" class="site-btn">THAY ĐỔI</button>
+                            </div>
+                        }
+                    </div>
 
-                <div class="col-lg-8 col-md-6">
-                    <form action="#">
-                        <div class="row">
-                            <div class="col-lg-6">
+                    <div class="col-lg-4 col-md-6">
+                        @using (Html.BeginForm("ChangePassword", "Home", FormMethod.Post))
+                        {
+                            <div class="checkout__order">
+                                <h4>Thay đổi mật khẩu</h4>
                                 <div class="checkout__input">
-                                    <p>Họ<span>*</span></p>
-                                    <input type="text" required>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="checkout__input">
-                                    <p>Tên<span>*</span></p>
-                                    <input type="text">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="checkout__input">
-                            <p>Địa chỉ<span>*</span></p>
-                            <input type="text" placeholder="Địa chỉ số nhà, đường phố" class="checkout__input__add">
+                                    <p>Mật khẩu hiện tại<span>*</span></p>
+                                    <input type="password" name="passcu" placeholder="Nhập mật khẩu hiện tại" class="checkout__input__add" required>
 
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="checkout__input">
-                                    <p>Điện thoại<span>*</span></p>
-                                    <input type="text">
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
                                 <div class="checkout__input">
-                                    <p>Email<span>*</span></p>
-                                    <input type="text">
+                                    <p>Mật khẩu mới<span>*</span></p>
+                                    <input type="password" name="passnew" placeholder="Nhập mật khẩu mới" class="checkout__input__add" required>
+
                                 </div>
+                                <div class="checkout__input">
+                                    <p>Xác nhận mật khẩu<span>*</span></p>
+                                    <input type="password" name="repassnew" placeholder="Nhập lại mật khẩu mới" class="checkout__input__add" required>
+
+                                </div>
+                                <button type="submit" class="site-btn">Xác nhận</button>
                             </div>
-                            <button type="submit" class="site-btn">THAY ĐỔI</button>
-                        </div>
-                    </form>
+
+
+                        }
+                    </div>
+
                 </div>
+            }
 
-                <div class="col-lg-4 col-md-6">
-                    <form>
-                        <div class="checkout__order">
-                            <h4>Thay đổi mật khẩu</h4>
-                            <div class="checkout__input">
-                                <p>Mật khẩu hiện tại<span>*</span></p>
-                                <input type="password" placeholder="Nhập mật khẩu hiện tại" class="checkout__input__add" required>
-
-                            </div>
-                            <div class="checkout__input">
-                                <p>Mật khẩu mới<span>*</span></p>
-                                <input type="password" placeholder="Nhập mật khẩu mới" class="checkout__input__add" required>
-
-                            </div>
-                            <div class="checkout__input">
-                                <p>Xác nhận mật khẩu<span>*</span></p>
-                                <input type="password" placeholder="Nhập lại mật khẩu mới" class="checkout__input__add" required>
-
-                            </div>
-                            <button type="submit" class="site-btn">Xác nhận</button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-
+            @{
+                var parameter = Request.QueryString["ac2"];
+                //Check parameter here and display Message
+                if (parameter == "error2")
+                {
+                    <div class="alert alert-success alert-dismissable" style="text-align:center">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Email Trùng , làm ơn thay đổi lại!</strong>
+                    </div>
+                }
+            }
+            @{
+                var parameter2 = Request.QueryString["ac3"];
+                //Check parameter here and display Message
+                if (parameter2 == "error3")
+                {
+                    <div class="alert alert-success alert-dismissable" style="text-align:center">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Mật khẩu cũ không đúng hoặc mật khẩu mới ko trùng nhau !</strong>
+                    </div>
+                }
+            }
         </div>
     </div>
 </section>

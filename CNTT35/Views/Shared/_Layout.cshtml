@@ -15,7 +15,7 @@
 
     @Scripts.Render("~/bundles/modernizr")
 </head>
-@using CNTT35.ViewModel;
+@using CNTT35.ViewModel
 <body>
     <header> 
         <div class=".position"> </div>
@@ -39,14 +39,14 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between box-menu">
                     @*<ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="index">home</a>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="index">home</a>
 
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="privacy">privacy</a>
-                            </li>
-                        </ul>*@
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="privacy">privacy</a>
+            </li>
+        </ul>*@
                     <ul>
                         <li><a>@Html.ActionLink("Trang Chủ", "Index", "Home")</a></li>
                         <li><a>@Html.ActionLink("Giới Thiệu", "About", "Home")</a></li>
@@ -60,41 +60,52 @@
                                 <li><a href="#" title="Phân bón lá">Phân bón lá</a></li>
                                 <li><a href="#" title="Hạt giống">Hạt giống</a></li>
                                 @* <li>
-                                        <a href="#" title="Lập trình Web ASP.NET">Lập trình Web với ASP.NET MVC 5</a>
-                                        <!-- menu con sổ ngang cấp 2 -->
-                                        <ul>
-                                            <li><a href="#" title="Lập Trình hướng đối tượng với C# (30h)">1. Lập trình hướng đối tượng với C#(30h)</a></li>
-                                            <li><a href="#" title="Lập trình cơ sở dữ liệu SQL Server (20h)">2. Lập trình cơ sở dữ liệu SQL Server (20h)</a></li>
-                                            <li><a href="#" title="Lập trình giao diện web với HTML5 (30h)">3. Lập trình giao diện web với HTML5 (30h)</a></li>
-                                            <li><a href="#" title="Lập trình ứng dụng với ASP.NET MVC 5 (20h)">4. Lập trình ứng dụng ASP.NET MVC 5 (20h)</a></li>
-                                            <li>
-                                                <a href="#" title="Xây dựng dự án với ASP.NET MVC 5(30h)">5. Xây dựng dự án với ASP.NET MVC 5(30h)</a>
-                                                <!-- menu con sổ ngang cấp 3 -->
-                                                <ul>
-                                                    <li><a href="#" title="Xây dựng bài toán">Xây dựng bài toán</a></li>
-                                                    <li><a href="#" title="Thiết kế giao diện chức năng">Thiết kế giao diện chức năng</a></li>
-                                                    <li><a href="#" title="Phát triển dự án">Phát triển dự án</a></li>
-                                                </ul>
+                        <a href="#" title="Lập trình Web ASP.NET">Lập trình Web với ASP.NET MVC 5</a>
+                        <!-- menu con sổ ngang cấp 2 -->
+                        <ul>
+                            <li><a href="#" title="Lập Trình hướng đối tượng với C# (30h)">1. Lập trình hướng đối tượng với C#(30h)</a></li>
+                            <li><a href="#" title="Lập trình cơ sở dữ liệu SQL Server (20h)">2. Lập trình cơ sở dữ liệu SQL Server (20h)</a></li>
+                            <li><a href="#" title="Lập trình giao diện web với HTML5 (30h)">3. Lập trình giao diện web với HTML5 (30h)</a></li>
+                            <li><a href="#" title="Lập trình ứng dụng với ASP.NET MVC 5 (20h)">4. Lập trình ứng dụng ASP.NET MVC 5 (20h)</a></li>
+                            <li>
+                                <a href="#" title="Xây dựng dự án với ASP.NET MVC 5(30h)">5. Xây dựng dự án với ASP.NET MVC 5(30h)</a>
+                                <!-- menu con sổ ngang cấp 3 -->
+                                <ul>
+                                    <li><a href="#" title="Xây dựng bài toán">Xây dựng bài toán</a></li>
+                                    <li><a href="#" title="Thiết kế giao diện chức năng">Thiết kế giao diện chức năng</a></li>
+                                    <li><a href="#" title="Phát triển dự án">Phát triển dự án</a></li>
+                                </ul>
 
-                                            </li>
-                                        </ul>
-                                    </li>*@
+                            </li>
+                        </ul>
+                    </li>*@
 
                             </ul>
                         </li>
                         @*<li>
-                                <a href="#" title="Dịch vụ">Dịch vụ</a>
-                                <ul>
-                                    <li><a href="#" title="Vận chuyển hàng hóa">Vận chuyển hàng hóa</a></li>
-                                    <li><a href="#" title="Khuyến mãi">Khuyến mãi</a></li>
-                                </ul>
-                            </li>*@
+                <a href="#" title="Dịch vụ">Dịch vụ</a>
+                <ul>
+                    <li><a href="#" title="Vận chuyển hàng hóa">Vận chuyển hàng hóa</a></li>
+                    <li><a href="#" title="Khuyến mãi">Khuyến mãi</a></li>
+                </ul>
+            </li>*@
                         <li>
                             <a>@Html.ActionLink("Liên hệ", "Contact", "Home")</a>
 
                         </li>
 
                     </ul>
+                    @{
+                        var parameter = Request.QueryString["ac"];
+                        //Check parameter here and display Message
+                        if (parameter == "error")
+                        {
+                            <div class="alert alert-success alert-dismissable" style="text-align:center">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Tài khoản Hoặc email đã Có , làm ơn bạn hãy đăng ký lại!</strong>
+                            </div>
+                        }
+                    }
                     <div class="navbar-left">
                         @using (Html.BeginForm("Search", "Product", FormMethod.Post))
                         {
@@ -152,7 +163,8 @@
                             </svg>
                             <span class="visually-hidden">Cart</span>
                         </a>
-                        <a>(
+                        <a>
+                            (
                             @{
 
                                 GioHang g = Session["gh"] as GioHang;
@@ -369,58 +381,38 @@
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Đăng ký</h5>
-                    <button type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="sl-container">
-                        <div class="sl-wrapper">
-                            <h5 class="">Đăng ký với</h5>
-                            <div class="sl-vertical social-wrap oxi_icon_center login">
-                                <a class="social_login facebook">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                         width="16"
-                                         height="16"
-                                         fill="currentColor"
-                                         class="bi bi-facebook"
-                                         viewBox="0 0 16 16">
-                                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
-                                    </svg>
-                                    <span> Facebook</span>
-                                </a>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <a class="btn btn-outline-dark google " href="/users/googleauth" role="button" style="text-transform:none">
-                                            <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-                                            Google
-                                        </a>
-                                    </div>
-                                </div>
+                @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                {
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Đăng ký</h5>
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="sl-container">
+                            <div class="sl-wrapper">
+                                <h5 class="">Thông tin Đăng Ký</h5>
                             </div>
                         </div>
-                    </div>
-                    <form>
-                        <div class="form-group">
 
-                            <input placeholder="Họ" class="form-control custom-input" id="recipient-Lastname" />
-                        </div>
                         <div class="form-group">
-
-                            <input placeholder="Tên" class="form-control custom-input" id="recipient-Firstname" />
+                            <input name="tenND" placeholder="Tên Người Dùng" class="form-control custom-input" id="recipient-Lastname" required />
                         </div>
 
                         <div class="form-group">
 
-                            <input placeholder="Tài khoản" class="form-control custom-input" id="recipient-nameRegister" />
+                            <input name="Email" placeholder="Email" class="form-control custom-input" id="recipient-Firstname" required />
+                        </div>
+
+                        <div class="form-group">
+                            <input name="SDT" placeholder="Số điện thoại" class="form-control custom-input" id="recipient-nameRegister" required />
                         </div>
                         <div class="form-group">
-                            <input type="password" placeholder="Mật khẩu" class="form-control custom-input" id="message-text2" />
+                            <input name="pass" type="password" placeholder="Mật khẩu" class="form-control custom-input" id="message-text2" required />
                         </div>
                         <div class="forgot-create">
                             <h6 data-dismiss="modal"
@@ -429,16 +421,18 @@
                                 Đã có tài khoản?
                             </h6>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal">
-                        Hủy bỏ
-                    </button>
-                    <button type="button" class="btn btn-primary">Đăng ký</button>
-                </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal">
+                            Hủy bỏ
+                        </button>
+                        <button type="submit" class="btn btn-primary">Đăng ký</button>
+                    </div>
+                }
+           
             </div>
 
 

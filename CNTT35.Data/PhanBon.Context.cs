@@ -12,6 +12,8 @@ namespace CNTT35.Data
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class QL_PHANBONEntities : DbContext
     {
@@ -38,5 +40,17 @@ namespace CNTT35.Data
         public virtual DbSet<SANPHAM> SANPHAM { get; set; }
         public virtual DbSet<SANPHAMKHUYENMAI> SANPHAMKHUYENMAI { get; set; }
         public virtual DbSet<THANHTOAN> THANHTOAN { get; set; }
+    
+        [DbFunction("QL_PHANBONEntities", "GetTop10")]
+        public virtual IQueryable<GetTop10_Result> GetTop10()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetTop10_Result>("[QL_PHANBONEntities].[GetTop10]()");
+        }
+    
+        [DbFunction("QL_PHANBONEntities", "GetTop10KM")]
+        public virtual IQueryable<GetTop10KM_Result> GetTop10KM()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetTop10KM_Result>("[QL_PHANBONEntities].[GetTop10KM]()");
+        }
     }
 }

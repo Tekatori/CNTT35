@@ -6,7 +6,6 @@
 @using PagedList.Mvc;
 @using PagedList;
 @model IPagedList<CNTT35.Data.SANPHAM>
-
 <div class="collection-hero collection-hero--with-image collection-hero--contrast section-template--15208910487684__banner-padding">
     <div class="collection-hero__inner">
         <div class="collection-hero__image-container">
@@ -60,8 +59,6 @@
                         <div class="latest-product__text">
                             <h4>Sản phẩm gợi ý</h4>
                             <div class="latest-product__slider owl-carousel owl-loaded owl-drag">
-
-
                                 <div class="owl-stage-outer">
                                     <div class="owl-stage" style="transform: translate3d(-525px, 0px, 0px); transition: all 1.2s ease 0s; width: 1575px;">
                                         <div class="owl-item cloned" style="width: 262.5px;">
@@ -178,6 +175,8 @@
                 </div>
             </div>
             <div class="col-lg-9 col-md-7">
+                @if (ViewBag.top10KM != null)
+                {
                 <div class="product__discount">
                     <div class="section-title product__discount__title">
                         <h2>Sản phẩm giảm giá</h2>
@@ -185,161 +184,180 @@
                     <div class="row">
                         <div class="product__discount__slider owl-carousel owl-loaded owl-drag">
                             <div class="owl-stage-outer">
-                                <div class="owl-stage" style="transform: translate3d(-2340px, 0px, 0px); transition: all 1.2s ease 0s; width: 3510px;">
-                                    <div class="owl-item cloned" style="width: 292.5px;">
-                                        <div class="col-lg-4">
-                                            <div class="product__discount__item">
-                                                <div class="product__discount__item__pic set-bg" data-setbg="Content/img/featured/SH_BORON.jpg" style="background-image: url(&quot;Content/img/featured/SH_BORON.jpg&quot;);">
-                                                    <div class="product__discount__percent">-30%</div>
-                                                    <ul class="product__item__pic__hover">
-                                                        <li>
-                                                            <a href="#">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                                                                </svg>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="../Product/Detail">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
-                                                                    <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
-                                                                </svg>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
-                                                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                                                                </svg>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="product__discount__item__text">
-                                                    <span>Phân bón lá</span>
-                                                    <h5><a href="#">SH Boron</a></h5>
-                                                    <div class="product__item__price">45.000đ <span>55.000đ</span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item" style="width: 292.5px;">
-                                        <div class="col-lg-4">
-                                            <div class="product__discount__item">
-                                                <div class="product__discount__item__pic set-bg" data-setbg="Content/img/featured/hat-giong-dua-hau-tao-ruot-do.jpg" style="background-image: url(&quot;Content/img/featured/hat-giong-dua-hau-tao-ruot-do.jpg&quot;);">
-                                                    <div class="product__discount__percent">-20%</div>
-                                                    <ul class="product__item__pic__hover">
-                                                        <li>
-                                                            <a href="#">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                                                                </svg>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="../Product/Detail">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
-                                                                    <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
-                                                                </svg>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
-                                                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                                                                </svg>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="product__discount__item__text">
-                                                    <span>Hạt giống</span>
-                                                    <h5><a href="#">Dưa hấu ruột đỏ</a></h5>
-                                                    <div class="product__item__price">15.000đ <span>20.000đ</span></div>
+                                @{ List<CNTT35.Data.GetTop10KM_Result> listkm = ViewBag.top10KM as List<CNTT35.Data.GetTop10KM_Result>;
+                                    string[] listHinhAnhdau = listkm[0].HINHANH.ToString().Split(',');
+                                    string[] listHinhAnhCuoi2 = listkm[listkm.Count() - 1].HINHANH.ToString().Split(',');
+                                    string[] listHinhAnhCuoi = listkm[listkm.Count() - 2].HINHANH.ToString().Split(',');
+                                    int percent1 = (int)((1 - listkm[0].GIATIENKM / listkm[0].DONGIA) * 100);
+                                    int percent2 = (int)((1 - listkm[listkm.Count() - 1].GIATIENKM / listkm[listkm.Count() - 1].DONGIA) * 100);
+                                    int percent3 = (int)((1 - listkm[listkm.Count() - 2].GIATIENKM / listkm[listkm.Count() - 2].DONGIA) * 100);
+                                    <div class="owl-stage" style="transform: translate3d(-2340px, 0px, 0px); transition: all 1.2s ease 0s; width: 3510px;">
+                                        <div class="owl-item cloned" style="width: 292.5px;">
+                                            <div class="col-lg-4">
+                                                <div class="product__discount__item">
+                                                    <div class="product__discount__item__pic set-bg" data-setbg="Content/img/featured/@listHinhAnhdau[0].ToString()"  style="background-image: url(&quot;Content/img/featured/SH_BORON.jpg&quot;);">
+                                                        <div class="product__discount__percent">-@percent1%</div>   
+                                                        <ul class="product__item__pic__hover">
+                                                            <li>
+                                                                <a href="#">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="../Product/Detail/@listkm[0].IDSP">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                                                        <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="/Product/ChonMua/@listkm[0].IDSP">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product__discount__item__text">
+                                                        <span>@listkm[0].TENDM</span>
+                                                        <h5><a href="/Product/Detail/@listkm[0].IDSP">@listkm[0].TENSP</a></h5>
+                                                        <div class="product__item__price">@string.Format("{0:#,### đ}", listkm[0].GIATIENKM) <span>@string.Format("{0:#,### đ}", listkm[0].DONGIA)</span></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="owl-item active" style="width: 292.5px;">
-                                        <div class="col-lg-4">
-                                            <div class="product__discount__item">
-                                                <div class="product__discount__item__pic set-bg" data-setbg="Content/img/categories/HCBAOCUU.jpg" style="background-image: url(&quot;Content/img/categories/HCBAOCUU.jpg&quot;);">
-                                                    <div class="product__discount__percent">-20%</div>
-                                                    <ul class="product__item__pic__hover">
-                                                        <li>
-                                                            <a href="#">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                                                                </svg>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="../Product/Detail">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
-                                                                    <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
-                                                                </svg>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
-                                                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                                                                </svg>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
+
+                                        @for (int i = 1; i < listkm.Count() - 2; i++)
+                                        {
+                                            string[] listHinhAnh = listkm[i].HINHANH.ToString().Split(',');
+                                            int percentlist = 0;
+                                            percentlist =(int) ((1-listkm[i].GIATIENKM / listkm[i].DONGIA)*100);
+                                            <div class="owl-item" style="width: 292.5px;">
+                                                <div class="col-lg-4">
+                                                    <div class="product__discount__item">
+                                                        <div class="product__discount__item__pic set-bg" data-setbg="Content/img/featured/@listHinhAnh[0].ToString()">
+                                                            <div class="product__discount__percent">-@percentlist%</div>
+                                                            <ul class="product__item__pic__hover">
+                                                                <li>
+                                                                    <a href="#">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                                        </svg>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="../Product/Detail/@listkm[i].IDSP">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                                                            <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
+                                                                        </svg>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/Product/ChonMua/@listkm[i].IDSP">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                                                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                                                        </svg>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="product__discount__item__text">
+                                                            <span>@listkm[i].TENDM</span>
+                                                            <h5><a href="/Product/Detail/@listkm[i].IDSP">@listkm[i].TENSP </a></h5>
+                                                            <div class="product__item__price">@string.Format("{0:#,### đ}", listkm[i].GIATIENKM) <span>@string.Format("{0:#,### đ}", listkm[i].DONGIA)</span></div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
-                                                <div class="product__discount__item__text">
-                                                    <span>Phân hữu cơ</span>
-                                                    <h5><a href="#">Bao cừu</a></h5>
-                                                    <div class="product__item__price">55.000đ <span>65.000đ</span></div>
+                                            </div>
+                                            
+                                        }
+
+                                        <div class="owl-item active" style="width: 292.5px;">
+                                            <div class="col-lg-4">
+                                                <div class="product__discount__item">
+                                                    <div class="product__discount__item__pic set-bg" data-setbg="Content/img/featured/@listHinhAnhCuoi[0].ToString()" style="background-image: url(&quot;Content/img/categories/HCBAOCUU.jpg&quot;);">
+                                                        <div class="product__discount__percent">-@percent3%</div>
+                                                        <ul class="product__item__pic__hover">
+                                                            <li>
+                                                                <a href="#">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="../Product/Detail/@listkm[listkm.Count() - 2].IDSP">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                                                        <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="/Product/Detail/@listkm[listkm.Count() - 2].IDSP">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product__discount__item__text">
+                                                        <span>@listkm[listkm.Count() - 2].TENDM</span>
+                                                        <h5><a href="/Product/ChonMua/@listkm[listkm.Count() - 2].IDSP">@listkm[listkm.Count() - 2].TENSP</a></h5>
+                                                        <div class="product__item__price">@string.Format("{0:#,### đ}", listkm[listkm.Count() - 2].GIATIENKM) <span> @string.Format("{0:#,### đ}", listkm[listkm.Count() - 2].DONGIA) </span></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="owl-item cloned active" style="width: 292.5px;">
-                                        <div class="col-lg-4">
-                                            <div class="product__discount__item">
-                                                <div class="product__discount__item__pic set-bg" data-setbg="Content/img/featured/VC-kali-1-rong.png" style="background-image: url(&quot;Content/img/featured/VC-kali-1-rong.png&quot;);">
-                                                    <div class="product__discount__percent">-20%</div>
-                                                    <ul class="product__item__pic__hover">
-                                                        <li>
-                                                            <a href="#">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                                                                </svg>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="../Product/Detail">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
-                                                                    <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
-                                                                </svg>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
-                                                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                                                                </svg>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="product__discount__item__text">
-                                                    <span>Phân vô cơ</span>
-                                                    <h5><a href="#">Kali trắng MOP</a></h5>
-                                                    <div class="product__item__price">60.000đ <span>75.000đ</span></div>
+                                        <div class="owl-item cloned active" style="width: 292.5px;">
+                                            <div class="col-lg-4">
+                                                <div class="product__discount__item">
+                                                    <div class="product__discount__item__pic set-bg" data-setbg="Content/img/featured/@listHinhAnhCuoi2[0].ToString()">
+                                                        <div class="product__discount__percent">-@percent2%</div>
+                                                        <ul class="product__item__pic__hover">
+                                                            <li>
+                                                                <a href="#">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="../Product/Detail/@listkm[listkm.Count() - 1].IDSP">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                                                        <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="/Product/Detail/@listkm[listkm.Count() - 1].IDSP">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product__discount__item__text">
+                                                        <span>@listkm[listkm.Count() - 1].TENDM</span>
+                                                        <h5><a href="/Product/ChonMua/@listkm[listkm.Count() - 1].IDSP">@listkm[listkm.Count() - 1].TENSP</a></h5>
+                                                        <div class="product__item__price">@string.Format("{0:#,### đ}", listkm[listkm.Count() - 1].GIATIENKM) <span>@string.Format("{0:#,### đ}", listkm[listkm.Count() - 1].DONGIA) </span></div>
+                                                    </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
-                                </div>
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
-
+                                    }
                 <div class="filter__item">
                     <div class="section-title product__discount__title">
                         <h2>Sản phẩm chính</h2>
@@ -382,7 +400,7 @@
                         {
                             string[] listHinhAnh = item.HINHANH.ToString().Split(',');
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">         
+                                <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="/Content/img/featured/@listHinhAnh[0].ToString()">
                                         <ul class="product__item__pic__hover">
                                             <li>
@@ -408,10 +426,10 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="product__item__text">
-                                        <h6><a href="../Product/Detail/@item.IDSP">@item.TENSP</a></h6>
-                                        <h5>@string.Format("{0:#,### đ}", item.DONGIA)</h5>
-                                    </div>
+                                       <div class="product__item__text">
+                                            <h6><a href="../Product/Detail/@item.IDSP">@item.TENSP</a></h6>
+                                            <h5>@string.Format("{0:#,### đ}", item.DONGIA)</h5>
+                                        </div>                                   
                                 </div>
                             </div>
                         }
