@@ -21,7 +21,13 @@ hr {
     margin: 0rem 0 !important;
 }
 
-
+.nav-link {
+    color: #007B5E !important;
+}
+.form-check-input:checked {
+    background-color: #007B5E!important;
+    border-color: #007B5E!important;
+}
 
 .announcement-bar {
     width: 100%;

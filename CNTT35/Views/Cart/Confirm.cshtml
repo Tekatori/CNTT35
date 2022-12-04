@@ -55,6 +55,22 @@
                                     <option value="@diachi[1].ToString()" selected>Chọn phường xã</option>
                                 </select>
                             </div>
+                             
+                             <p>Phương thức vận chuyển<span style="color:red;">*</span></p>
+                            <div style="display: flex;margin-bottom: 1rem;">
+                            <div class="form-check" >
+                              <input class="form-check-input " type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                              <label class="form-check-label" for="flexRadioDefault1">
+                                Tiết kiệm
+                              </label>
+                            </div>
+                            <div class="form-check" style="margin-left:1rem ;">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                              <label class="form-check-label" for="flexRadioDefault2">
+                                Hỏa tốc
+                              </label>
+                            </div>
+                            </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
@@ -93,6 +109,13 @@
                                 }
                             </ul>
                             <div class="checkout__order__products">Phí vận chuyển <span>35.000₫</span></div>
+                            <ul>
+                                
+                                   
+                                        <li> Dự kiến giao hàng:<span>3 ngày</span></li>
+                                   
+                                
+                            </ul>
                             <div class="checkout__order__subtotal">Tổng thu <span>@string.Format("{0:#,### đ}", @Model.TongThanhTien() + 35000)  </span></div>
                             @if (TempData["tienkm"].ToString() != "0")
                             {
