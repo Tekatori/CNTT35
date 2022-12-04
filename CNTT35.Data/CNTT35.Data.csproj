@@ -119,6 +119,15 @@
     <Compile Include="SANPHAMKHUYENMAI.cs">
       <DependentUpon>PhanBon.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>PhanBon.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>PhanBon.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>PhanBon.tt</DependentUpon>
+    </Compile>
     <Compile Include="THANHTOAN.cs">
       <DependentUpon>PhanBon.tt</DependentUpon>
     </Compile>

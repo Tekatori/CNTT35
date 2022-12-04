@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6eae02decfb84a148792869ac816a313" Name="Diagram1">
-        <EntityTypeShape EntityType="QL_PHANBONModel.CTDONHANG" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+      <Diagram DiagramId="74a67005d1b44fa6b67c7c0ce42dafeb" Name="Diagram1">
+        <EntityTypeShape EntityType="QL_PHANBONModel.CTDONHANG" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_PHANBONModel.DANHMUC" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_PHANBONModel.DONHANG" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_PHANBONModel.KHACHHANG" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
@@ -14,10 +14,11 @@
         <EntityTypeShape EntityType="QL_PHANBONModel.NGUOIDUNG" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_PHANBONModel.NHACUNGCAP" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_PHANBONModel.PHANHOI" Width="1.5" PointX="3" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="QL_PHANBONModel.QLVANCHUYEN" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_PHANBONModel.QLVANCHUYEN" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_PHANBONModel.SANPHAM" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_PHANBONModel.SANPHAMKHUYENMAI" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QL_PHANBONModel.THANHTOAN" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_PHANBONModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_PHANBONModel.THANHTOAN" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
         <AssociationConnector Association="QL_PHANBONModel.FK_CTDONHANG_IDDH" ManuallyRouted="false" />
         <AssociationConnector Association="QL_PHANBONModel.FK_CTDONHANG_IDSP" ManuallyRouted="false" />
         <AssociationConnector Association="QL_PHANBONModel.FK_SANPHAM_IDDM" ManuallyRouted="false" />

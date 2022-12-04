@@ -10,15 +10,13 @@
 namespace CNTT35.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class CTDONHANG
+    public partial class sp_helpdiagrams_Result
     {
-        public int IDDH { get; set; }
-        public int IDSP { get; set; }
-        public Nullable<int> SOLUONGSP { get; set; }
-    
-        public virtual DONHANG DONHANG { get; set; }
-        public virtual SANPHAM SANPHAM { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

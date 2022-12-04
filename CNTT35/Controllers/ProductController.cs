@@ -25,8 +25,7 @@ namespace CNTT35.Controllers
         public ActionResult Index(int? page, int? pagesize)
         {
             Session["giamgia"] = null;
-            var sp = _productService.GetAllSanPham();
-
+            var  sp = _productService.GetAllSanPham();  
             if (page == null)
                 page = 1;
             if (pagesize == null)
@@ -57,7 +56,7 @@ namespace CNTT35.Controllers
         public ActionResult Search(int? page, int? pagesize,FormCollection c)
         {
             Session["giamgia"] = null;
-            string tim = c["st"].ToString();
+            string tim = c["search"].ToString();
             var sp = _productService.SearchSP(tim);
             if (page == null)
                 page = 1;
@@ -65,18 +64,14 @@ namespace CNTT35.Controllers
                 pagesize = 100;
             List<GetTop10_Result> top10Random = _productService.GetTop10SanPham();
             ViewBag.top10Random = top10Random;
+
+            //List<GetTop10KM_Result> top10KM = _productService.GetTop10SanPhamKM();
+            //ViewBag.top10KM = top10KM;
+
             ViewBag.top10KM = null;
             return View("Index",sp.ToPagedList((int)page, (int)pagesize));
         }
-        //public ActionResult Index(int? page, int? pagesize,string id)
-        //{
-        //    var sp = _productService.GetSanPhamHatGiong(int.Parse(id));
-        //    if (page == null)
-        //        page = 1;
-        //    if (pagesize == null)
-        //        pagesize = 12;
-        //    return View(sp.ToPagedList((int)page, (int)pagesize));
-        //}
+
         public ActionResult ChonMua(int id)
         {
             GioHang gh = (GioHang)Session["gh"];
@@ -118,7 +113,7 @@ namespace CNTT35.Controllers
                 if (page == null)
                     page = 1;
                 if (pagesize == null)
-                    pagesize = 10;
+                    pagesize = 100;
                 List<GetTop10_Result> top10Random = _productService.GetTop10SanPham();
                 ViewBag.top10Random = top10Random;
                 ViewBag.top10KM = null;

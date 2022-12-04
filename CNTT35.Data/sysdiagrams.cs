@@ -12,13 +12,12 @@ namespace CNTT35.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class CTDONHANG
+    public partial class sysdiagrams
     {
-        public int IDDH { get; set; }
-        public int IDSP { get; set; }
-        public Nullable<int> SOLUONGSP { get; set; }
-    
-        public virtual DONHANG DONHANG { get; set; }
-        public virtual SANPHAM SANPHAM { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

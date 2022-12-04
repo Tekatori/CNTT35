@@ -58,6 +58,7 @@
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\Abstract\IAccountService.cs" />
     <Compile Include="Service\Abstract\ICartItem.cs" />
+    <Compile Include="Service\DonHangService.cs" />
     <Compile Include="Service\ProductService.cs" />
   </ItemGroup>
   <ItemGroup>
