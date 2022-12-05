@@ -19,19 +19,8 @@
 @using CNTT35.ViewModel
 <body>
     <header> 
-        <div class=".position"> </div>
-        <div class="announcement-bar">
-            <div class="page-width">
-                <announcement-bar id="AnnouncementSlider-announcement-bar" data-compact="false" data-autorotate="true" data-autorotate-speed="5" data-block-count="1">
-                    <div class="announcement-slider">
-                        <span class="">Gọi ngay: (+84)3333 80 274 </span>
-                        <span class="" href="../Product/Index">Miễn phí giao hàng/400 000đ| Mua hàng ngay</span>
-                        <span class="" href="../Home/Contact">Email liên hệ - banhangcntt35@gmail.com</span>
-                    </div>
-                </announcement-bar>
-            </div>
-        </div>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 nav-header">
+        <div style="position: relative;"> </div>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow nav-header" style="margin-top: -3rem; margin-bottom: 5rem;">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CNTT35</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -200,7 +189,17 @@
                 </div>
             </div>
         </nav>
-
+        <div class="announcement-bar">
+            <div class="page-width">
+                <announcement-bar id="AnnouncementSlider-announcement-bar" data-compact="false" data-autorotate="true" data-autorotate-speed="5" data-block-count="1">
+                    <div class="announcement-slider">
+                        <span class="">Gọi ngay: (+84)3333 80 274 </span>
+                        <span class="" href="../Product/Index">Miễn phí giao hàng/400 000đ| Mua hàng ngay</span>
+                        <span class="" href="../Home/Contact">Email liên hệ - banhangcntt35@gmail.com</span>
+                    </div>
+                </announcement-bar>
+            </div>
+        </div>
     </header>
 
     <div class="" id="body">
