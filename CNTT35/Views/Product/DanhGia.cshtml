@@ -1,0 +1,114 @@
+﻿
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<CNTT35.Data.PHANHOI>
+@{
+    var sp = ViewBag.ttsp as CNTT35.Data.SANPHAM;
+    int sumsao = 0;
+    double av = 0;
+}
+<div class="tab-pane active" id="tabs-3" role="tabpanel">
+    <div class="product__details__tab__desc">
+        <h6>Đánh giá sản phẩm</h6>
+        <div class="product-rating">
+            <div class="score">
+                <div style="display:flex; align-items:flex-end;">
+                    <h2>@String.Format("{0:0.#}",ViewBag.ttsp)</h2>
+                    <span>trên 5</span>
+                </div>
+                <div style="width:100px">
+                    @for (int i = 0; i< ViewBag.ttsp;i++)
+                    {
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EDBB0E" class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                    }
+                </div>
+
+            </div>
+
+        </div>
+        @foreach (var dg in Model)
+        {
+            sumsao = sumsao + (int)dg.RATE;
+            <div class="product-comment">
+                <div class="people">
+                    <div class="main">
+                        <div>@dg.HoTenDG</div>
+                        <div>
+                            @for (int i = 0; i < dg.RATE; i++)
+                            {
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#EDBB0E" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                </svg>
+                            }
+                        </div>
+                        <div> <span style="color: rgba(0,0,0,.4);">Chất lượng sản phẩm:</span> @dg.CHATLUONGSANPHAM</div>
+                        <div> <span style="color: rgba(0,0,0,.4);">Đúng với mô tả:</span> @dg.DUNGVOIMOTA</div>
+                        <div style="margin: 0.9375rem 0;">@dg.NOIDUNG</div>
+
+                    </div>
+                </div>
+                <hr>
+
+            </div>
+        }
+        <div class="product__pagination">
+            @Html.PagedListPager(Model, page => Url.Action("Detail/" + sp.IDSP, new { page }))
+        </div>
+        <form>
+            <div class="rating-css">
+                <h4> Chọn đánh giá của bạn</h4>
+                <div class="star-icon">
+                    <input type="radio" name="rating1" id="rating1">
+                    <label class="bi bi-star-fill" for="rating1"></label>
+                    <input type="radio" name="rating1" id="rating2">
+                    <label class="bi bi-star-fill" for="rating2"></label>
+                    <input type="radio" name="rating1" id="rating3">
+                    <label class="bi bi-star-fill" for="rating3"></label>
+                    <input type="radio" name="rating1" id="rating4">
+                    <label class="bi bi-star-fill" for="rating4"></label>
+                    <input type="radio" name="rating1" id="rating5">
+                    <label class="bi bi-star-fill" for="rating5"></label>
+
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="checkout__input">
+                            <p>Nội dung<span>*</span></p>
+                            <textarea type="text" required=""></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="checkout__input">
+                            <p>Họ tên<span>*</span></p>
+                            <input type="text" required="">
+                        </div>
+                        <!--   <input style="border-radius: 4px;" type="file" id="myFile" name="filename"> -->
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="checkout__input">
+                            <p>Chất lượng sản phẩm<span>*</span></p>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="checkout__input">
+                            <p>Đúng với mô tả<span>*</span></p>
+                            <input type="text">
+                        </div>
+
+                    </div>
+                    <button type="submit" class="site-btn" style=" width: 130px; margin-left: 0.7rem;">Đánh giá</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+

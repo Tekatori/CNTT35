@@ -18,15 +18,18 @@ namespace CNTT35.Controllers
     {
         IProductService _productService;
         IAccountService _accountService;
-
-        public HomeController(IProductService productService, IAccountService account)
+        ILienHeService _lienHeService;
+        public HomeController(IProductService productService, IAccountService account, ILienHeService lienHeService)
         {
             _productService = productService;
             _accountService = account;
+            _lienHeService = lienHeService;
         }
         public ActionResult Index()
         {
+            //_cartController.clearSessionGiamGia();
             Session["giamgia"] = null;
+            Session["maGiamGia"] = null;
             var sp = _productService.Get30ProductRandom();
             List<GetTop10_Result> top10 = _productService.GetTop10SanPham();
             ViewBag.Greeting = top10;
@@ -85,6 +88,17 @@ namespace CNTT35.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
+        }
+
+        //GuiLoiNhan
+        [HttpPost]
+        public ActionResult GuiLoiNhan(FormCollection c)
+        {
+            string hoten = c["hoten"].ToString();
+            string email = c["email"].ToString();
+            string noidong = c["noidong"].ToString();
+            _lienHeService.insertLoiNhan(hoten, email, noidong);
+            return RedirectToAction("Contact", "Home", new { ac = "loinhan" });
         }
         [HttpPost]
         public ActionResult Index(FormCollection c)
@@ -174,7 +188,7 @@ namespace CNTT35.Controllers
             string passnew = c["passnew"].ToString();
             string repassnew = c["repassnew"].ToString();
 
-            int res = _accountService.ChangePassword(id, passold,passnew,repassnew);
+            int res = _accountService.ChangePassword(id, passold, passnew, repassnew);
             if (res == 0)
             {
                 return RedirectToAction("Account/" + id, "Home", new { ac3 = "error3" });

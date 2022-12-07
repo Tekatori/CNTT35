@@ -11,5 +11,6 @@ namespace CNTT35.Service.Service
         List<AccountInfo> GetAccount(int id);
         int ChangeInfo(int id, string hoten, string diachi, string sdt, string email);
         int ChangePassword(int id, string passOld, string passNew, string rePassNew);
+        NGUOIDUNG GetND(int id);
     }
 }

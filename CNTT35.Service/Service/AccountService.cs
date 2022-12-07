@@ -58,7 +58,13 @@ namespace CNTT35.Service.Service
                 return db.NGUOIDUNG.Where(t => (t.TENND == username || t.EMAIL == username) && t.MATKHAU == pass).FirstOrDefault();
             }
         }
-
+        public NGUOIDUNG GetND(int id)
+        {
+            using (var db = new QL_PHANBONEntities())
+            {
+                return db.NGUOIDUNG.FirstOrDefault(t => t.IDND == id);
+            }
+        }
         public int ChangeInfo(int id, string hoten, string diachi, string sdt, string email)
         {
             using (var db = new QL_PHANBONEntities())

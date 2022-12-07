@@ -13,7 +13,6 @@
           <Property Name="IDDH" Type="int" />
           <Property Name="IDSP" Type="int" />
           <Property Name="SOLUONGSP" Type="int" />
-          <Property Name="DONGIA" Type="money" />
         </EntityType>
         <EntityType Name="DANHMUC">
           <Key>
@@ -29,6 +28,11 @@
           <Property Name="IDDH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDKM" Type="int" />
           <Property Name="IDND" Type="int" />
+          <Property Name="HOTEN" Type="nvarchar" MaxLength="100" />
+          <Property Name="DIACHIGIAOHANG" Type="nvarchar" MaxLength="200" />
+          <Property Name="DIENTHOAI" Type="varchar" MaxLength="20" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="GHICHU" Type="ntext" />
           <Property Name="NGAYLAP" Type="date" />
         </EntityType>
         <EntityType Name="KHACHHANG">
@@ -52,6 +56,15 @@
           <Property Name="GIATIENKM" Type="money" />
           <Property Name="NGAYBD" Type="date" />
           <Property Name="NGAYKT" Type="date" />
+        </EntityType>
+        <EntityType Name="LIENHE">
+          <Key>
+            <PropertyRef Name="IDLIENHE" />
+          </Key>
+          <Property Name="IDLIENHE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HOTEN" Type="nvarchar" MaxLength="200" />
+          <Property Name="NOIDUNG" Type="ntext" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="MUCGIAOTIEP">
           <Key>
@@ -86,7 +99,11 @@
           </Key>
           <Property Name="IDPHANHOI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDND" Type="int" />
+          <Property Name="IDSP" Type="int" />
+          <Property Name="HoTenDG" Type="nvarchar" MaxLength="50" />
           <Property Name="NOIDUNG" Type="ntext" />
+          <Property Name="CHATLUONGSANPHAM" Type="ntext" />
+          <Property Name="DUNGVOIMOTA" Type="ntext" />
           <Property Name="RATE" Type="float" />
         </EntityType>
         <EntityType Name="QLVANCHUYEN">
@@ -127,6 +144,16 @@
           <Property Name="GIATIENKM" Type="money" />
           <Property Name="NGAYBD" Type="date" />
           <Property Name="NGAYKT" Type="date" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="THANHTOAN">
           <Key>
@@ -223,6 +250,18 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
             </Principal>
             <Dependent Role="PHANHOI">
               <PropertyRef Name="IDND" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHANHOI_IDSP">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="0..1" />
+          <End Role="PHANHOI" Type="Self.PHANHOI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="IDSP" />
+            </Principal>
+            <Dependent Role="PHANHOI">
+              <PropertyRef Name="IDSP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -352,6 +391,7 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
           <EntitySet Name="DONHANG" EntityType="Self.DONHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHUYENMAI" EntityType="Self.KHUYENMAI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LIENHE" EntityType="Self.LIENHE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MUCGIAOTIEP" EntityType="Self.MUCGIAOTIEP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NGUOIDUNG" EntityType="Self.NGUOIDUNG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="dbo" store:Type="Tables" />
@@ -359,6 +399,7 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
           <EntitySet Name="QLVANCHUYEN" EntityType="Self.QLVANCHUYEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANPHAMKHUYENMAI" EntityType="Self.SANPHAMKHUYENMAI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THANHTOAN" EntityType="Self.THANHTOAN" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CTDONHANG_IDDH" Association="Self.FK_CTDONHANG_IDDH">
             <End Role="DONHANG" EntitySet="DONHANG" />
@@ -386,6 +427,10 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
           </AssociationSet>
           <AssociationSet Name="FK_PHANHOI_IDND" Association="Self.FK_PHANHOI_IDND">
             <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
+            <End Role="PHANHOI" EntitySet="PHANHOI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHANHOI_IDSP" Association="Self.FK_PHANHOI_IDSP">
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="PHANHOI" EntitySet="PHANHOI" />
           </AssociationSet>
           <AssociationSet Name="FK_QLVANCHUYEN_IDDH" Association="Self.FK_QLVANCHUYEN_IDDH">
@@ -457,7 +502,6 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
           <Property Name="IDDH" Type="Int32" />
           <Property Name="IDSP" Type="Int32" />
           <Property Name="SOLUONGSP" Type="Int32" />
-          <Property Name="DONGIA" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="DONHANG" Relationship="Self.FK_CTDONHANG_IDDH" FromRole="CTDONHANG" ToRole="DONHANG" />
           <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CTDONHANG_IDSP" FromRole="CTDONHANG" ToRole="SANPHAM" />
         </EntityType>
@@ -476,6 +520,11 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
           <Property Name="IDDH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDKM" Type="Int32" />
           <Property Name="IDND" Type="Int32" />
+          <Property Name="HOTEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHIGIAOHANG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DIENTHOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NGAYLAP" Type="DateTime" Precision="0" />
           <NavigationProperty Name="CTDONHANG" Relationship="Self.FK_CTDONHANG_IDDH" FromRole="DONHANG" ToRole="CTDONHANG" />
           <NavigationProperty Name="KHUYENMAI" Relationship="Self.FK_DONHANG_IDKM" FromRole="DONHANG" ToRole="KHUYENMAI" />
@@ -506,6 +555,15 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
           <Property Name="NGAYBD" Type="DateTime" Precision="0" />
           <Property Name="NGAYKT" Type="DateTime" Precision="0" />
           <NavigationProperty Name="DONHANG" Relationship="Self.FK_DONHANG_IDKM" FromRole="KHUYENMAI" ToRole="DONHANG" />
+        </EntityType>
+        <EntityType Name="LIENHE">
+          <Key>
+            <PropertyRef Name="IDLIENHE" />
+          </Key>
+          <Property Name="IDLIENHE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HOTEN" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NOIDUNG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MUCGIAOTIEP">
           <Key>
@@ -546,9 +604,14 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
           </Key>
           <Property Name="IDPHANHOI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDND" Type="Int32" />
+          <Property Name="IDSP" Type="Int32" />
+          <Property Name="HoTenDG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NOIDUNG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CHATLUONGSANPHAM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DUNGVOIMOTA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RATE" Type="Double" />
           <NavigationProperty Name="NGUOIDUNG" Relationship="Self.FK_PHANHOI_IDND" FromRole="PHANHOI" ToRole="NGUOIDUNG" />
+          <NavigationProperty Name="SANPHAM" Relationship="Self.FK_PHANHOI_IDSP" FromRole="PHANHOI" ToRole="SANPHAM" />
         </EntityType>
         <EntityType Name="QLVANCHUYEN">
           <Key>
@@ -579,6 +642,7 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
           <NavigationProperty Name="CTDONHANG" Relationship="Self.FK_CTDONHANG_IDSP" FromRole="SANPHAM" ToRole="CTDONHANG" />
           <NavigationProperty Name="DANHMUC" Relationship="Self.FK_SANPHAM_IDDM" FromRole="SANPHAM" ToRole="DANHMUC" />
           <NavigationProperty Name="NHACUNGCAP" Relationship="Self.FK_SANPHAM_IDNCC" FromRole="SANPHAM" ToRole="NHACUNGCAP" />
+          <NavigationProperty Name="PHANHOI" Relationship="Self.FK_PHANHOI_IDSP" FromRole="SANPHAM" ToRole="PHANHOI" />
           <NavigationProperty Name="SANPHAMKHUYENMAI" Relationship="Self.FK_SANPHAMKHUYENMAI_IDSP" FromRole="SANPHAM" ToRole="SANPHAMKHUYENMAI" />
         </EntityType>
         <EntityType Name="SANPHAMKHUYENMAI">
@@ -594,6 +658,16 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
           <Property Name="NGAYBD" Type="DateTime" Precision="0" />
           <Property Name="NGAYKT" Type="DateTime" Precision="0" />
           <NavigationProperty Name="SANPHAM" Relationship="Self.FK_SANPHAMKHUYENMAI_IDSP" FromRole="SANPHAMKHUYENMAI" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="THANHTOAN">
           <Key>
@@ -737,6 +811,18 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PHANHOI_IDSP">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="0..1" />
+          <End Role="PHANHOI" Type="Self.PHANHOI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="IDSP" />
+            </Principal>
+            <Dependent Role="PHANHOI">
+              <PropertyRef Name="IDSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SANPHAMKHUYENMAI_IDSP">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="0..1" />
           <End Role="SANPHAMKHUYENMAI" Type="Self.SANPHAMKHUYENMAI" Multiplicity="*" />
@@ -755,6 +841,7 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
           <EntitySet Name="DONHANG" EntityType="Self.DONHANG" />
           <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" />
           <EntitySet Name="KHUYENMAI" EntityType="Self.KHUYENMAI" />
+          <EntitySet Name="LIENHE" EntityType="Self.LIENHE" />
           <EntitySet Name="MUCGIAOTIEP" EntityType="Self.MUCGIAOTIEP" />
           <EntitySet Name="NGUOIDUNG" EntityType="Self.NGUOIDUNG" />
           <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" />
@@ -762,6 +849,7 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
           <EntitySet Name="QLVANCHUYEN" EntityType="Self.QLVANCHUYEN" />
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" />
           <EntitySet Name="SANPHAMKHUYENMAI" EntityType="Self.SANPHAMKHUYENMAI" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="THANHTOAN" EntityType="Self.THANHTOAN" />
           <AssociationSet Name="FK_CTDONHANG_IDDH" Association="Self.FK_CTDONHANG_IDDH">
             <End Role="DONHANG" EntitySet="DONHANG" />
@@ -807,6 +895,10 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
             <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
             <End Role="SANPHAM" EntitySet="SANPHAM" />
           </AssociationSet>
+          <AssociationSet Name="FK_PHANHOI_IDSP" Association="Self.FK_PHANHOI_IDSP">
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="PHANHOI" EntitySet="PHANHOI" />
+          </AssociationSet>
           <AssociationSet Name="FK_SANPHAMKHUYENMAI_IDSP" Association="Self.FK_SANPHAMKHUYENMAI_IDSP">
             <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="SANPHAMKHUYENMAI" EntitySet="SANPHAMKHUYENMAI" />
@@ -831,7 +923,6 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
                 <ScalarProperty Name="IDDH" ColumnName="IDDH" />
                 <ScalarProperty Name="IDSP" ColumnName="IDSP" />
                 <ScalarProperty Name="SOLUONGSP" ColumnName="SOLUONGSP" />
-                <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -849,6 +940,11 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
                 <ScalarProperty Name="IDDH" ColumnName="IDDH" />
                 <ScalarProperty Name="IDKM" ColumnName="IDKM" />
                 <ScalarProperty Name="IDND" ColumnName="IDND" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="DIACHIGIAOHANG" ColumnName="DIACHIGIAOHANG" />
+                <ScalarProperty Name="DIENTHOAI" ColumnName="DIENTHOAI" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
                 <ScalarProperty Name="NGAYLAP" ColumnName="NGAYLAP" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -874,6 +970,16 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
                 <ScalarProperty Name="GIATIENKM" ColumnName="GIATIENKM" />
                 <ScalarProperty Name="NGAYBD" ColumnName="NGAYBD" />
                 <ScalarProperty Name="NGAYKT" ColumnName="NGAYKT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LIENHE">
+            <EntityTypeMapping TypeName="QL_PHANBONModel.LIENHE">
+              <MappingFragment StoreEntitySet="LIENHE">
+                <ScalarProperty Name="IDLIENHE" ColumnName="IDLIENHE" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -912,7 +1018,11 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
               <MappingFragment StoreEntitySet="PHANHOI">
                 <ScalarProperty Name="IDPHANHOI" ColumnName="IDPHANHOI" />
                 <ScalarProperty Name="IDND" ColumnName="IDND" />
+                <ScalarProperty Name="IDSP" ColumnName="IDSP" />
+                <ScalarProperty Name="HoTenDG" ColumnName="HoTenDG" />
                 <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+                <ScalarProperty Name="CHATLUONGSANPHAM" ColumnName="CHATLUONGSANPHAM" />
+                <ScalarProperty Name="DUNGVOIMOTA" ColumnName="DUNGVOIMOTA" />
                 <ScalarProperty Name="RATE" ColumnName="RATE" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -956,6 +1066,17 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
                 <ScalarProperty Name="GIATIENKM" ColumnName="GIATIENKM" />
                 <ScalarProperty Name="NGAYBD" ColumnName="NGAYBD" />
                 <ScalarProperty Name="NGAYKT" ColumnName="NGAYKT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QL_PHANBONModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

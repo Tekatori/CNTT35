@@ -52,12 +52,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\AccountInfo.cs" />
+    <Compile Include="Model\DanhGiaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\CartItem.cs" />
     <Compile Include="Service\Abstract\IProductService.cs" />
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\Abstract\IAccountService.cs" />
     <Compile Include="Service\Abstract\ICartItem.cs" />
+    <Compile Include="Service\DanhGiaService.cs" />
+    <Compile Include="Service\DonHangService.cs" />
+    <Compile Include="Service\Abstract\IDonHangService.cs" />
+    <Compile Include="Service\Abstract\ILienHeService.cs" />
+    <Compile Include="Service\Abstract\IDanhGiaService.cs" />
+    <Compile Include="Service\LienHeService.cs" />
     <Compile Include="Service\ProductService.cs" />
   </ItemGroup>
   <ItemGroup>

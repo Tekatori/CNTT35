@@ -32,6 +32,7 @@ namespace CNTT35.Data
         public virtual DbSet<DONHANG> DONHANG { get; set; }
         public virtual DbSet<KHACHHANG> KHACHHANG { get; set; }
         public virtual DbSet<KHUYENMAI> KHUYENMAI { get; set; }
+        public virtual DbSet<LIENHE> LIENHE { get; set; }
         public virtual DbSet<MUCGIAOTIEP> MUCGIAOTIEP { get; set; }
         public virtual DbSet<NGUOIDUNG> NGUOIDUNG { get; set; }
         public virtual DbSet<NHACUNGCAP> NHACUNGCAP { get; set; }
@@ -39,6 +40,7 @@ namespace CNTT35.Data
         public virtual DbSet<QLVANCHUYEN> QLVANCHUYEN { get; set; }
         public virtual DbSet<SANPHAM> SANPHAM { get; set; }
         public virtual DbSet<SANPHAMKHUYENMAI> SANPHAMKHUYENMAI { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<THANHTOAN> THANHTOAN { get; set; }
     
         [DbFunction("QL_PHANBONEntities", "GetTop10")]

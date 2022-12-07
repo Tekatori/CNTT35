@@ -17,14 +17,17 @@ namespace CNTT35.Controllers
     {
         // GET: Product
         IProductService _productService;
+        IDanhGiaService DanhGiaService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService,IDanhGiaService DanhGia)
         {
             _productService = productService;
+            DanhGiaService = DanhGia;
         }
         public ActionResult Index(int? page, int? pagesize)
         {
             Session["giamgia"] = null;
+            Session["maGiamGia"] = null;
             var sp = _productService.GetAllSanPham();
 
             if (page == null)
@@ -45,18 +48,39 @@ namespace CNTT35.Controllers
         public ActionResult Detail(string id)
         {
             Session["giamgia"] = null;
+            Session["maGiamGia"] = null;
             var sp = _productService.GetSANPHAM(int.Parse(id));
             Decimal giakm = _productService.GetGiaTienSPKM(int.Parse(id));
             TempData["giakm"] = giakm;
             List<GetTop10Category_Result> top10KMCate = _productService.GetTop10SanPhamCategory((int)sp[0].IDDM);
             ViewBag.top10KMCate = top10KMCate;
 
+            
+
             return View(sp);
         }
+        public ActionResult DanhGia(int id, int? page, int? pagesize)
+        {
+            var dg = DanhGiaService.GetAllDanhGiaSP(id);
+            if (page == null)
+                page = 1;
+            if (pagesize == null)
+                pagesize = 3;
+            var sp =  _productService.GetSP(id);
+            ViewBag.ttsp = sp;
+
+            var jj = DanhGiaService.TBRate(id);
+            ViewBag.ttsp = jj;
+            return PartialView(dg.ToPagedList((int)page, (int)pagesize));
+        }
+
+
         [HttpPost]
         public ActionResult Search(int? page, int? pagesize,FormCollection c)
         {
+
             Session["giamgia"] = null;
+            Session["maGiamGia"] = null;
             string tim = c["st"].ToString();
             var sp = _productService.SearchSP(tim);
             if (page == null)
@@ -128,6 +152,7 @@ namespace CNTT35.Controllers
             catch
             {
                 Session["giamgia"] = null;
+                Session["maGiamGia"] = null;
                 var sp = _productService.GetAllSanPham();
 
                 if (page == null)

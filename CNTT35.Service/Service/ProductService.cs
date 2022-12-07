@@ -33,6 +33,13 @@ namespace CNTT35.Service.Service
                 return db.GetTop30Random().ToList();
             }
         }
+        public SANPHAM GetSP(int id)
+        {
+            using (var db = new QL_PHANBONEntities())
+            {
+                return db.SANPHAM.FirstOrDefault(t=>t.IDSP == id);
+            }
+        }
         public List<SANPHAM> GetSANPHAM(int id)
         {
             using (var db = new QL_PHANBONEntities())

@@ -1,4 +1,5 @@
 ﻿using CNTT35.Data;
+using CNTT35.Service.Model;
 using CNTT35.Service.Service;
 using CNTT35.Session;
 using CNTT35.ViewModel;
@@ -20,9 +21,11 @@ namespace CNTT35.Controllers
     {
         // GET: Cart
         IAccountService _accountService;
-        public CartController(IAccountService account)
+        IDonHangService DonHangService;
+        public CartController(IAccountService account, IDonHangService donHangService)
         {
             _accountService = account;
+            DonHangService = donHangService;
         }
         public ActionResult Index()
         {          
@@ -57,11 +60,43 @@ namespace CNTT35.Controllers
                 return View(gh);
             }
         }
-        public ActionResult paymentSucces()
+        public ActionResult paymentSucces(FormCollection c)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            try
+            {
+                GioHang gh = (GioHang)Session["gh"];
+                var nd = LoginSession.GetSessionInfoLogin();
+                string hoten = c["hoten"].ToString();
+                string sonha = c["sonha"].ToString();
+                string tinhthanh = c["tinhthanh"].ToString();
+                string quanhuyen = c["quanhuyen"].ToString();
+                string Phuongxa = c["Phuongxa"].ToString();
+                string loaivc = c["flexRadioDefault"].ToString();
+                string phone = c["phone"].ToString();
+                string email = c["email"].ToString();
+                string ghichu = c["ghichu"].ToString();
+                string thanhtoan = c["thanhtoan"].ToString();
+                string dichi = sonha + "," + Phuongxa + "," + quanhuyen + "," + tinhthanh;
+                decimal tong = 0;
+                int idkm = 0;
+                if (Session["maGiamGia"] != null)
+                {
+                    string magg = Session["maGiamGia"].ToString();
+                    idkm = DonHangService.findidGiamGia(magg);
+                    tong = gh.TongThanhTienGiamGia(magg);
+                }
+                else
+                {
+                    idkm = 0;
+                    tong = (decimal)gh.TongThanhTien();
+                }    
+                DONHANG dh = DonHangService.ThanhToanDonHang(idkm, nd.IDND, hoten, dichi, phone, email, ghichu, gh, tong, thanhtoan, loaivc);
+                return View(dh);
+            }
+            catch
+            {
+                return RedirectToAction("Confirm", "Cart", new { ac = "error" });
+            }
         }
         public ActionResult paymentHistory()
         {
@@ -80,7 +115,7 @@ namespace CNTT35.Controllers
         }
         public ActionResult AddSL(int id)
         {
-            Session["giamgia"] = null;
+            clearSessionGiamGia();
             GioHang gh = (GioHang)Session["gh"];
             int kq = gh.Them(id);
             Session["gh"] = gh;
@@ -89,7 +124,7 @@ namespace CNTT35.Controllers
         }
         public ActionResult DesSL(int id)
         {
-            Session["giamgia"] = null;
+            clearSessionGiamGia();
             GioHang gh = (GioHang)Session["gh"];
             int kq = gh.Xoa(id);
             Session["gh"] = gh;
@@ -98,7 +133,7 @@ namespace CNTT35.Controllers
         }
         public ActionResult DeleteSP(int id)
         {
-            Session["giamgia"] = null;
+            clearSessionGiamGia();
             GioHang gh = (GioHang)Session["gh"];
             int kq = gh.Xoafull(id);
             Session["gh"] = gh;
@@ -108,25 +143,32 @@ namespace CNTT35.Controllers
         [HttpPost]
         public ActionResult GiamGia(FormCollection c)
         {
-
+            GioHang gh = (GioHang)Session["gh"];
+            if (gh == null)
+                return RedirectToAction("Index", "Home", new { ac = "GioHangNull" });
             string maGiamGia = c["magiam"].ToString().Trim();
             if (String.IsNullOrEmpty(maGiamGia) == false)
-            {
-                GioHang gh = (GioHang)Session["gh"];
+            {             
                 decimal kq = 0;
                 kq = gh.TongThanhTienGiamGia(maGiamGia);
                 Session["gh"] = gh;
+                Session["maGiamGia"] = maGiamGia;
                 Session["giamgia"] = kq;
             }
             return RedirectToAction("Index", "Cart");
         }
         public ActionResult XoaGio()
         {
-            Session["giamgia"] = null;
+            clearSessionGiamGia();
             GioHang gh = (GioHang)Session["gh"];
             gh.XoaGioHang();
             Session["gh"] = gh;
             return RedirectToAction("Index", "Cart");
+        }
+        public void clearSessionGiamGia()
+        {
+            Session["giamgia"] = null;
+            Session["maGiamGia"] = null;
         }
   
     }

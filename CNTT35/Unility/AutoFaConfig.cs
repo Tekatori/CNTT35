@@ -23,6 +23,9 @@ namespace CNTT35.Unility
             builder.RegisterType<ProductService>().As<IProductService>();
             builder.RegisterType<AccountService>().As<IAccountService>();
             builder.RegisterType<CartItem>().As<ICartItem>();
+            builder.RegisterType<DonHangService>().As<IDonHangService>();
+            builder.RegisterType<LienHeService>().As<ILienHeService>();
+            builder.RegisterType<DanhGiaService>().As<IDanhGiaService>();
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }

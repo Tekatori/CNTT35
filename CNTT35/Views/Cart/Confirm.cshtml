@@ -4,157 +4,165 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var khach = ViewBag.kh as List<CNTT35.Service.Model.AccountInfo>;
 }
-
+@{
+    var parameter = Request.QueryString["ac"];
+    //Check parameter here and display Message
+    if (parameter == "error")
+    {
+        <div class="alert alert-success alert-dismissable" style="text-align:center">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Hãy Nhập Đủ Thông tin,Làm ơn!</strong>
+        </div>
+    }
+}
 <section class="checkout spad">
     <div class="container">
         <div class="checkout__form">
             <h4>Chi tiết thanh toán</h4>
-            <form action="#">
-                <div class="row">
-                    <div class="col-lg-8 col-md-6">
-                        @foreach (var item in khach)
-                        {
-                            string[] diachi;
-                            if (item.DIACHI != null)
+            @using (Html.BeginForm("paymentSucces", "Cart", FormMethod.Post))
+            {
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6">
+                            @foreach (var item in khach)
                             {
-                                diachi = item.DIACHI.ToString().Split(',');
-                            }
-                            else
-                            {
-                                diachi = new String[] { "", "", "", "" };
-                            }
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="checkout__input">
-                                        <p>Họ Tên<span>*</span></p>
-                                        <input type="text" value="@item.HOTEN">
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="checkout__input">
-                                <p>Địa chỉ<span>*</span></p>
-                                <input type="text" placeholder="Địa chỉ số nhà, đường phố" class="checkout__input__add" value="@diachi[0].ToString()">
-
-                            </div>
-                            <div class="checkout__input">
-                                <p>Tỉnh/ thành<span>*</span></p>
-                                <select class="form-select form-select-sm mb-3 select-address" id="city" aria-label=".form-select-sm" required>
-                                    <option value="@diachi[3].ToString()" selected>Chọn tỉnh thành</option>
-                                </select>
-                            </div>
-                            <div class="checkout__input">
-                                <p>Quận/ huyện<span>*</span></p>
-                                <select class="form-select form-select-sm mb-3 select-address" id="district" aria-label=".form-select-sm" required>
-                                    <option value="@diachi[2].ToString()" selected>Chọn quận huyện</option>
-                                </select>
-                            </div>
-                            <div class="checkout__input">
-                                <p>Phường/ xã<span>*</span></p>
-                                <select class="form-select form-select-sm select-address" id="ward" aria-label=".form-select-sm" required>
-                                    <option value="@diachi[1].ToString()" selected>Chọn phường xã</option>
-                                </select>
-                            </div>
-                             
-                             <p>Phương thức vận chuyển<span style="color:red;">*</span></p>
-                            <div style="display: flex;margin-bottom: 1rem;">
-                            <div class="form-check" >
-                              <input class="form-check-input " type="radio" name="flexRadioDefault" id="flexRadioDefault1" onclick="myFunction()">
-                              <label class="form-check-label" for="flexRadioDefault1">
-                                Tiết kiệm 
-                                  <span> (7 ngày) </span>
-                              </label>
-                                    
-                            </div>
-                            <div class="form-check" style="margin-left:1rem ;">
-                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2 " onclick="myFunction()" checked>
-                              <label class="form-check-label" for="flexRadioDefault2">
-                                Hỏa tốc
-                                   <span> (3 ngày) </span>
-                              </label>
-                            </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Điện thoại<span>*</span></p>
-                                        <input type="text" value="@item.SDT">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Email<span>*</span></p>
-                                        <input type="text" value="@item.EMAIL">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="checkout__input">
-                                <p>Ghi chú<span>*</span></p>
-                                <input type="text" placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ: Hàng dễ vỡ">
-                            </div>
-                        }
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-
-                        <div class="checkout__order">
-                            <h4>Đơn đặt hàng của bạn</h4>
-                            <div class="checkout__order__products">Các sản phẩm <span>Giá tiền</span></div>
-
-                            <ul>
-                                @foreach (CNTT35.ViewModel.CartItem item in Model.ds)
+                                string[] diachi;
+                                if (item.DIACHI != null)
                                 {
-                                    if (item.iSoLuong > 0)
-                                    {
-                                        var tensp = item.sTenSP;
-                                        <li>@item.iSoLuong x @tensp.Substring(10) <span>@string.Format("{0:#,### đ}", item.ThanhTien)</span></li>
-                                    }
+                                    diachi = item.DIACHI.ToString().Split(',');
                                 }
-                            </ul>
-                            <div class="checkout__order__products " style="display: none;" id="option1">Phí vận chuyển <span>20.000₫</span></div>
-                             <div class="checkout__order__products "  id="option2">Phí vận chuyển <span>35.000₫</span></div>
-                          
-                            <div class="checkout__order__subtotal">Tổng thu <span>@string.Format("{0:#,### đ}", @Model.TongThanhTien() + 35000)  </span></div>
-                            @if (TempData["tienkm"].ToString() != "0")
-                            {
-                                <div class="checkout__order__total">Số tiền giảm <span>@string.Format("{0:#,### đ}", TempData["tienkm"])</span></div>
-                            }
-                            else
-                            {
-                                <div class="checkout__order__total">Số tiền giảm <span>0 đ</span></div>
-                            }
-                            @if (TempData["sum"].ToString() != "0")
-                            {
-                                <div class="checkout__order__total">Thành tiền <span>@string.Format("{0:#,### đ}", double.Parse(TempData["sum"].ToString()) + 35000)</span></div>
-                            }
-                            else
-                            {
-                                <div class="checkout__order__total">Thành tiền <span>@string.Format("{0:#,### đ}", @Model.TongThanhTien() + 35000)</span></div>
-                            }
+                                else
+                                {
+                                    diachi = new String[] { "", "", "", "" };
+                                }
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="checkout__input">
+                                            <p>Họ Tên<span>*</span></p>
+                                            <input type="text" value="@item.HOTEN" name="hoten">
+                                        </div>
+                                    </div>
 
-                            <div class="checkout__input__checkbox">
-                                <label for="payment">
-                                    Thanh toán khi nhận hàng
-                                    <input type="checkbox" id="payment">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="checkout__input__checkbox">
-                                <label for="paypal">
-                                    Thanh toán trực tuyến
-                                    <input type="checkbox" id="paypal">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                          
-                            <button type="submit" class="site-btn">XÁC NHẬN</button> 
-                         
+                                </div>
+                                <div class="checkout__input">
+                                    <p>Địa chỉ<span>*</span></p>
+                                    <input name="sonha" type="text" placeholder="Địa chỉ số nhà, đường phố" class="checkout__input__add" value="@diachi[0].ToString()">
+
+                                </div>
+                                <div class="checkout__input">
+                                    <p>Phường/ xã<span>*</span></p>
+                                    <input name="Phuongxa" type="text" placeholder="Địa chỉ phường,Xã" class="checkout__input__add" value="@diachi[1].ToString()">
+
+                                </div>
+                                <div class="checkout__input">
+                                    <p>Quận/ huyện<span>*</span></p>
+                                    <input name="quanhuyen" type="text" placeholder="Địa chỉ Quận/Huyện" class="checkout__input__add" value="@diachi[2].ToString()">
+
+                                </div>
+                                <div class="checkout__input">
+                                    <p>Tỉnh/ thành<span>*</span></p>
+                                    <input name="tinhthanh" type="text" placeholder="Địa chỉ Tỉnh/Thành Phố" class="checkout__input__add" value="@diachi[3].ToString()">
+
+                                </div>
+
+                                <p>Phương thức vận chuyển<span style="color:red;">*</span></p>
+                                <div style="display: flex;margin-bottom: 1rem;">
+                                    <div class="form-check">
+                                        <input value="Tiết kiệm" class="form-check-input " type="radio" name="flexRadioDefault" id="flexRadioDefault1" onclick="myFunction()">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Tiết kiệm
+                                            <span> (7 ngày) </span>
+                                        </label>
+
+                                    </div>
+                                    <div class="form-check" style="margin-left:1rem ;">
+                                        <input value="Hỏa tốc" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2 " onclick="myFunction()" checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Hỏa tốc
+                                            <span> (3 ngày) </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="checkout__input">
+                                            <p>Điện thoại<span>*</span></p>
+                                            <input type="text" value="@item.SDT" name="phone">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="checkout__input">
+                                            <p>Email<span>*</span></p>
+                                            <input type="text" value="@item.EMAIL" name="email">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="checkout__input">
+                                    <p>Ghi chú<span>*</span></p>
+                                    <input type="text" placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ: Hàng dễ vỡ" name="ghichu">
+                                </div>
+                            }
                         </div>
+                        <div class="col-lg-4 col-md-6">
 
+                            <div class="checkout__order">
+                                <h4>Đơn đặt hàng của bạn</h4>
+                                <div class="checkout__order__products">Các sản phẩm <span>Giá tiền</span></div>
+
+                                <ul>
+                                    @foreach (CNTT35.ViewModel.CartItem item in Model.ds)
+                                    {
+                                        if (item.iSoLuong > 0)
+                                        {
+                                            var tensp = item.sTenSP;
+                                            <li>@item.iSoLuong x @tensp.Substring(10) <span>@string.Format("{0:#,### đ}", item.ThanhTien)</span></li>
+                                        }
+                                    }
+                                </ul>
+                                <div class="checkout__order__products " style="display: none;" id="option1">Phí vận chuyển <span>20.000₫</span></div>
+                                <div class="checkout__order__products " id="option2">Phí vận chuyển <span>35.000₫</span></div>
+
+                                <div class="checkout__order__subtotal">Tổng thu <span>@string.Format("{0:#,### đ}", @Model.TongThanhTien() + 35000)  </span></div>
+                                @if (TempData["tienkm"].ToString() != "0")
+                                {
+                                    <div class="checkout__order__total">Số tiền giảm <span>@string.Format("{0:#,### đ}", TempData["tienkm"])</span></div>
+                                }
+                                else
+                                {
+                                    <div class="checkout__order__total">Số tiền giảm <span>0 đ</span></div>
+                                }
+                                @if (TempData["sum"].ToString() != "0")
+                                {
+                                    <div class="checkout__order__total">Thành tiền <span>@string.Format("{0:#,### đ}", double.Parse(TempData["sum"].ToString()) + 35000)</span></div>
+                                }
+                                else
+                                {
+                                    <div class="checkout__order__total">Thành tiền <span>@string.Format("{0:#,### đ}", @Model.TongThanhTien() + 35000)</span></div>
+                                }
+
+                                <div class="checkout__input__checkbox">
+                                    <label for="payment">
+                                        Thanh toán khi nhận hàng
+                                        <input type="checkbox" id="payment" name="thanhtoan" value="TrucTiep" checked>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="checkout__input__checkbox">
+                                    <label for="paypal">
+                                        Thanh toán trực tuyến
+                                        <input type="checkbox" id="paypal" name="thanhtoan" value="Online">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="site-btn">XÁC NHẬN</button>
+
+                            </div>
+
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
+            }
+            </div>
     </div>
 </section>
 

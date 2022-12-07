@@ -4,8 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var spkm = ViewBag.top10KMCate as List<CNTT35.Data.GetTop10Category_Result>;
     string[] listHinhAnh0 = spkm[0].HINHANH.ToString().Split(',');
-    string[] listHinhAnhgancuoi = spkm[spkm.Count -2].HINHANH.ToString().Split(',');
-    string[] listHinhAnhcuoi = spkm[spkm.Count-1].HINHANH.ToString().Split(',');
+    string[] listHinhAnhgancuoi = spkm[spkm.Count - 2].HINHANH.ToString().Split(',');
+    string[] listHinhAnhcuoi = spkm[spkm.Count - 1].HINHANH.ToString().Split(',');
 }
 @model IEnumerable<CNTT35.Data.SANPHAM>
 
@@ -74,7 +74,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EDBB0E" class="bi bi-star-half" viewBox="0 0 16 16">
                                 <path d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z" />
                             </svg>
-                            <span>(18 đánh giá)</span>
+                            <span>(11 đánh giá)</span>
                         </div>
                         @if (decimal.Parse(TempData["giakm"].ToString()) == 0)
                         {
@@ -100,9 +100,9 @@
                                 @if (item.SOLUONGTON > 0)
                                 {
                                     <button type="submit" class="primary-btn" style="margin-left: 1rem;border: #007B5E solid 1px;">THÊM VÀO GIỎ HÀNG</button>
-                                }                                
-                                    @{TempData["id"] = @item.IDSP;}
-                                </form>
+                                }
+                                @{TempData["id"] = @item.IDSP;}
+                            </form>
                         </div>
 
 
@@ -161,7 +161,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @for (int i = 1;i<spkm.Count -2;i++)
+                                        @for (int i = 1; i < spkm.Count - 2; i++)
                                         {
                                             string[] listHinhAnhkm = spkm[i].HINHANH.ToString().Split(',');
                                             <div class="owl-item" style="width: 292.5px;">
@@ -206,12 +206,12 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="/Product/Detail/@spkm[spkm.Count -2].IDSP">
+                                                                <a href="/Product/Detail/@spkm[spkm.Count - 2].IDSP">
                                                                     <i class="bi bi-reply-fill"></i>
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="/Product/ChonMua/@spkm[spkm.Count -2].IDSP">
+                                                                <a href="/Product/ChonMua/@spkm[spkm.Count - 2].IDSP">
                                                                     <i class="bi bi-cart-fill"></i>
                                                                 </a>
                                                             </li>
@@ -241,7 +241,7 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="/Product/ChonMua/@spkm[spkm.Count -2].IDSP">
+                                                                <a href="/Product/ChonMua/@spkm[spkm.Count - 2].IDSP">
                                                                     <i class="bi bi-cart-fill"></i>
                                                                 </a>
                                                             </li>
@@ -295,147 +295,20 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="tab-pane active" id="tabs-3" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>Đánh giá sản phẩm</h6>
-                                    <div class="product-rating">
-                                        <div class="score">
-                                            <div style="display:flex; align-items:flex-end;">
-                                                <h2>4.9</h2>
-                                                <span>trên 5</span>
-                                            </div>
-                                            <div style="width:100px">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EDBB0E" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EDBB0E" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EDBB0E" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EDBB0E" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EDBB0E" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                </svg>
-                                            </div>
-
-                                        </div>
-                                        <div class="box-filter" style="margin-left: 0.9375rem">
-                                            <a href="#" class="filter">Tất cả</a>
-                                            <a href="#" class="filter">5 sao (22)</a>
-                                            <a href="#" class="filter">4 sao (10)</a>
-                                            <a href="#" class="filter">3 sao (5)</a>
-                                            <a href="#" class="filter">2 sao (2)</a>
-                                            <a href="#" class="filter">1 sao (0)</a>
-                                            <a href="#" class="filter">Có Bình Luận (10)</a>
-                                            <a href="#" class="filter">Có Hình Ảnh / Video (10)</a>
-                                        </div>
-                                    </div>
-                                    <div class="product-comment">
-                                        <div class="people">
-                                            <a>Avatar </a>
-                                            <div class="main">
-                                                <div>buibaloc0311</div>
-                                                <div>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#EDBB0E" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                    </svg>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#EDBB0E" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                    </svg>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#EDBB0E" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                    </svg>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#EDBB0E" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                    </svg>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#EDBB0E" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                    </svg>
-                                                </div>
-                                                <div class="product-rating__time">2022-11-11 15:46 | Phân loại hàng: Bao 59kg</div>
-                                                <div> <span style="color: rgba(0,0,0,.4);">Chất lượng sản phẩm:</span> rất tốt</div>
-                                                <div> <span style="color: rgba(0,0,0,.4);">Đúng với mô tả:</span> rất tốt</div>
-                                                <div style="margin: 0.9375rem 0;">Đóng gói cẩn thận, bao bì đẹp mắt</div>
-                                                <div class="media-list">
-                                                    <div class="image-product">
-                                                        <img src="https://cf.shopee.vn/file/vn-11134103-22080-5f0mpsblxngvad" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                    </div>
-                                    <form>
-                                        <div class="rating-css">
-                                            <h4> Chọn đánh giá của bạn</h4>
-                                            <div class="star-icon">
-                                                <input type="radio" name="rating1" id="rating1">
-                                                <label class="bi bi-star-fill" for="rating1"></label>
-                                                <input type="radio" name="rating1" id="rating2">
-                                                <label class="bi bi-star-fill" for="rating2"></label>
-                                                <input type="radio" name="rating1" id="rating3">
-                                                <label class="bi bi-star-fill" for="rating3"></label>
-                                                <input type="radio" name="rating1" id="rating4">
-                                                <label class="bi bi-star-fill" for="rating4"></label>
-                                                <input type="radio" name="rating1" id="rating5">
-                                                <label class="bi bi-star-fill" for="rating5"></label>
-
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="checkout__input">
-                                                        <p>Nội dung<span>*</span></p>
-                                                        <textarea type="text" required=""></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="checkout__input">
-                                                        <p>Họ tên<span>*</span></p>
-                                                        <input type="text" required="">
-                                                    </div>
-                                                 <!--   <input style="border-radius: 4px;" type="file" id="myFile" name="filename"> -->
-                                                </div>
-
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="checkout__input">
-                                                        <p>Chất lượng sản phẩm<span>*</span></p>
-                                                        <input type="text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="checkout__input">
-                                                        <p>Đúng với mô tả<span>*</span></p>
-                                                        <input type="text">
-                                                    </div>
-
-                                                </div>
-                                                <button type="submit" class="site-btn" style=" width: 130px; margin-left: 0.7rem;">Đánh giá</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                           @{Html.RenderAction("DanhGia", new {id=Model.First().IDSP});}
                     </div>
 
                 </div>
 
-            }
+            
 
         </div>
+        }
     </div>
-
+    
 </section>
 
 <!-- Product Details Section End -->
 @Scripts.Render("~/Content/js/main.js")
-     <script src="js/main.js"></script>
+<script src="js/main.js"></script>
 

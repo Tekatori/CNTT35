@@ -12,18 +12,11 @@ namespace CNTT35.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class PHANHOI
+    public partial class LIENHE
     {
-        public int IDPHANHOI { get; set; }
-        public Nullable<int> IDND { get; set; }
-        public Nullable<int> IDSP { get; set; }
-        public string HoTenDG { get; set; }
+        public int IDLIENHE { get; set; }
+        public string HOTEN { get; set; }
         public string NOIDUNG { get; set; }
-        public string CHATLUONGSANPHAM { get; set; }
-        public string DUNGVOIMOTA { get; set; }
-        public Nullable<double> RATE { get; set; }
-    
-        public virtual NGUOIDUNG NGUOIDUNG { get; set; }
-        public virtual SANPHAM SANPHAM { get; set; }
+        public string EMAIL { get; set; }
     }
 }

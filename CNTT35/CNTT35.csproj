@@ -546,6 +546,7 @@
     <Content Include="Views\Cart\Confirm.cshtml" />
     <Content Include="Views\Cart\paymentSucces.cshtml" />
     <Content Include="Views\Cart\paymentHistory.cshtml" />
+    <Content Include="Views\Product\DanhGia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

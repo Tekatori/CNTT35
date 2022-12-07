@@ -10,4 +10,5 @@
         string sTenSP { get; set; }
         double ThanhTien { get; }
     }
+   
 }
