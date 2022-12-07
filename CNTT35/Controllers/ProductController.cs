@@ -142,7 +142,7 @@ namespace CNTT35.Controllers
                 if (page == null)
                     page = 1;
                 if (pagesize == null)
-                    pagesize = 10;
+                    pagesize = 100;
                 List<GetTop10_Result> top10Random = _productService.GetTop10SanPham();
                 ViewBag.top10Random = top10Random;
                 ViewBag.top10KM = null;
@@ -158,7 +158,7 @@ namespace CNTT35.Controllers
                 if (page == null)
                     page = 1;
                 if (pagesize == null)
-                    pagesize = 12;
+                    pagesize = 10;
                 //top 10 SP khuyen mai
                 List<GetTop10KM_Result> top10KM = _productService.GetTop10SanPhamKM();
                 ViewBag.top10KM = top10KM;
