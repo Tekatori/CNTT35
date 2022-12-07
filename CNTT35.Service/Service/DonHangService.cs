@@ -19,8 +19,8 @@ namespace CNTT35.Service.Service
             using (var db = new QL_PHANBONEntities())
             {
 
-
-                return 0;
+               
+                return 1;
             }
         }
         public int NhapDonHang(int IDKM,int IDND,GioHang gh,decimal tong,string hinhthuc)
