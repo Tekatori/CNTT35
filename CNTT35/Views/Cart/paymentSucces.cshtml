@@ -3,7 +3,7 @@
     ViewBag.Title = "paymentSucces";
 }
 
-
+@model CNTT35.Data.DONHANG
 <section class="checkout spad">
     <div class="container">
         <div class="checkout__form">
@@ -14,12 +14,12 @@
     <div class="container" style="margin-top:5%;">
         <div class="row">
             <div class="jumbotron" style="box-shadow: 2px 2px 4px #000000;">
-                <h2 class="text-center" style="font-family: Brush Script MT,cursive; font-size: 70px;">Sincerely thanks!</h2>
+                <h2 class="text-center" style="font-family: Brush Script MT,cursive; font-size: 70px;">Sincerely thanks!@Model.HOTEN</h2>
                 <h2 class="text-center" style="">ĐƠN ĐẶT HÀNG CỦA BẠN ĐÃ ĐƯỢC XÁC NHẬN THÀNH CÔNG</h2>
                 <h3 class="text-center">Cảm ơn bạn đã mua hàng của chúng tôi! </h3>
                 <h3 class="text-center">Đơn hàng đang được xử lý</h3>
 
-                <p class="text-center">Mã đặt hàng của bạn là: 100000023</p>
+                <p class="text-center">Mã đặt hàng của bạn là: @Model.IDDH </p>
                 <p class="text-center">Bạn sẽ nhận được một email xác nhận đơn đặt hàng với các chi tiết về đơn đặt hàng của bạn và một liên kết để theo dõi quy trình của bạn.</p>
                 <center>
                     <div class="btn-group" style="margin-top:50px;">
