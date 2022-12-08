@@ -7,5 +7,6 @@ namespace CNTT35.Service.Service
     {
         List<PHANHOI> GetAllDanhGiaSP(int id);
         double TBRate(int id);
+        int PhanHoiSP(int idsp, int IDND, string HoTenDG, string NOIDUNG, string CHATLUONGSANPHAM, string DUNGVOIMOTA, int Rate);
     }
 }

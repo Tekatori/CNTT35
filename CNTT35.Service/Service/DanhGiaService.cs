@@ -56,5 +56,29 @@ namespace CNTT35.Service.Service
                 }
             }
         }
+        public int PhanHoiSP(int idsp, int IDND, string HoTenDG, string NOIDUNG, string CHATLUONGSANPHAM, string DUNGVOIMOTA,int Rate)
+        {
+            try
+            {
+                using (var db = new QL_PHANBONEntities())
+                {
+                    PHANHOI ph = new PHANHOI();
+                    ph.IDSP = idsp;
+                    ph.DUNGVOIMOTA = DUNGVOIMOTA;
+                    ph.RATE = Rate;
+                    ph.CHATLUONGSANPHAM = CHATLUONGSANPHAM;
+                    ph.IDND = IDND;
+                    ph.HoTenDG = HoTenDG;
+                    ph.NOIDUNG = NOIDUNG;
+                    db.PHANHOI.Add(ph);
+                    db.SaveChanges();
+                    return 1;
+                }
+            }
+            catch
+            {
+                return 0;
+            }
+        }
     }
 }

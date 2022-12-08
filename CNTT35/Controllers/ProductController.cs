@@ -10,6 +10,10 @@ using CNTT35.Data;
 using CNTT35.ViewModel;
 using System.Drawing.Printing;
 using System.Web.UI;
+using CNTT35.Session;
+using System.Security.Cryptography;
+using System.Security.Principal;
+using System.Reflection;
 
 namespace CNTT35.Controllers
 {
@@ -18,13 +22,12 @@ namespace CNTT35.Controllers
         // GET: Product
         IProductService _productService;
         IDanhGiaService DanhGiaService;
-
         public ProductController(IProductService productService,IDanhGiaService DanhGia)
         {
             _productService = productService;
             DanhGiaService = DanhGia;
         }
-        public ActionResult Index(int? page, int? pagesize)
+        public ActionResult Index(int? page, int? pagesize,string sapxep ="",string loai="")
         {
             Session["giamgia"] = null;
             Session["maGiamGia"] = null;
@@ -42,7 +45,59 @@ namespace CNTT35.Controllers
             List<GetTop10_Result> top10Random = _productService.GetTop10SanPham();
             ViewBag.top10Random = top10Random;
             //
-            return View(sp.ToPagedList((int)page, (int)pagesize));
+            ViewBag.sapXepName = sapxep;
+            
+            ViewBag.hatgiong = loai;
+
+            if (loai == "HatGiong")
+            {
+                if (sapxep == "a-z")
+                    return View(sp.OrderBy(t => t.TENSP).Where(t=>t.IDDM==1).ToPagedList((int)page, (int)pagesize));
+                else if (sapxep == "z-a")
+                    return View(sp.OrderByDescending(t => t.TENSP).Where(t => t.IDDM == 1).ToPagedList((int)page, (int)pagesize));
+                else
+                    return View(sp.Where(t => t.IDDM == 1).ToPagedList((int)page, (int)pagesize));
+            }
+            else if(loai== "PhanBonla")
+            {
+                if (sapxep == "a-z")
+                    return View(sp.OrderBy(t => t.TENSP).Where(t => t.IDDM == 2).ToPagedList((int)page, (int)pagesize));
+                else if (sapxep == "z-a")
+                    return View(sp.OrderByDescending(t => t.TENSP).Where(t => t.IDDM == 2).ToPagedList((int)page, (int)pagesize));
+                else
+                    return View(sp.Where(t => t.IDDM == 2).ToPagedList((int)page, (int)pagesize));
+            }
+            else if(loai == "PhanHuuCo")
+            {
+                if (sapxep == "a-z")
+                    return View(sp.OrderBy(t => t.TENSP).Where(t => t.IDDM == 3).ToPagedList((int)page, (int)pagesize));
+                else if (sapxep == "z-a")
+                    return View(sp.OrderByDescending(t => t.TENSP).Where(t => t.IDDM == 3).ToPagedList((int)page, (int)pagesize));
+                else
+                    return View(sp.Where(t => t.IDDM == 3).ToPagedList((int)page, (int)pagesize));
+            }
+            else if(loai == "PhanVoCo")
+            {
+                if (sapxep == "a-z")
+                    return View(sp.OrderBy(t => t.TENSP).Where(t => t.IDDM == 4).ToPagedList((int)page, (int)pagesize));
+                else if (sapxep == "z-a")
+                    return View(sp.OrderByDescending(t => t.TENSP).Where(t => t.IDDM == 4).ToPagedList((int)page, (int)pagesize));
+                else
+                    return View(sp.Where(t => t.IDDM == 4).ToPagedList((int)page, (int)pagesize));
+            }    
+            else
+            {
+                if (sapxep == "a-z")
+                    return View(sp.OrderBy(t => t.TENSP).ToPagedList((int)page, (int)pagesize));
+                else if (sapxep == "z-a")
+                    return View(sp.OrderByDescending(t => t.TENSP).ToPagedList((int)page, (int)pagesize));
+                else
+                    return View(sp.ToPagedList((int)page, (int)pagesize));
+            }    
+
+
+
+           
         }
 
         public ActionResult Detail(string id)
@@ -65,32 +120,40 @@ namespace CNTT35.Controllers
             if (page == null)
                 page = 1;
             if (pagesize == null)
-                pagesize = 3;
+                pagesize = 2;
             var sp =  _productService.GetSP(id);
-            ViewBag.ttsp = sp;
+            ViewBag.sp = sp;
 
             var jj = DanhGiaService.TBRate(id);
             ViewBag.ttsp = jj;
             return PartialView(dg.ToPagedList((int)page, (int)pagesize));
         }
-
-
         [HttpPost]
-        public ActionResult Search(int? page, int? pagesize,FormCollection c)
+        public ActionResult Index(FormCollection c, int? page, int? pagesize, string sapxep = "")
         {
 
             Session["giamgia"] = null;
-            Session["maGiamGia"] = null;
+            Session["maGiamGia"] = null;       
             string tim = c["st"].ToString();
             var sp = _productService.SearchSP(tim);
             if (page == null)
                 page = 1;
             if (pagesize == null)
-                pagesize = 100;
+                pagesize = 120;
+            //top 10 SP khuyen mai
+            List<GetTop10KM_Result> top10KM = _productService.GetTop10SanPhamKM();
+            ViewBag.top10KM = top10KM;
+            //Top 10 ran
             List<GetTop10_Result> top10Random = _productService.GetTop10SanPham();
             ViewBag.top10Random = top10Random;
-            ViewBag.top10KM = null;
-            return View("Index",sp.ToPagedList((int)page, (int)pagesize));
+            //
+            ViewBag.sapXepName = String.IsNullOrEmpty(sapxep) ? "z-a" : "a-z";
+            if (sapxep == "a-z")
+                return View(sp.OrderBy(t => t.TENSP).ToPagedList((int)page, (int)pagesize));
+            else if (sapxep == "z-a")
+                return View(sp.OrderByDescending(t => t.TENSP).ToPagedList((int)page, (int)pagesize));
+            else
+                return View(sp.ToPagedList((int)page, (int)pagesize));
         }
         //public ActionResult Index(int? page, int? pagesize,string id)
         //{
@@ -129,7 +192,41 @@ namespace CNTT35.Controllers
                 return RedirectToAction("Detail/" + id, "Product");
             }    
         }
+        [HttpPost]
+        public ActionResult DanhGiaSP(FormCollection c,int id)
+        {
+            NGUOIDUNG nd2 = LoginSession.GetSessionInfoLogin();
+            if (nd2 == null)
+                return RedirectToAction("Detail/" + id, "Product", new { ac147 = "testdn" });
+            int rate = 0;
+            bool rate5 = false;
+            bool rate4 = false;
+            bool rate3 = false;
+            bool rate2 = false;
+            bool rate1 = false;
+            if (!string.IsNullOrEmpty(c["rating5"])) { rate5 = true; }
+            if (!string.IsNullOrEmpty(c["rating4"])) { rate4 = true; }
+            if (!string.IsNullOrEmpty(c["rating3"])) { rate3 = true; }
+            if (!string.IsNullOrEmpty(c["rating2"])) { rate2 = true; }
+            if (!string.IsNullOrEmpty(c["rating1"])) { rate1 = true; }
+            if (rate5 == true)
+                rate = 5;
+            else if (rate4 == true)
+                rate = 4;
+            else if (rate3 == true)
+                rate = 3;
+            else if (rate2 == true)
+                rate = 2;
+            if (rate1 == true)
+                rate = 1;
 
+                string NoiDung = c["NoiDung"].ToString();
+            string TenDG = c["TenDG"].ToString();
+            string ChatLuong = c["ChatLuong"].ToString();
+            string DungVoiMota = c["DungVoiMota"].ToString();
+            DanhGiaService.PhanHoiSP(id, nd2.IDND, TenDG, NoiDung, ChatLuong, DungVoiMota, rate);
+            return RedirectToAction("Detail/" + id, "Product");
+        }
         //SearchMoney1
         [HttpPost]
         public ActionResult SearchMoney(FormCollection c, int? page, int? pagesize)

@@ -35,12 +35,11 @@
                     <div class="sidebar__item">
                         <h4>Danh mục</h4>
                         <ul>
-                            <li><a href="/Product/Index">Tất cả</a></li>
-                            <li><a href="#">Hạt giống</a></li>
-                            <li><a href="#">Phân bón lá</a></li>
-                            <li><a href="#">Phân bón vô cơ</a></li>
-                            <li><a href="#">Phân hữu cơ</a></li>
-
+                            <li><a>@Html.ActionLink("Tất Cả", "Index")</a></li>
+                            <li><a>@Html.ActionLink("Hạt Giống", "Index", new {loai="HatGiong"})</a></li>
+                            <li><a>@Html.ActionLink("Phân Bón Lá", "Index", new { loai = "PhanBonla" })</a></li>
+                            <li><a>@Html.ActionLink("Phân Hữu cơ", "Index", new { loai = "PhanHuuCo" })</a></li>
+                            <li><a>@Html.ActionLink("Phân Vô Cơ", "Index", new { loai = "PhanVoCo" })</a></li>
                         </ul>
                     </div>
                     @using (Html.BeginForm("SearchMoney", "Product", FormMethod.Post))
@@ -329,10 +328,9 @@
                         <div class="col-lg-4 col-md-5">
                             <div class="filter__sort">
                                 <span>Sắp xếp theo</span>
-                                <select>
-                                    <option value="0">A - Z</option>
-                                    <option value="0">Z - A</option>
-                                </select>
+                                <a>@Html.ActionLink("A - Z", "Index", new { loai = ViewBag.hatgiong, sapxep = "a-z" })</a>
+                                :
+                                <a>@Html.ActionLink("Z - A", "Index", new { loai = ViewBag.hatgiong,sapxep = "z-a" })</a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4">
@@ -399,7 +397,7 @@
                     }
                 </div>
                 <div class="product__pagination">
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new {page,loai = ViewBag.hatgiong, sapxep = ViewBag.sapXepName }))
                 </div>
             </div>
         </div>
