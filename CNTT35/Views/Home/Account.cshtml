@@ -7,8 +7,13 @@
 <section class="checkout spad">
     <div class="container">
         <div class="checkout__form">
-            <a>@Html.ActionLink("Lịch Sử Mua Hàng", "paymentHistory", "Cart")</a>
+           <div style="display: flex; justify-content: space-between;">
             <h4>Quản lí hồ sơ của bạn</h4>
+        
+               <a href="/Cart/paymentHistory" class="primary-btn cart-btn" style="height: 54px; ">Xem lịch sử mua hàng</a>
+             </div>
+           
+        
             @foreach (var item in Model)
             {
                 string[] diachi;
