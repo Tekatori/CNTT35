@@ -47,12 +47,12 @@ namespace CNTT35.Service.Service
                     if (loaivc == "Tiết Kiệm")
                     {
                         qlvanchuyen.PHIVANCHUYEN = 35000;
-                        qlvanchuyen.NGAYGIAOHANG = DateTime.Now.AddDays(7);
+                        qlvanchuyen.NGAYVANCHUYEN = DateTime.Now.AddDays(7);
                     }
                     else
                     {
                         qlvanchuyen.PHIVANCHUYEN = 20000;
-                        qlvanchuyen.NGAYGIAOHANG = DateTime.Now.AddDays(3);
+                        qlvanchuyen.NGAYVANCHUYEN = DateTime.Now.AddDays(3);
                     }
                     db.QLVANCHUYEN.Add(qlvanchuyen);
                     db.SaveChanges();

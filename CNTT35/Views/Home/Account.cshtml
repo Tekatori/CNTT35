@@ -7,6 +7,7 @@
 <section class="checkout spad">
     <div class="container">
         <div class="checkout__form">
+            <a>@Html.ActionLink("Lịch Sử Mua Hàng", "paymentHistory", "Cart")</a>
             <h4>Quản lí hồ sơ của bạn</h4>
             @foreach (var item in Model)
             {
@@ -17,7 +18,7 @@
                 }
                 else
                 {
-                    diachi = new String[] { "", "", "","" };
+                    diachi = new String[] { "", "", "", "" };
                 }
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
@@ -25,7 +26,9 @@
                         {
                             <div class="row">
                                 <h6>Tên người dùng : @item.TENND</h6>
+
                             </div>
+
                             <div class="row" style="margin-top:-68px">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">

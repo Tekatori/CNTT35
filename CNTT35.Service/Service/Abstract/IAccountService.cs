@@ -12,5 +12,6 @@ namespace CNTT35.Service.Service
         int ChangeInfo(int id, string hoten, string diachi, string sdt, string email);
         int ChangePassword(int id, string passOld, string passNew, string rePassNew);
         NGUOIDUNG GetND(int id);
+        List<LichSuMuaHang_Result> GetLichSuDonHang(int id);
     }
 }

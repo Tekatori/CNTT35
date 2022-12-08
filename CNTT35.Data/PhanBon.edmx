@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QL_PHANBONModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QL_PHANBONModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CTDONHANG">
           <Key>
             <PropertyRef Name="IDCTDH" />
@@ -164,11 +164,6 @@
           <Property Name="THANHTIEN" Type="money" />
           <Property Name="HINHTHUCTT" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="GetNewID">
-          <Property Name="NewID" Type="uniqueidentifier" />
-        </EntityType>-->
         <Association Name="FK_CTDONHANG_IDDH">
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="0..1" />
           <End Role="CTDONHANG" Type="Self.CTDONHANG" Multiplicity="*" />
@@ -385,6 +380,28 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="LichSuMuaHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDND" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IDDH" Type="int" Nullable="false" />
+                <Property Name="HOTEN" Type="nvarchar" MaxLength="100" />
+                <Property Name="DIACHIGIAOHANG" Type="nvarchar" MaxLength="200" />
+                <Property Name="DIENTHOAI" Type="varchar" MaxLength="20" />
+                <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+                <Property Name="GHICHU" Type="ntext" />
+                <Property Name="NGAYLAP" Type="date" />
+                <Property Name="NGAYVANCHUYEN" Type="date" />
+                <Property Name="NGAYGIAOHANG" Type="date" />
+                <Property Name="PHIVANCHUYEN" Type="money" />
+                <Property Name="LOAIVANCHUYEN" Type="nvarchar" MaxLength="50" />
+                <Property Name="THANHTIEN" Type="money" />
+                <Property Name="HINHTHUCTT" Type="nvarchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <EntityContainer Name="QL_PHANBONModelStoreContainer">
           <EntitySet Name="CTDONHANG" EntityType="Self.CTDONHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DANHMUC" EntityType="Self.DANHMUC" Schema="dbo" store:Type="Tables" />
@@ -454,8 +471,7 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
             <End Role="THANHTOAN" EntitySet="THANHTOAN" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QL_PHANBONModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -905,11 +921,29 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
           </AssociationSet>
           <FunctionImport Name="GetTop10" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.GetTop10_Result)" />
           <FunctionImport Name="GetTop10Category" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.GetTop10Category_Result)">
-            <Parameter Name="iddm" Mode="In" Type="Int32" />
+          <Parameter Name="iddm" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetTop10KM" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.GetTop10KM_Result)" />
           <FunctionImport Name="GetTop30Random" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.GetTop30Random_Result)" />
+          <FunctionImport Name="LichSuMuaHang" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.LichSuMuaHang_Result)">
+            <Parameter Name="IDND" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="LichSuMuaHang_Result">
+          <Property Type="Int32" Name="IDDH" Nullable="false" />
+          <Property Type="String" Name="HOTEN" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DIACHIGIAOHANG" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DIENTHOAI" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="GHICHU" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="NGAYLAP" Nullable="true" Precision="10" />
+          <Property Type="DateTime" Name="NGAYVANCHUYEN" Nullable="true" Precision="10" />
+          <Property Type="DateTime" Name="NGAYGIAOHANG" Nullable="true" Precision="10" />
+          <Property Type="Decimal" Name="PHIVANCHUYEN" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="String" Name="LOAIVANCHUYEN" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="THANHTIEN" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="String" Name="HINHTHUCTT" Nullable="true" MaxLength="100" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1138,6 +1172,25 @@ warning 6013: The table/view 'QL_PHANBON.dbo.GetNewID' does not have a primary k
                 <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
                 <ScalarProperty Name="TENDM" ColumnName="TENDM" />
                 <ScalarProperty Name="IDDM" ColumnName="IDDM" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LichSuMuaHang" FunctionName="QL_PHANBONModel.Store.LichSuMuaHang">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QL_PHANBONModel.LichSuMuaHang_Result">
+                <ScalarProperty Name="IDDH" ColumnName="IDDH" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="DIACHIGIAOHANG" ColumnName="DIACHIGIAOHANG" />
+                <ScalarProperty Name="DIENTHOAI" ColumnName="DIENTHOAI" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="NGAYLAP" ColumnName="NGAYLAP" />
+                <ScalarProperty Name="NGAYVANCHUYEN" ColumnName="NGAYVANCHUYEN" />
+                <ScalarProperty Name="NGAYGIAOHANG" ColumnName="NGAYGIAOHANG" />
+                <ScalarProperty Name="PHIVANCHUYEN" ColumnName="PHIVANCHUYEN" />
+                <ScalarProperty Name="LOAIVANCHUYEN" ColumnName="LOAIVANCHUYEN" />
+                <ScalarProperty Name="THANHTIEN" ColumnName="THANHTIEN" />
+                <ScalarProperty Name="HINHTHUCTT" ColumnName="HINHTHUCTT" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

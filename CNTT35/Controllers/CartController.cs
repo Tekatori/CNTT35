@@ -91,6 +91,8 @@ namespace CNTT35.Controllers
                     tong = (decimal)gh.TongThanhTien();
                 }    
                 DONHANG dh = DonHangService.ThanhToanDonHang(idkm, nd.IDND, hoten, dichi, phone, email, ghichu, gh, tong, thanhtoan, loaivc);
+                gh.XoaGioHang();
+                clearSessionGiamGia();
                 return View(dh);
             }
             catch
@@ -100,9 +102,11 @@ namespace CNTT35.Controllers
         }
         public ActionResult paymentHistory()
         {
-            ViewBag.Message = "Your application description page.";
+            NGUOIDUNG nd2 = LoginSession.GetSessionInfoLogin();
+            var listdh = _accountService.GetLichSuDonHang(nd2.IDND);
 
-            return View();
+   
+            return View(listdh);
         }
         public ActionResult ChonMua(int id)
         {

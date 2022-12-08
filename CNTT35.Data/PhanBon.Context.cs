@@ -70,5 +70,15 @@ namespace CNTT35.Data
         {
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetTop30Random_Result>("[QL_PHANBONEntities].[GetTop30Random]()");
         }
+    
+        [DbFunction("QL_PHANBONEntities", "LichSuMuaHang")]
+        public virtual IQueryable<LichSuMuaHang_Result> LichSuMuaHang(Nullable<int> iDND)
+        {
+            var iDNDParameter = iDND.HasValue ?
+                new ObjectParameter("IDND", iDND) :
+                new ObjectParameter("IDND", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<LichSuMuaHang_Result>("[QL_PHANBONEntities].[LichSuMuaHang](@IDND)", iDNDParameter);
+        }
     }
 }

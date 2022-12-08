@@ -183,5 +183,21 @@ namespace CNTT35.Service.Service
             }
 
         }
+        public List<LichSuMuaHang_Result> GetLichSuDonHang(int id)
+        {
+            try
+            {
+                using (var db = new QL_PHANBONEntities())
+                {
+                    var ls = db.LichSuMuaHang(id);
+                    return ls.ToList();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
     }
 }
