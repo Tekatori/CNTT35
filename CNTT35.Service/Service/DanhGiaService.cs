@@ -12,22 +12,19 @@ namespace CNTT35.Service.Service
     {
         public List<PHANHOI> GetAllDanhGiaSP(int id)
         {
-            using (var db = new QL_PHANBONEntities())
+            try
             {
-                try
+                using (var db = new QL_PHANBONEntities())
                 {
-                    var listdanhgia = from dg in db.PHANHOI
-                                      join ng in db.NGUOIDUNG on dg.IDND equals ng.IDND
-                                      where dg.IDSP == id
-                                      select dg;
 
-                    
+                    var listdanhgia = db.PHANHOI.Where(t => t.IDND == id).ToList();
+
                     return listdanhgia.ToList();
                 }
-                catch
-                {
-                    return null;
-                }
+            }
+            catch
+            {
+                return null;
             }
         }
         public double TBRate(int id)
