@@ -120,7 +120,7 @@ namespace CNTT35.Controllers
             if (page == null)
                 page = 1;
             if (pagesize == null)
-                pagesize = 2;
+                pagesize = 3;
             var sp =  _productService.GetSP(id);
             ViewBag.sp = sp;
 
@@ -198,27 +198,12 @@ namespace CNTT35.Controllers
             NGUOIDUNG nd2 = LoginSession.GetSessionInfoLogin();
             if (nd2 == null)
                 return RedirectToAction("Detail/" + id, "Product", new { ac147 = "testdn" });
-            int rate = 0;
-            bool rate5 = false;
-            bool rate4 = false;
-            bool rate3 = false;
-            bool rate2 = false;
-            bool rate1 = false;
-            if (!string.IsNullOrEmpty(c["rating5"])) { rate5 = true; }
-            if (!string.IsNullOrEmpty(c["rating4"])) { rate4 = true; }
-            if (!string.IsNullOrEmpty(c["rating3"])) { rate3 = true; }
-            if (!string.IsNullOrEmpty(c["rating2"])) { rate2 = true; }
-            if (!string.IsNullOrEmpty(c["rating1"])) { rate1 = true; }
-            if (rate5 == true)
-                rate = 5;
-            else if (rate4 == true)
-                rate = 4;
-            else if (rate3 == true)
-                rate = 3;
-            else if (rate2 == true)
-                rate = 2;
-            if (rate1 == true)
-                rate = 1;
+            int rate = 5;
+            if (c["rating1"].ToString() != null)
+            {
+                rate = int.Parse(c["rating1"].ToString());
+            }           
+   
 
                 string NoiDung = c["NoiDung"].ToString();
             string TenDG = c["TenDG"].ToString();

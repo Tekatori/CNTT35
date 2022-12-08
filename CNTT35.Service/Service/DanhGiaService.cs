@@ -17,7 +17,7 @@ namespace CNTT35.Service.Service
                 using (var db = new QL_PHANBONEntities())
                 {
 
-                    var listdanhgia = db.PHANHOI.Where(t => t.IDND == id).ToList();
+                    var listdanhgia = db.PHANHOI.Where(t => t.IDSP == id).ToList();
 
                     return listdanhgia.ToList();
                 }
