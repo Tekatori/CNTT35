@@ -199,7 +199,7 @@ namespace CNTT35.Controllers
             if (nd2 == null)
                 return RedirectToAction("Detail/" + id, "Product", new { ac147 = "testdn" });
             int rate = 5;
-            if (c["rating1"].ToString() != null)
+            if (c["rating1"] != null)
             {
                 rate = int.Parse(c["rating1"].ToString());
             }           
