@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Voucher";
+}
+
+
+<div class="collection-hero collection-hero--with-image collection-hero--contrast section-template--15208910487684__banner-padding">
+    <div class="collection-hero__inner">
+        <div class="collection-hero__image-container">
+            <use-animate data-animate="zoom-fade" class="media-wrapper" animate="">
+                <lazy-image class="collection-hero__image image-animate media media--adapt media-mobile--250px " style="--image-ratio-percent: 21.9672131147541%;margin-top: 4rem;">
+                    <img class="img-product" wid th="900" height="600" srcset="https://d1ip4j1950xau.cloudfront.net/_processed_/5/2/csm_dar_nut-nat_iS802349002_e7a96b66ac.jpg" src="https://d1ip4j1950xau.cloudfront.net/_processed_/5/2/csm_dar_nut-nat_iS802349002_e7a96b66ac.jpg" sizes="(min-width: 1400px) 1300px, (min-width: 750px) calc(100vw - 10rem), 100vw" alt="Plastic Pots" width="2135" height="469">
+
+                </lazy-image>
+            </use-animate>
+        </div><div class="page-width">
+            <div class="collection-hero__text-wrapper">
+                <h1 class="collection-hero__title">
+                    <span class="visually-hidden">Collection:</span>
+                    Thông tin mã giảm giá
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="rich-text" style="background-color: #fff6f4;">
+
+        <div class="page-width page-width--inner section-template--15208910782596__rich-text-0-padding">
+
+            <div class="rich-text__blocks center mobile-center">
+                <h2 class="h2" style="color: #000000;">Số lượng có hạn. Nhanh tay để lấy các mã giảm giá <br>  Xem các sản phẩm ưu đãi và bán chạy nhất</h2>
+                <p><a href="../Product" class="btn">Xem thêm</a></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+  <div class="container">
+            <div class="coupon-card">
+                <img src="~/Content/img/logo/low-res-logo.png" class="logo">
+                <h3>Mã giảm 20k trên tổng giá trị đơn hàng<br>Áp dụng cho thanh toán trực tuyến</h3>
+                <di class="coupon-row">
+                    <span id="cpnCode">STEALDEAL20</span>
+                    <span id="cpnBtn">Copy Code</span>
+                </di>
+                <p>Có hiệu lực từ  20.12</p>
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+            </div>
+        </div>
+<script> 
+    var cpnBtn = document.getElementById("cpnBtn");
+    var cpnCode = document.getElementById("cpnCode");
+
+    cpnBtn.onclick = function () {
+        navigator.clipboard.writeText(cpnCode.innerHTML);
+        cpnBtn.innerHTML = "COPIED";
+        setTimeout(function () {
+            cpnBtn.innerHTML = "COPY CODE";
+        }, 3000);
+    }
+</script> 
+
+ <div class="voucher2" >
+      <div class="card" style="height: 192px;">
+        <div class="main">
+          <div class="co-img">
+           <img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t39.30808-6/318132546_3336337809915404_2625833431154750342_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=QUSQaSez3NkAX9o9K0I&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfDJ4BDjF2sqGJDoXDhBC6peCiddJWImohk2OV9H4I318w&oe=639772E3" class="logo">
+
+          </div>
+          <div class="vertical"></div>
+          <div class="content">
+            <h2>Miễn phí vận chuyển</h2>
+            <h1>35k <span>Giảm giá</span></h1>
+            <p>Có hiệu lực từ 30.12</p>
+          </div>
+        </div>
+        <div class="copy-button">
+          <input id="copyvalue" type="text" readonly value="GOFREE" />
+          <button onclick="copyIt()" class="copybtn">COPY</button>
+        </div>
+      </div>
+    <div class="card" style="height: 192px;">
+        <div class="main">
+          <div class="co-img">
+           <img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t39.30808-6/318132546_3336337809915404_2625833431154750342_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=QUSQaSez3NkAX9o9K0I&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfDJ4BDjF2sqGJDoXDhBC6peCiddJWImohk2OV9H4I318w&oe=639772E3" class="logo">
+
+          </div>
+          <div class="vertical"></div>
+          <div class="content">
+            <h2>Đơn hàng đầu tiên</h2>
+           <h1>20k <span>Giảm giá</span></h1>
+            <p>Có hiệu lực từ 30.12</p>
+          </div>
+        </div>
+        <div class="copy-button">
+          <input id="copyvalue2" type="text" readonly value="GOFREE" />
+          <button onclick="copyIt2()" class="copybtn2">COPY</button>
+        </div>
+      </div>
+    </div>
+
+<script> 
+  let copybtn = document.querySelector(".copybtn");
+  
+ 
+function copyIt() {
+    let copyInput = document.querySelector('#copyvalue');
+
+    copyInput.select();
+
+    document.execCommand("copy");
+
+    copybtn.textContent = "COPIED";
+}
+
+     let copybtn2 = document.querySelector(".copybtn2");
+  
+
+function copyIt2() {
+    let copyInput2 = document.querySelector('#copyvalue2');
+
+    copyInput2.select();
+
+    document.execCommand("copy");
+
+    copybtn2.textContent = "COPIED";
+}
+</script> 
+
+
+
+
+
+
+
