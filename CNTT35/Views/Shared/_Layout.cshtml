@@ -22,7 +22,11 @@
         <div style="position: relative;"> </div>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow nav-header" style="margin-top: -3rem; margin-bottom: 5rem;">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CNTT35</a>
+               
+                <a href="/Home">
+               <img  src="~/Content/img/logo/low-res-logo.png" alt="">
+
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -79,6 +83,10 @@
                     <li><a href="#" title="Khuyến mãi">Khuyến mãi</a></li>
                 </ul>
             </li>*@
+                        <li>
+                            <a>@Html.ActionLink("Khuyến mãi", "Voucher", "Home")</a>
+
+                        </li>
                         <li>
                             <a>@Html.ActionLink("Liên hệ", "Contact", "Home")</a>
 
