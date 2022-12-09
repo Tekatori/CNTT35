@@ -435,6 +435,7 @@
     <Content Include="Content\img\featured\xa-lach.jpg" />
     <Content Include="Content\img\featured\xa-lach2.jpg" />
     <Content Include="Content\img\featured\xa-lach3.jpg" />
+    <Content Include="Content\img\logo\low-res-logo.png" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\jquery-3.3.1.min.js" />
@@ -547,6 +548,7 @@
     <Content Include="Views\Cart\paymentSucces.cshtml" />
     <Content Include="Views\Cart\paymentHistory.cshtml" />
     <Content Include="Views\Product\DanhGia.cshtml" />
+    <Content Include="Views\Home\Voucher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
