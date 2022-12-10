@@ -55,6 +55,12 @@ namespace CNTT35.Controllers
 
             return View();
         }
+        public ActionResult addNewAdress()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
         public ActionResult Account()
         {
             var nd2 = LoginSession.GetSessionInfoLogin();

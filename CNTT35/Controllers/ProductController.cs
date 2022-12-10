@@ -155,6 +155,12 @@ namespace CNTT35.Controllers
             else
                 return View(sp.ToPagedList((int)page, (int)pagesize));
         }
+        public ActionResult xemDanhGia()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
         //public ActionResult Index(int? page, int? pagesize,string id)
         //{
         //    var sp = _productService.GetSanPhamHatGiong(int.Parse(id));
