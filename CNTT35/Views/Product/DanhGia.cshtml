@@ -50,6 +50,16 @@
         {
             <div class="product-comment">
                 <div class="people">
+                    <a class="shopee-product-rating__avatar">
+                    <div class="shopee-avatar">
+                        <div class="shopee-avatar__placeholder">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#8f959b" class="bi bi-person-circle" viewBox="0 0 16 16">
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>
+                            </div>
+                        </div>
+                    </a>
                     <div class="main2">
                         <div>@dg.HoTenDG</div>
                         <div>
@@ -107,7 +117,11 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="checkout__input">
-                            <p>Nội dung<span>*</span></p>
+                            <div style="display:flex;">
+                                    <p>Nội dung<span>*</span></p> 
+                                     <a href="/Product/xemDanhGia"
+                                          style="color: #007B5E;margin-left: 1rem;text-decoration:none;"> Xem tất cả đánh giá</a>
+                                    </div>
                             <textarea type="text" required="" name="NoiDung"></textarea>
                         </div>
                     </div>
@@ -135,6 +149,7 @@
 
                     </div>
                     <button type="submit" class="site-btn" style=" width: 130px; margin-left: 0.7rem;">Đánh giá</button>
+
                 </div>
             </div>
 

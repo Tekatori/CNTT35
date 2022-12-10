@@ -9,10 +9,7 @@
         <div class="checkout__form">
            <div style="display: flex; justify-content: space-between;">
             <h4>Quản lí hồ sơ của bạn</h4>
-              <a class="primary-btn cart-btn"  
-                 data-toggle="modal"
-                 data-target="#exampleModalAddAdress"
-                 style="position: absolute;height: 54px;left: 647px; top: 400px;text-transform: none; z-index: 9;text-decoration: none;cursor: pointer; ">Thêm địa chỉ mới</a>
+              
                <a href="/Cart/paymentHistory" class="primary-btn cart-btn" style="height: 54px; ">Xem lịch sử mua hàng</a>
              </div>
            
@@ -61,7 +58,11 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
-                                        <p>Phường/Xã<span>*</span></p>
+                                       <div style="display:flex;">
+                                    <p>Phường/Xã<span>*</span></p> 
+                                     <a href="/Home/addNewAdress"
+                                          style="color: #007B5E;margin-left: 1rem; text-decoration:none;"> Thêm địa chỉ mới</a>
+                                    </div>
                                         <input type="text" value="@diachi[1].ToString()" placeholder="Chưa có Thông tin" name="xa">
                                     </div>
                                 </div>
@@ -155,67 +156,7 @@
 </section>
 
 
-     <!-- Modal add Adress-->
-    <div class="modal fade"
-         id="exampleModalAddAdress"
-         tabindex="-1"
-         role="dialog"
-         aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Địa chỉ mới</h5>
-                    <button type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="sl-container">
-                        <div class="sl-wrapper">
-                            <div class="sl-vertical social-wrap oxi_icon_center login">
-
-                            </div>
-                        </div>
-                    </div>
-                    <form>
-                        <div class="form-group">
-
-                            <input placeholder="Họ tên" class="form-control custom-input" id="recipient-yourname" />
-                        </div>
-                        <div class="form-group">
-
-                            <input placeholder="Số điện thoại" class="form-control custom-input" id="recipient-numberphone" />
-                        </div>
-
-                        <div class="form-group">
-
-                            <input placeholder="Địa chỉ cụ thể" class="form-control custom-input" id="recipient-address" />
-                        </div>
-
-
-                        
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal">
-                        Trở lại
-                    </button>
-                    <button type="button" class="btn btn-primary" style="background: #007B5E; color:#fff;">Hoàn thành</button>
-                </div>
-            </div>
-
-
-
-        </div>
-    </div>
-    <!-- ./ Modal add Adress -->
-
+    
 
 
 
