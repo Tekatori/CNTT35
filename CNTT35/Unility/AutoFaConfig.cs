@@ -11,6 +11,7 @@ using System.Reflection;
 using CNTT35.Service.Service;
 using System.Web.Mvc;
 using CNTT35.ViewModel;
+using CNTT35.Data;
 
 namespace CNTT35.Unility
 {
@@ -26,6 +27,7 @@ namespace CNTT35.Unility
             builder.RegisterType<DonHangService>().As<IDonHangService>();
             builder.RegisterType<LienHeService>().As<ILienHeService>();
             builder.RegisterType<DanhGiaService>().As<IDanhGiaService>();
+            builder.RegisterType<KhuyenMaiService>().As<IKhuyenMaiService>();
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }

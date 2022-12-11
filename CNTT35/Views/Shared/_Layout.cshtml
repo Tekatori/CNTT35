@@ -49,10 +49,10 @@
                             <a>@Html.ActionLink("Sản Phẩm", "Index", "Product")</a>
                             <!-- menu con sổ xuống cấp 1 -->
                             <ul>
-                                <li><a href="#" title="Phân vô cơ">Phân vô cơ</a></li>
-                                <li><a href="#" title="Phân hữu cơ">Phân hữu cơ</a></li>
-                                <li><a href="#" title="Phân bón lá">Phân bón lá</a></li>
-                                <li><a href="#" title="Hạt giống">Hạt giống</a></li>
+                                <li><a>@Html.ActionLink("Phân Vô Cơ", "Index", "Product", new { loai = "PhanVoCo" }, null)</a></li>
+                                <li><a>@Html.ActionLink("Phân Hữu cơ", "Index", "Product", new { loai = "PhanHuuCo" }, null)</a></li>
+                                <li><a>@Html.ActionLink("Phân Bón Lá", "Index", "Product", new { loai = "PhanBonla" }, null)</a></li>
+                                <li><a>@Html.ActionLink("Hạt Giống", "Index", "Product", new { loai = "HatGiong" }, null)</a></li>
                                 @* <li>
                         <a href="#" title="Lập trình Web ASP.NET">Lập trình Web với ASP.NET MVC 5</a>
                         <!-- menu con sổ ngang cấp 2 -->
@@ -110,7 +110,27 @@
                                 <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Giỏ Hàng trống Hãy mua gì đó,cảm ơn!</strong>
                             </div>
                         }
-
+                        else if (parameter == "guimail")
+                        {
+                            <div class="alert alert-success alert-dismissable" style="text-align:center">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Đã gửi thông tin quên mật khẩu của bạn về email, mời bạn kiểm tra!</strong>
+                            </div>
+                        }
+                        else if (parameter == "Emailnot")
+                        {
+                            <div class="alert alert-success alert-dismissable" style="text-align:center">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Email chưa được đăng ký,cảm ơn!</strong>
+                            </div>
+                        }
+                        else if (parameter == "tk")
+                        {
+                            <div class="alert alert-success alert-dismissable" style="text-align:center">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Đăng Nhập thất bại!</strong>
+                            </div>
+                        }
                     }
                     <div class="navbar-left">
                         @using (Html.BeginForm("Index", "Product", FormMethod.Post))
@@ -136,8 +156,8 @@
                                data-target="#exampleModal"
                                class="header__icon header__icon--account focus-inset">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
-                                    <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
-                                    <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
+                                    <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z" />
+                                    <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z" />
                                 </svg>
                                 <span class="visually-hidden">Log in</span>
                             </a>
@@ -152,18 +172,18 @@
                                 <span class="visually-hidden">Infomation</span>
                             </a>
                             <p style="margin-top:11px">Xin Chào,@nd.TENND  </p> <br />
-                           
-                            <a  href="/Home/Logout" id="myBtn" class="header__icon header__icon--account focus-inset">
+
+                            <a href="/Home/Logout" id="myBtn" class="header__icon header__icon--account focus-inset">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
-                                    <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                                    <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z" />
+                                    <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
                                 </svg>
 
 
-                               
+
                             </a>
-                            
-                            
+
+
                         }
                         <a href="/Cart" id="myBtn" class="header__icon header__icon--account focus-inset">
 
@@ -332,7 +352,7 @@
                             <div class="sl-wrapper">
                                 <h5 class="">Xin chào! Đăng nhập với</h5>
                                 <div class="sl-vertical social-wrap oxi_icon_center login">
-                                    <a class="social_login facebook">
+                                    <a href="/Home/LoginFB" class="social_login facebook">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                              width="16"
                                              height="16"
@@ -467,29 +487,32 @@
          aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Đặt lại mật khẩu của bạn</h5>
-                    <button type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="sl-container">
-                        <div class="sl-wrapper">
-                            <h5 class="" style="padding: 1rem 3rem;text-align: center;">Chúng tôi sẽ gửi cho bạn một email để đặt lại mật khẩu của bạn</h5>
-                            <div class="sl-vertical social-wrap oxi_icon_center login">
+            @using (Html.BeginForm("QuenMK", "Home", FormMethod.Post))
+            {
+                <div class="modal-content">
 
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Đặt lại mật khẩu của bạn</h5>
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="sl-container">
+                            <div class="sl-wrapper">
+                                <h5 class="" style="padding: 1rem 3rem;text-align: center;">Chúng tôi sẽ gửi cho bạn một email để đặt lại mật khẩu của bạn</h5>
+                                <div class="sl-vertical social-wrap oxi_icon_center login">
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <form>
-                        <div class="form-group">
 
-                            <input placeholder="Email" class="form-control custom-input" id="recipient-email" />
+
+                        <div class="form-group">
+                            <input placeholder="Email" name="EmailQuen" class="form-control custom-input" id="recipient-email" />
                         </div>
 
                         <div class="forgot-create">
@@ -504,21 +527,21 @@
                                 Tạo tài khoản mới
                             </h6>
                         </div>
-                    </form>
+                        }
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal">
+                            Hủy bỏ
+                        </button>
+                        <button type="submit" class="btn btn-primary" style="background: #007B5E; color:#fff;">Gửi</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal">
-                        Hủy bỏ
-                    </button>
-                    <button type="submit" class="btn btn-primary" style="background: #007B5E; color:#fff;">Gửi</button>
-                </div>
+
+            }
+
             </div>
-
-
-
-        </div>
     </div>
     <!-- ./ Modal Forgot Password -->
 

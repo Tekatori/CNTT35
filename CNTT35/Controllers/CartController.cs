@@ -4,12 +4,16 @@ using CNTT35.Service.Service;
 using CNTT35.Session;
 using CNTT35.ViewModel;
 using Microsoft.Ajax.Utilities;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net.Mail;
+using System.Net;
 using System.Security.Policy;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using System.Web.WebPages;
@@ -28,7 +32,7 @@ namespace CNTT35.Controllers
             DonHangService = donHangService;
         }
         public ActionResult Index()
-        {          
+        {
             GioHang gh = (GioHang)Session["gh"];
             if (gh == null)
                 return RedirectToAction("Index", "Home", new { ac = "GioHangNull" });
@@ -52,12 +56,63 @@ namespace CNTT35.Controllers
                     return RedirectToAction("Index", "Cart", new { ac147 = "usernull" });
                 var nd = _accountService.GetAccount(nd2.IDND);
                 ViewBag.kh = nd;
+                ViewBag.dc = _accountService.GetDiachiKhac(nd2.IDND);
                 decimal tongtien = decimal.Parse(Session["tien"].ToString());
                 double tienkm = double.Parse(Session["tienKM"].ToString());
                 TempData["tienkm"] = tienkm;
                 TempData["sum"] = tongtien;
 
                 return View(gh);
+            }
+        }
+        [HttpPost]
+        public ActionResult Confirm(FormCollection c)
+        {
+
+            int iddc = int.Parse(c["flexRadioDefault"].ToString());
+         
+            GioHang gh = (GioHang)Session["gh"];
+            if (iddc <= 0)
+            {
+                NGUOIDUNG nd2 = LoginSession.GetSessionInfoLogin();
+                if (nd2 == null)
+                    return RedirectToAction("Index", "Cart", new { ac147 = "usernull" });
+                var nd = _accountService.GetAccount(nd2.IDND);
+                ViewBag.kh = nd;
+                ViewBag.dc = _accountService.GetDiachiKhac(nd2.IDND);
+                decimal tongtien = decimal.Parse(Session["tien"].ToString());
+                double tienkm = double.Parse(Session["tienKM"].ToString());
+                TempData["tienkm"] = tienkm;
+                TempData["sum"] = tongtien;
+                return View(gh);
+            }
+            else
+            {
+                if (gh == null)
+                    return RedirectToAction("Index", "Cart", new { ac147 = "error147" });
+                int sl = gh.SoMatHang();
+                if (sl <= 0)
+                {
+                    return RedirectToAction("Index", "Cart", new { ac147 = "error147" });
+                }
+                else
+                {
+
+                    NGUOIDUNG nd2 = LoginSession.GetSessionInfoLogin();
+                    if (nd2 == null)
+                        return RedirectToAction("Index", "Cart", new { ac147 = "usernull" });
+
+                    ViewBag.kh = null;
+                    var sp = _accountService.DiachiKhac(iddc);
+                    ViewBag.dck = sp;
+                    ViewBag.dc = _accountService.GetDiachiKhac(nd2.IDND);
+                    decimal tongtien = decimal.Parse(Session["tien"].ToString());
+                    double tienkm = double.Parse(Session["tienKM"].ToString());
+                    TempData["tienkm"] = tienkm;
+                    TempData["sum"] = tongtien;
+
+                    return View(gh);
+                }
             }
         }
         public ActionResult paymentSucces(FormCollection c)
@@ -67,16 +122,12 @@ namespace CNTT35.Controllers
                 GioHang gh = (GioHang)Session["gh"];
                 var nd = LoginSession.GetSessionInfoLogin();
                 string hoten = c["hoten"].ToString();
-                string sonha = c["sonha"].ToString();
-                string tinhthanh = c["tinhthanh"].ToString();
-                string quanhuyen = c["quanhuyen"].ToString();
-                string Phuongxa = c["Phuongxa"].ToString();
+                string diachi = c["diachi"].ToString();
                 string loaivc = c["flexRadioDefault"].ToString();
                 string phone = c["phone"].ToString();
                 string email = c["email"].ToString();
                 string ghichu = c["ghichu"].ToString();
                 string thanhtoan = c["thanhtoan"].ToString();
-                string dichi = sonha + "," + Phuongxa + "," + quanhuyen + "," + tinhthanh;
                 decimal tong = 0;
                 int idkm = 0;
                 if (Session["maGiamGia"] != null)
@@ -89,10 +140,38 @@ namespace CNTT35.Controllers
                 {
                     idkm = 0;
                     tong = (decimal)gh.TongThanhTien();
-                }    
-                DONHANG dh = DonHangService.ThanhToanDonHang(idkm, nd.IDND, hoten, dichi, phone, email, ghichu, gh, tong, thanhtoan, loaivc);
+                }
+                DONHANG dh = DonHangService.ThanhToanDonHang(idkm, nd.IDND, hoten, diachi, phone, email, ghichu, gh, tong, thanhtoan, loaivc);
                 gh.XoaGioHang();
                 clearSessionGiamGia();
+
+                // gửi mail
+              
+
+                string fromMail = "banhangcntt35@gmail.com";
+                string fromPassword = "treisvognntadjxn";
+
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress(fromMail);
+                message.Subject = "Đặt Hàng Thành Công";
+                message.To.Add(new MailAddress(nd.EMAIL));
+                message.Body = "<html><body> Sincerely thanks!" + nd.TENND + "<br>"+ "<br> ĐƠN ĐẶT HÀNG CỦA BẠN ĐÃ ĐƯỢC XÁC NHẬN THÀNH CÔNG <br> Cảm ơn bạn đã mua hàng của chúng tôi!</body></html>";
+                message.IsBodyHtml = true;
+
+                var smtpClient = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential(fromMail, fromPassword),
+                    EnableSsl = true,
+                };
+
+                smtpClient.Send(message);
+
+
+
+
+                ////
+
                 return View(dh);
             }
             catch
@@ -100,13 +179,16 @@ namespace CNTT35.Controllers
                 return RedirectToAction("Confirm", "Cart", new { ac = "error" });
             }
         }
-        public ActionResult paymentHistory()
+        public ActionResult paymentHistory(int? page, int? pagesize)
         {
             NGUOIDUNG nd2 = LoginSession.GetSessionInfoLogin();
             var listdh = _accountService.GetLichSuDonHang(nd2.IDND);
+            if (page == null)
+                page = 1;
+            if (pagesize == null)
+                pagesize = 10;
 
-   
-            return View(listdh);
+            return View(listdh.ToPagedList((int)page, (int)pagesize));
         }
         public ActionResult ChonMua(int id)
         {
@@ -152,7 +234,7 @@ namespace CNTT35.Controllers
                 return RedirectToAction("Index", "Home", new { ac = "GioHangNull" });
             string maGiamGia = c["magiam"].ToString().Trim();
             if (String.IsNullOrEmpty(maGiamGia) == false)
-            {             
+            {
                 decimal kq = 0;
                 kq = gh.TongThanhTienGiamGia(maGiamGia);
                 Session["gh"] = gh;
@@ -174,6 +256,6 @@ namespace CNTT35.Controllers
             Session["giamgia"] = null;
             Session["maGiamGia"] = null;
         }
-  
+
     }
 }

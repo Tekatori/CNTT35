@@ -21,6 +21,16 @@
           <Property Name="IDDM" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TENDM" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="DIACHIKHAC">
+          <Key>
+            <PropertyRef Name="IDDC" />
+          </Key>
+          <Property Name="IDDC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDND" Type="int" />
+          <Property Name="HOTEN" Type="ntext" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="10" />
+          <Property Name="DIACHI" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="DONHANG">
           <Key>
             <PropertyRef Name="IDDH" />
@@ -105,6 +115,7 @@
           <Property Name="CHATLUONGSANPHAM" Type="ntext" />
           <Property Name="DUNGVOIMOTA" Type="ntext" />
           <Property Name="RATE" Type="float" />
+          <Property Name="NGAYPHANHOI" Type="date" />
         </EntityType>
         <EntityType Name="QLVANCHUYEN">
           <Key>
@@ -185,6 +196,18 @@
             </Principal>
             <Dependent Role="CTDONHANG">
               <PropertyRef Name="IDSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DIACHIKHAC_IDND">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+          <End Role="DIACHIKHAC" Type="Self.DIACHIKHAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="IDND" />
+            </Principal>
+            <Dependent Role="DIACHIKHAC">
+              <PropertyRef Name="IDND" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -320,6 +343,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="getDiaChiKhac" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDND" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IDDC" Type="int" Nullable="false" />
+                <Property Name="HOTEN" Type="ntext" />
+                <Property Name="SDT" Type="nvarchar" MaxLength="10" />
+                <Property Name="DIACHI" Type="nvarchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="GetTop10" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <ReturnType>
             <CollectionType>
@@ -405,6 +441,7 @@
         <EntityContainer Name="QL_PHANBONModelStoreContainer">
           <EntitySet Name="CTDONHANG" EntityType="Self.CTDONHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DANHMUC" EntityType="Self.DANHMUC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DIACHIKHAC" EntityType="Self.DIACHIKHAC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DONHANG" EntityType="Self.DONHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHUYENMAI" EntityType="Self.KHUYENMAI" Schema="dbo" store:Type="Tables" />
@@ -425,6 +462,10 @@
           <AssociationSet Name="FK_CTDONHANG_IDSP" Association="Self.FK_CTDONHANG_IDSP">
             <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="CTDONHANG" EntitySet="CTDONHANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DIACHIKHAC_IDND" Association="Self.FK_DIACHIKHAC_IDND">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="DIACHIKHAC" EntitySet="DIACHIKHAC" />
           </AssociationSet>
           <AssociationSet Name="FK_DONHANG_IDKM" Association="Self.FK_DONHANG_IDKM">
             <End Role="KHUYENMAI" EntitySet="KHUYENMAI" />
@@ -510,6 +551,21 @@
           <Property Name="TENDM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IDDM" Type="Int32" />
         </ComplexType>
+        <ComplexType Name="LichSuMuaHang_Result">
+          <Property Name="IDDH" Type="Int32" Nullable="false" />
+          <Property Name="HOTEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHIGIAOHANG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DIENTHOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYLAP" Type="DateTime" />
+          <Property Name="NGAYVANCHUYEN" Type="DateTime" />
+          <Property Name="NGAYGIAOHANG" Type="DateTime" />
+          <Property Name="PHIVANCHUYEN" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LOAIVANCHUYEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="THANHTIEN" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="HINHTHUCTT" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </ComplexType>
         <EntityType Name="CTDONHANG">
           <Key>
             <PropertyRef Name="IDCTDH" />
@@ -528,6 +584,17 @@
           <Property Name="IDDM" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TENDM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SANPHAM" Relationship="Self.FK_SANPHAM_IDDM" FromRole="DANHMUC" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="DIACHIKHAC">
+          <Key>
+            <PropertyRef Name="IDDC" />
+          </Key>
+          <Property Name="IDDC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDND" Type="Int32" />
+          <Property Name="HOTEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK_DIACHIKHAC_IDND" FromRole="DIACHIKHAC" ToRole="KHACHHANG" />
         </EntityType>
         <EntityType Name="DONHANG">
           <Key>
@@ -557,6 +624,7 @@
           <Property Name="DIACHI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="NGAYDK" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="DIACHIKHAC" Relationship="Self.FK_DIACHIKHAC_IDND" FromRole="KHACHHANG" ToRole="DIACHIKHAC" />
           <NavigationProperty Name="NGUOIDUNG" Relationship="Self.FK_KHACHHANG_IDND" FromRole="KHACHHANG" ToRole="NGUOIDUNG" />
         </EntityType>
         <EntityType Name="KHUYENMAI">
@@ -626,6 +694,7 @@
           <Property Name="CHATLUONGSANPHAM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DUNGVOIMOTA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RATE" Type="Double" />
+          <Property Name="NGAYPHANHOI" Type="DateTime" Precision="0" />
           <NavigationProperty Name="NGUOIDUNG" Relationship="Self.FK_PHANHOI_IDND" FromRole="PHANHOI" ToRole="NGUOIDUNG" />
           <NavigationProperty Name="SANPHAM" Relationship="Self.FK_PHANHOI_IDSP" FromRole="PHANHOI" ToRole="SANPHAM" />
         </EntityType>
@@ -728,6 +797,18 @@
             </Principal>
             <Dependent Role="SANPHAM">
               <PropertyRef Name="IDDM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DIACHIKHAC_IDND">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+          <End Role="DIACHIKHAC" Type="Self.DIACHIKHAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="IDND" />
+            </Principal>
+            <Dependent Role="DIACHIKHAC">
+              <PropertyRef Name="IDND" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -854,6 +935,7 @@
         <EntityContainer Name="QL_PHANBONEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CTDONHANG" EntityType="Self.CTDONHANG" />
           <EntitySet Name="DANHMUC" EntityType="Self.DANHMUC" />
+          <EntitySet Name="DIACHIKHAC" EntityType="Self.DIACHIKHAC" />
           <EntitySet Name="DONHANG" EntityType="Self.DONHANG" />
           <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" />
           <EntitySet Name="KHUYENMAI" EntityType="Self.KHUYENMAI" />
@@ -878,6 +960,10 @@
           <AssociationSet Name="FK_SANPHAM_IDDM" Association="Self.FK_SANPHAM_IDDM">
             <End Role="DANHMUC" EntitySet="DANHMUC" />
             <End Role="SANPHAM" EntitySet="SANPHAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DIACHIKHAC_IDND" Association="Self.FK_DIACHIKHAC_IDND">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="DIACHIKHAC" EntitySet="DIACHIKHAC" />
           </AssociationSet>
           <AssociationSet Name="FK_DONHANG_IDKM" Association="Self.FK_DONHANG_IDKM">
             <End Role="KHUYENMAI" EntitySet="KHUYENMAI" />
@@ -926,23 +1012,17 @@
           <FunctionImport Name="GetTop10KM" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.GetTop10KM_Result)" />
           <FunctionImport Name="GetTop30Random" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.GetTop30Random_Result)" />
           <FunctionImport Name="LichSuMuaHang" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.LichSuMuaHang_Result)">
+          <Parameter Name="IDND" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getDiaChiKhac" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.getDiaChiKhac_Result)">
             <Parameter Name="IDND" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="LichSuMuaHang_Result">
-          <Property Type="Int32" Name="IDDH" Nullable="false" />
-          <Property Type="String" Name="HOTEN" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="DIACHIGIAOHANG" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="DIENTHOAI" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="GHICHU" Nullable="true" MaxLength="Max" />
-          <Property Type="DateTime" Name="NGAYLAP" Nullable="true" Precision="10" />
-          <Property Type="DateTime" Name="NGAYVANCHUYEN" Nullable="true" Precision="10" />
-          <Property Type="DateTime" Name="NGAYGIAOHANG" Nullable="true" Precision="10" />
-          <Property Type="Decimal" Name="PHIVANCHUYEN" Nullable="true" Precision="19" Scale="4" />
-          <Property Type="String" Name="LOAIVANCHUYEN" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="THANHTIEN" Nullable="true" Precision="19" Scale="4" />
-          <Property Type="String" Name="HINHTHUCTT" Nullable="true" MaxLength="100" />
+        <ComplexType Name="getDiaChiKhac_Result">
+          <Property Type="Int32" Name="IDDC" Nullable="false" />
+          <Property Type="String" Name="HOTEN" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="SDT" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="DIACHI" Nullable="true" MaxLength="100" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -965,6 +1045,17 @@
               <MappingFragment StoreEntitySet="DANHMUC">
                 <ScalarProperty Name="IDDM" ColumnName="IDDM" />
                 <ScalarProperty Name="TENDM" ColumnName="TENDM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DIACHIKHAC">
+            <EntityTypeMapping TypeName="QL_PHANBONModel.DIACHIKHAC">
+              <MappingFragment StoreEntitySet="DIACHIKHAC">
+                <ScalarProperty Name="IDDC" ColumnName="IDDC" />
+                <ScalarProperty Name="IDND" ColumnName="IDND" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1058,6 +1149,7 @@
                 <ScalarProperty Name="CHATLUONGSANPHAM" ColumnName="CHATLUONGSANPHAM" />
                 <ScalarProperty Name="DUNGVOIMOTA" ColumnName="DUNGVOIMOTA" />
                 <ScalarProperty Name="RATE" ColumnName="RATE" />
+                <ScalarProperty Name="NGAYPHANHOI" ColumnName="NGAYPHANHOI" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1175,7 +1267,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="LichSuMuaHang" FunctionName="QL_PHANBONModel.Store.LichSuMuaHang">
+          <FunctionImportMapping FunctionName="QL_PHANBONModel.Store.LichSuMuaHang" FunctionImportName="LichSuMuaHang">
             <ResultMapping>
               <ComplexTypeMapping TypeName="QL_PHANBONModel.LichSuMuaHang_Result">
                 <ScalarProperty Name="IDDH" ColumnName="IDDH" />
@@ -1191,6 +1283,16 @@
                 <ScalarProperty Name="LOAIVANCHUYEN" ColumnName="LOAIVANCHUYEN" />
                 <ScalarProperty Name="THANHTIEN" ColumnName="THANHTIEN" />
                 <ScalarProperty Name="HINHTHUCTT" ColumnName="HINHTHUCTT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getDiaChiKhac" FunctionName="QL_PHANBONModel.Store.getDiaChiKhac">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QL_PHANBONModel.getDiaChiKhac_Result">
+                <ScalarProperty Name="IDDC" ColumnName="IDDC" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

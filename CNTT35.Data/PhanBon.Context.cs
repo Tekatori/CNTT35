@@ -29,6 +29,7 @@ namespace CNTT35.Data
     
         public virtual DbSet<CTDONHANG> CTDONHANG { get; set; }
         public virtual DbSet<DANHMUC> DANHMUC { get; set; }
+        public virtual DbSet<DIACHIKHAC> DIACHIKHAC { get; set; }
         public virtual DbSet<DONHANG> DONHANG { get; set; }
         public virtual DbSet<KHACHHANG> KHACHHANG { get; set; }
         public virtual DbSet<KHUYENMAI> KHUYENMAI { get; set; }
@@ -79,6 +80,16 @@ namespace CNTT35.Data
                 new ObjectParameter("IDND", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<LichSuMuaHang_Result>("[QL_PHANBONEntities].[LichSuMuaHang](@IDND)", iDNDParameter);
+        }
+    
+        [DbFunction("QL_PHANBONEntities", "getDiaChiKhac")]
+        public virtual IQueryable<getDiaChiKhac_Result> getDiaChiKhac(Nullable<int> iDND)
+        {
+            var iDNDParameter = iDND.HasValue ?
+                new ObjectParameter("IDND", iDND) :
+                new ObjectParameter("IDND", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<getDiaChiKhac_Result>("[QL_PHANBONEntities].[getDiaChiKhac](@IDND)", iDNDParameter);
         }
     }
 }

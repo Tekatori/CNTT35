@@ -13,5 +13,13 @@ namespace CNTT35.Service.Service
         int ChangePassword(int id, string passOld, string passNew, string rePassNew);
         NGUOIDUNG GetND(int id);
         List<LichSuMuaHang_Result> GetLichSuDonHang(int id);
+        int ThemAccountFB(string username, string email, string hoten);
+        NGUOIDUNG CheckLoginFB(string username);
+        List<getDiaChiKhac_Result> GetDiachiKhac(int id);
+        int insertDiaChi(int idnd, string hoten, string sdt, string diachi);
+        int UpdateDiaChi(int iddc, string hoten, string sdt, string diachi);
+        int XoaDiaChi(int iddc);
+        DIACHIKHAC DiachiKhac(int id);
+        NGUOIDUNG CheckEmail(string Email);
     }
 }

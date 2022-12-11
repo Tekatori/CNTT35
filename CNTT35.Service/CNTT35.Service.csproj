@@ -63,6 +63,8 @@
     <Compile Include="Service\Abstract\IDonHangService.cs" />
     <Compile Include="Service\Abstract\ILienHeService.cs" />
     <Compile Include="Service\Abstract\IDanhGiaService.cs" />
+    <Compile Include="Service\Abstract\IKhuyenMaiService.cs" />
+    <Compile Include="Service\KhuyenMaiService.cs" />
     <Compile Include="Service\LienHeService.cs" />
     <Compile Include="Service\ProductService.cs" />
   </ItemGroup>

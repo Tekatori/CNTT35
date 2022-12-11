@@ -3,9 +3,11 @@
     ViewBag.Title = "Confirm";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var khach = ViewBag.kh as List<CNTT35.Service.Model.AccountInfo>;
+    var dc = ViewBag.dc as List<CNTT35.Data.getDiaChiKhac_Result>;
+    var dIACHIKHAC = ViewBag.dck as CNTT35.Data.DIACHIKHAC;
 }
 @{
-    var parameter = Request.QueryString["ac"];
+           var parameter = Request.QueryString["ac"];
     //Check parameter here and display Message
     if (parameter == "error")
     {
@@ -23,50 +25,128 @@
             {
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
-                            @foreach (var item in khach)
+                            @if (dIACHIKHAC == null)
                             {
-                                string[] diachi;
-                                if (item.DIACHI != null)
+        
+                                foreach (var item in khach)
                                 {
-                                    diachi = item.DIACHI.ToString().Split(',');
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="checkout__input">
+                                                <p>Họ Tên</p>
+                                                <input type="text" value="@item.HOTEN" disabled>
+                                                <input type="text" value="@item.HOTEN" name="hoten" readonly="" hidden>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="checkout__input">
+                                        <div style="display:flex;">
+                                            <p>Địa chỉ<span>*</span></p>
+                                            <div data-toggle="modal"
+                                                 data-target="#exampleModalChangeAdress"
+                                                 style="color: #007B5E;margin-left: 1rem;cursor: pointer;">
+                                                Thay đổi
+                                            </div>
+                                        </div>
+                                        <input type="text" value="@item.DIACHI" disabled>
+                                        <input name="diachi" type="text" placeholder="Địa chỉ số nhà, đường phố" class="checkout__input__add" value="@item.DIACHI" readonly="readonly" hidden />
+
+                                    </div>
+
+
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="checkout__input">
+                                                <p>Điện thoại<span>*</span></p>
+                                                <input type="text" value="@item.SDT" disabled>
+                                                <input type="text" value="@item.SDT" name="phone" readonly="readonly" hidden>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="checkout__input">
+                                                <p>Email<span>*</span></p>
+                                                <input type="text" value="@item.EMAIL" disabled>
+                                                <input type="text" value="@item.EMAIL" name="email" readonly="readonly" hidden>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="checkout__input">
+                                        <p>Ghi chú<span></span></p>
+                                        <input type="text" placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ: Hàng dễ vỡ" name="ghichu">
+                                    </div>
+
+                                    <p>Phương thức vận chuyển<span style="color:red;">*</span></p>
+                                    <div style="display: flex;margin-bottom: 1rem;">
+                                        <div class="form-check">
+                                            <input value="Tiết kiệm" class="form-check-input " type="radio" name="flexRadioDefault" id="flexRadioDefault1" onclick="myFunction()">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Tiết kiệm
+                                                <span> (7 ngày) </span>
+                                            </label>
+
+                                        </div>
+                                        <div class="form-check" style="margin-left:1rem ;">
+                                            <input value="Hỏa tốc" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2 " onclick="myFunction()" checked>
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                Hỏa tốc
+                                                <span> (3 ngày) </span>
+                                            </label>
+                                        </div>
+                                    </div>
                                 }
-                                else
-                                {
-                                    diachi = new String[] { "", "", "", "" };
-                                }
+                            }
+                            else
+                            {
+          
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="checkout__input">
-                                            <p>Họ Tên<span>*</span></p>
-                                            <input type="text" value="@item.HOTEN" name="hoten">
+                                            <p>Họ Tên</p>
+                                            <input type="text" value="@dIACHIKHAC.HOTEN" disabled>
+                                            <input type="text" value="@dIACHIKHAC.HOTEN" name="hoten" readonly="readonly" hidden>
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="checkout__input">
                                     <div style="display:flex;">
-                                    <p>Địa chỉ<span>*</span></p> 
-                                     <div data-toggle="modal"
-                                          data-target="#exampleModalChangeAdress" 
-                                          style="color: #007B5E;margin-left: 1rem;cursor: pointer;"> Thay đổi</div>
+                                        <p>Địa chỉ<span>*</span></p>
+                                        <div data-toggle="modal"
+                                             data-target="#exampleModalChangeAdress"
+                                             style="color: #007B5E;margin-left: 1rem;cursor: pointer;">
+                                            Thay đổi
+                                        </div>
                                     </div>
-                                    <input name="sonha" type="text" placeholder="Địa chỉ số nhà, đường phố" class="checkout__input__add" value="@diachi[0].ToString()">
+                                    <input type="text" value="@dIACHIKHAC.DIACHI" disabled>
+                                    <input name="diachi" type="text" placeholder="Địa chỉ số nhà, đường phố" class="checkout__input__add" value="@dIACHIKHAC.DIACHI" readonly="readonly" hidden />
 
                                 </div>
-                                <div class="checkout__input">
-                                    <p>Phường/ xã<span>*</span></p>
-                                    <input name="Phuongxa" type="text" placeholder="Địa chỉ phường,Xã" class="checkout__input__add" value="@diachi[1].ToString()">
 
+
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="checkout__input">
+                                            <p>Điện thoại<span>*</span></p>
+                                            <input type="text" value="@dIACHIKHAC.SDT" disabled>
+                                            <input type="text" value="@dIACHIKHAC.SDT" name="phone" readonly="readonly" hidden>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="checkout__input">
+                                            <p>Email<span>*</span></p>
+                                            <input type="text" value="@CNTT35.Session.LoginSession.GetSessionInfoLogin().EMAIL" disabled>
+                                            <input type="text" value="@CNTT35.Session.LoginSession.GetSessionInfoLogin().EMAIL" name="email" readonly="readonly" hidden>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="checkout__input">
-                                    <p>Quận/ huyện<span>*</span></p>
-                                    <input name="quanhuyen" type="text" placeholder="Địa chỉ Quận/Huyện" class="checkout__input__add" value="@diachi[2].ToString()">
 
-                                </div>
                                 <div class="checkout__input">
-                                    <p>Tỉnh/ thành<span>*</span></p>
-                                    <input name="tinhthanh" type="text" placeholder="Địa chỉ Tỉnh/Thành Phố" class="checkout__input__add" value="@diachi[3].ToString()">
-
+                                    <p>Ghi chú<span></span></p>
+                                    <input type="text" placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ: Hàng dễ vỡ" name="ghichu">
                                 </div>
 
                                 <p>Phương thức vận chuyển<span style="color:red;">*</span></p>
@@ -86,25 +166,6 @@
                                             <span> (3 ngày) </span>
                                         </label>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="checkout__input">
-                                            <p>Điện thoại<span>*</span></p>
-                                            <input type="text" value="@item.SDT" name="phone">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="checkout__input">
-                                            <p>Email<span>*</span></p>
-                                            <input type="text" value="@item.EMAIL" name="email">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="checkout__input">
-                                    <p>Ghi chú<span>*</span></p>
-                                    <input type="text" placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ: Hàng dễ vỡ" name="ghichu">
                                 </div>
                             }
                         </div>
@@ -179,240 +240,85 @@
          aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Địa chỉ của tôi   </h5>
-                    <button type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="sl-container">
-                        <div class="sl-wrapper">
-                        </div>
+            @using (Html.BeginForm("Confirm", "Cart", FormMethod.Post))
+            {
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Địa chỉ của tôi   </h5>
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                        <form>
-                            <div>
-                             <div class="people" style="display: flex;justify-content: space-evenly;margin: 1rem 0rem 1rem;">
+                    <div class="modal-body">
+                        <div class="sl-container">
+                            <div class="sl-wrapper">
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="people" style="display: flex;justify-content: space-evenly;margin: 1rem 0rem 1rem;">
                                 <a class="shopee-product-rating__avatar">
-                                <div class="shopee-avatar">
-                                    <div class="shopee-avatar__placeholder">
-                                  <input value="" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2 "  checked="">
+                                    <div class="shopee-avatar">
+                                        <div class="shopee-avatar__placeholder">
+                                            <input value="0" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2 ">
                                         </div>
                                     </div>
                                 </a>
                                 <div class="main2">
-                                    <div  style="display: flex;justify-content: space-evenly;">
-                                    <div>Bùi Bá Lộc</div> 
-                                    <div style="color: rgba(0,0,0,.4);">(+84) 333380274</div>
-                                    <div data-toggle="modal"
-                                          data-target="#exampleModalEditAddAdress" 
-                                          style="color: #007B5E;margin-left: 1rem;cursor: pointer;"> Chỉnh sửa
-                                     </div>
-                                    </div>
-                                    <div style="color: rgba(0,0,0,.4);"> 76 Trần Văn Dư</div>
-                                    <div> <span style="color: rgba(0,0,0,.4);">Phường 13, Tân Bình, Hồ Chí Minh</span></div>
+                                    <div style="display: flex;justify-content: space-evenly;">
+                                        <div>Mặc Định</div>
+                                    </div>                     
                                 </div>
-                                
+
                             </div>
-                             <hr>
-                            </div>
-                              <div>
-                             <div class="people" style="display: flex;justify-content: space-evenly;margin: 1rem 0rem 1rem;">
-                                <a class="shopee-product-rating__avatar">
-                                <div class="shopee-avatar">
-                                    <div class="shopee-avatar__placeholder">
-                                  <input value="" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  checked="">
+                            <hr>
+                            @foreach (var dck in dc)
+                            {
+                                <div class="people" style="display: flex;justify-content: space-evenly;margin: 1rem 0rem 1rem;">
+                                    <a class="shopee-product-rating__avatar">
+                                        <div class="shopee-avatar">
+                                            <div class="shopee-avatar__placeholder">
+                                                <input value="@dck.IDDC" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2 ">
+                                            </div>
                                         </div>
+                                    </a>
+                                    <div class="main2">
+                                        <div style="display: flex;justify-content: space-evenly;">
+                                            <div>@dck.HOTEN</div>
+                                            <div style="color: rgba(0,0,0,.4);">(+84) @dck.SDT</div>
+                                        </div>
+                                        <div> <span style="color: rgba(0,0,0,.4);">@dck.DIACHI</span></div>
                                     </div>
-                                </a>
-                                <div class="main2">
-                                    <div  style="display: flex;justify-content: space-evenly;">
-                                    <div>Bùi Bá Lộc</div> 
-                                    <div style="color: rgba(0,0,0,.4);">(+84) 333380274</div>
-                                    <div data-toggle="modal"
-                                          data-target="#exampleModalEditAddAdress" 
-                                          style="color: #007B5E;margin-left: 1rem;cursor: pointer;"> Chỉnh sửa
-                                     </div>
-                                    </div>
-                                    <div style="color: rgba(0,0,0,.4);"> 76 Trần Văn Dư</div>
-                                    <div> <span style="color: rgba(0,0,0,.4);">Phường 13, Tân Bình, Hồ Chí Minh</span></div>
+
                                 </div>
-                                
-                            </div>
-                             <hr>
-                            </div>
-                            
-                        </form>
-                    <a data-toggle="modal"
-                        data-target="#exampleModalAddAdress" class="primary-btn cart-btn" style="text-transform: none;text-decoration: none;margin-top: 1rem; ">
-                    <i class="bi bi-plus-lg"></i>
-                    Thêm địa chỉ mới</a>
-                </div>
-                <div class="modal-footer">
-                    <button type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal">
-                        Trở lại
-                    </button>
-                    <button type="submit" class="btn btn-primary" style="background: #007B5E; color:#fff;">Hoàn thành</button>
-                </div>
-            </div>
+                                <hr>
+                            }
 
-
-
-        </div>
-    </div>
-    <!-- ./ Modal add Adress -->
-    <!-- Modal add Adress-->
-    <div class="modal fade"
-         id="exampleModalAddAdress"
-         tabindex="-1"
-         role="dialog"
-         aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Thêm địa chỉ mới  </h5>
-                    <button type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="sl-container">
-                        <div class="sl-wrapper">
-                            <div class="sl-vertical social-wrap oxi_icon_center login">
-
-                            </div>
                         </div>
+                        <a  href="/Home/addNewAdress"  class="primary-btn cart-btn" style="text-transform: none;text-decoration: none;margin-top: 1rem; ">
+                            <i class="bi bi-plus-lg"></i>
+                            Thêm địa chỉ mới
+                        </a>
                     </div>
-                    <form>
-                        <div class="form-group">
-
-                            <input placeholder="Họ tên" class="form-control custom-input" name="edit-yourname" id="edit-yourname" />
-                        </div>
-                        <div class="form-group">
-
-                            <input placeholder="Số điện thoại" class="form-control custom-input" name="edit-numberphone" id="edit-numberphone" />
-                        </div>
-
-                        <div class="form-group">
-
-                            <input placeholder="Thành phố/ tỉnh" class="form-control custom-input" name="edit-city" id="edit-city" />
-                        </div>
-                         <div class="form-group">
-
-                            <input placeholder="Quận/ huyện" class="form-control custom-input" name="edit-district" id="edit-district" />
-                        </div>
-                         <div class="form-group">
-
-                            <input placeholder="Phường/ xã" class="form-control custom-input" name="edit-ward" id="edit-ward" />
-                        </div>
-                         <div class="form-group">
-
-                            <input placeholder="Địa chỉ cụ thể" class="form-control custom-input" name="edit-address" id="edit-address" />
-                        </div>
-
-
-
-                        
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal">
-                        Trở lại
-                    </button>
-                    <button type="submit" class="btn btn-primary" style="background: #007B5E; color:#fff;">Hoàn thành</button>
-                </div>
-            </div>
-
-
-
-        </div>
-    </div>
-    <!-- ./ Modal add Adress -->
-<!-- Modal Edit Adress-->
-    <div class="modal fade"
-         id="exampleModalEditAddAdress"
-         tabindex="-1"
-         role="dialog"
-         aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa địa chỉ</h5>
-                    <button type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="sl-container">
-                        <div class="sl-wrapper">
-                            <div class="sl-vertical social-wrap oxi_icon_center login">
-
-                            </div>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal">
+                            Trở lại
+                        </button>
+                        <button type="submit" class="btn btn-primary" style="background: #007B5E; color:#fff;">Hoàn thành</button>
                     </div>
-                    <form>
-                        <div class="form-group">
-
-                            <input placeholder="Họ tên" class="form-control custom-input" name="update-yourname" id="update-yourname" />
-                        </div>
-                        <div class="form-group">
-
-                            <input placeholder="Số điện thoại" class="form-control custom-input" name="update-numberphone" id="update-numberphone" />
-                        </div>
-
-                        <div class="form-group">
-
-                            <input placeholder="Thành phố/ tỉnh" class="form-control custom-input" name="update-city" id="update-city" />
-                        </div>
-                         <div class="form-group">
-
-                            <input placeholder="Quận/ huyện" class="form-control custom-input" name="update-district" id="update-district" />
-                        </div>
-                         <div class="form-group">
-
-                            <input placeholder="Phường/ xã" class="form-control custom-input" name="update-ward" id="update-ward" />
-                        </div>
-                         <div class="form-group">
-
-                            <input placeholder="Địa chỉ cụ thể" class="form-control custom-input" name="update-address" id="update-address" />
-                        </div>
-
-
-
-                        
-                    </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal">
-                        Trở lại
-                    </button>
-                    <button type="submit" class="btn btn-primary" style="background: #007B5E; color:#fff;">Hoàn thành</button>
-                </div>
+                }
+
+
             </div>
-
-
-
-        </div>
     </div>
-    <!-- ./ Modal Edit Adress -->
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 

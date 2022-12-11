@@ -11,6 +11,11 @@ using CNTT35.Session;
 using CNTT35.ViewModel;
 using CNTT35.Data;
 using System.Xml.Linq;
+using Facebook;
+using System.Configuration;
+using System.Net.Mail;
+using System.Net;
+using System.Web.Helpers;
 
 namespace CNTT35.Controllers
 {
@@ -19,12 +24,26 @@ namespace CNTT35.Controllers
         IProductService _productService;
         IAccountService _accountService;
         ILienHeService _lienHeService;
-        public HomeController(IProductService productService, IAccountService account, ILienHeService lienHeService)
+        IKhuyenMaiService _ikhuyenMaiService;
+        public HomeController(IProductService productService, IAccountService account, ILienHeService lienHeService, IKhuyenMaiService ikhuyenMaiService)
         {
             _productService = productService;
             _accountService = account;
             _lienHeService = lienHeService;
+            _ikhuyenMaiService = ikhuyenMaiService;
         }
+
+        //private Uri RedirectUri
+        //{
+        //    get
+        //    {
+        //        var uriBuilder = new UriBuilder(Request.Url);
+        //        uriBuilder.Query = null;
+        //        uriBuilder.Fragment = null;
+        //        uriBuilder.Path = Url.Action("FacebookCallback");
+        //        return uriBuilder.Uri;
+        //    }
+        //}
         public ActionResult Index()
         {
             //_cartController.clearSessionGiamGia();
@@ -42,7 +61,7 @@ namespace CNTT35.Controllers
 
             return View();
         }
-
+   
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -51,21 +70,107 @@ namespace CNTT35.Controllers
         }
         public ActionResult Voucher()
         {
-            ViewBag.Message = "Your contact page.";
+            var km = _ikhuyenMaiService.GettAllKM();
 
-            return View();
+            return View(km);
         }
-        public ActionResult addNewAdress()
+        public ActionResult addNewAdress(int? page, int? pagesize)
         {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
+            var nd2 = LoginSession.GetSessionInfoLogin();
+
+            var dc = _accountService.GetDiachiKhac(nd2.IDND);
+            if (page == null)
+                page = 1;
+            if (pagesize == null)
+                pagesize = 10;
+            return View(dc.ToPagedList((int)page, (int)pagesize));
+        }
+        [HttpPost]
+        public ActionResult insertDC(FormCollection c)
+        {           
+            var nd2 = LoginSession.GetSessionInfoLogin();
+            string hoten = c["edit-yourname"].ToString();
+            string sdt = c["edit-numberphone"].ToString();
+            string city = c["edit-city"].ToString();
+            string district = c["edit-district"].ToString();
+            string ward = c["edit-ward"].ToString();
+            string address = c["edit-address"].ToString();
+            string diachi = address + "," + ward + "," + district + "," + city;
+
+            var dc = _accountService.insertDiaChi(nd2.IDND, hoten, sdt, diachi);
+            if(dc==0 || sdt.Length <= 10)
+                return RedirectToAction("addNewAdress", "Home", new { ac2 = "sdt" });
+            return RedirectToAction("addNewAdress", "Home");
+        }
+        [HttpPost]
+        public ActionResult QuenMK(FormCollection c)
+        {
+            string Email = c["EmailQuen"].ToString();
+
+            try
+            {
+                var dc = _accountService.CheckEmail(Email);
+                if (dc !=null)
+                {
+
+                    string fromMail = "banhangcntt35@gmail.com";
+                    string fromPassword = "treisvognntadjxn";
+
+                    MailMessage message = new MailMessage();
+                    message.From = new MailAddress(fromMail);
+                    message.Subject = "Quên Mật Khẩu Quản Lí Phân Bón";
+                    message.To.Add(new MailAddress(dc.EMAIL));
+                    message.Body = "<html><body> Email của bạn là :" + dc.EMAIL + " <br> Username của bạn là :" + dc.TENND + "<br> Password của bạn là : " + dc.MATKHAU + "</body></html>";
+                    message.IsBodyHtml = true;
+
+                    var smtpClient = new SmtpClient("smtp.gmail.com")
+                    {
+                        Port = 587,
+                        Credentials = new NetworkCredential(fromMail, fromPassword),
+                        EnableSsl = true,
+                    };
+
+                    smtpClient.Send(message);
+                    return RedirectToAction("Index", "Home", new { ac = "guimail" });
+                }
+                return RedirectToAction("Index", "Home", new { ac = "Emailnot" });
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home", new { ac = "Emailnot" });
+            }       
+        }
+
+        [HttpPost]
+        public ActionResult EditDC(FormCollection c,int id)
+        {
+            string hoten = c["update-yourname"].ToString();
+            string sdt = c["update-numberphone"].ToString();
+            string city = c["update-city"].ToString();
+            string district = c["update-district"].ToString();
+            string ward = c["update-ward"].ToString();
+            string address = c["update-address"].ToString();
+            string diachi = address + "," + ward + "," + district + "," + city;
+
+            var dc = _accountService.UpdateDiaChi(id, hoten, sdt, diachi);
+            if (dc == 0 || sdt.Length <=10)
+                return RedirectToAction("addNewAdress", "Home", new { ac2 = "sdt" });
+            return RedirectToAction("addNewAdress", "Home");
         }
         public ActionResult Account()
         {
             var nd2 = LoginSession.GetSessionInfoLogin();
             var nd = _accountService.GetAccount(nd2.IDND);
             return View(nd);
+        }
+
+        public ActionResult XoaDC(int id)
+        {
+            var dc = _accountService.XoaDiaChi(id);
+            if (dc == 0)
+                return RedirectToAction("addNewAdress", "Home", new { ac2 = "trungdiachi" });
+            return RedirectToAction("addNewAdress", "Home");
         }
         [HttpPost]
         public ActionResult Login(FormCollection c)
@@ -74,7 +179,7 @@ namespace CNTT35.Controllers
             string password = c["password"].ToString();
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home", new { ac = "tk" });
             }
             else
             {
@@ -91,7 +196,7 @@ namespace CNTT35.Controllers
                     //session
                     LoginSession.createSession(res);
                     Session["username"] = res;
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home", new { ac = "tk" });
 
 
                 }
@@ -101,8 +206,81 @@ namespace CNTT35.Controllers
                 }
             }
         }
+        //[AllowAnonymous]
+        //public ActionResult LoginFB()
+        //{
+        //    var fb = new FacebookClient();
+        //    var loginUrl = fb.GetLoginUrl(new
+        //    {
+        //        client_id = "956578625314895",
+        //        client_secret = "a3943837c2ea4f88b8b61aeb5e11003d",
+        //        redirect_uri = RedirectUri.AbsoluteUri,
+        //        response_type = "code",
+        //        scope = "email"
+        //    });
 
-        //GuiLoiNhan
+
+        //    return Redirect(RedirectUri.AbsoluteUri);
+        //}
+
+        //public ActionResult FacebookCallback(string code)
+        //{
+        //    var fb = new FacebookClient();
+        //    dynamic result = fb.Post("oauth/access_token", new
+        //    {
+        //        client_id = "956578625314895",
+        //        client_secret = "a3943837c2ea4f88b8b61aeb5e11003d",
+        //        redirect_uri = RedirectUri.AbsoluteUri,
+        //        code = code
+        //    });
+        //    var accessToken = result.access_token;
+
+        //    if (!string.IsNullOrEmpty(accessToken))
+        //    {
+        //        fb.AccessToken = accessToken;
+        //        dynamic me = fb.Get("me?fields=first_name,middle_name,last_name,id,email");
+        //        string email = me.email;
+        //        string username = me.email;
+        //        string firstname = me.first_name;
+        //        string middlename = me.middle_name;
+        //        string lastname = me.last_name;
+        //        string hoten =firstname+ " " + middlename + " " + lastname;
+        //        int res2 = _accountService.ThemAccountFB(username,email,hoten);
+        //        if (res2 == 1)
+        //        {
+        //            var res = _accountService.CheckLoginFB(username);
+        //            if (res != null)
+        //            {
+        //                //cooki
+        //                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, FormsAuthentication.FormsCookieName, DateTime.Now, DateTime.Now.AddDays(2), false, username, FormsAuthentication.FormsCookiePath);
+
+        //                string encTicket = FormsAuthentication.Encrypt(ticket);
+
+        //                Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+
+        //                //session
+        //                LoginSession.createSession(res);
+        //                Session["username"] = res;
+        //                return RedirectToAction("Index", "Home");
+        //            }
+        //            else
+        //            {
+        //                return RedirectToAction("Index", "Home", new { ac = "error" });
+        //            }
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("Index", "Home", new { ac = "error" });
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Index", "Home", new { ac = "error" });
+        //    }
+        //}
+
+        //GuiLoiNhan //LoginFB
         [HttpPost]
         public ActionResult GuiLoiNhan(FormCollection c)
         {
@@ -210,6 +388,6 @@ namespace CNTT35.Controllers
                 return RedirectToAction("Account/" + id, "Home");
             }
         }
-
+     
     }
 }

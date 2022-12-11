@@ -1,68 +1,101 @@
 ﻿
 @{
     ViewBag.Title = "addNewAdress";
+    int stt = 0;
 }
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<CNTT35.Data.getDiaChiKhac_Result>
+
+
 
 <section class="checkout spad">
+    @{
+        var parameter = Request.QueryString["ac2"];
+        //Check parameter here and display Message
+        if (parameter == "sdt")
+        {
+            <div class="alert alert-success alert-dismissable" style="text-align:center">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Số điện thoại có 10 số , làm ơn bạn hãy nhập lại!</strong>
+            </div>
+        }
+    }
     <div class="container">
-        <div class="checkout__form" >
+        <div class="checkout__form">
             <h4>Thêm địa chỉ khác</h4>
-         
+
 
         </div>
     </div>
-  <div class="container">
-     <div  style="display: flex; justify-content: space-between;">
-      <a> </a>
-      <a data-toggle="modal"
-         data-target="#exampleModalAddAdress"
-         class="primary-btn cart-btn">
-         <i class="bi bi-plus-circle"></i>
-         Thêm địa chỉ mới</a>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between;">
+            <a> </a>
+            <a data-toggle="modal"
+               data-target="#exampleModalAddAdress"
+               class="primary-btn cart-btn">
+                <i class="bi bi-plus-circle"></i>
+                Thêm địa chỉ mới
+            </a>
+        </div>
+        <div class="container table-responsive py-5">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" style="background-color: #007B5E !important;">STT</th>
+                        <th scope="col" style="background-color: #007B5E !important;">Họ tên</th>
+                        <th scope="col" style="background-color: #007B5E !important;">Điện thoại</th>
+                        <th scope="col" style="background-color: #007B5E !important;">Địa chỉ</th>
+                        <th scope="col" style="background-color: #007B5E !important;">Chức năng</th>
+
+
+                    </tr>
+                </thead>
+
+
+
+                @foreach (var item in Model)
+                {
+                    stt++;
+                    <tbody>
+                        <tr>
+                            <th scope="row">@stt</th>
+                            <td>@item.HOTEN</td>
+                            <td>@item.SDT</td>
+                            <td>@item.DIACHI</td>
+                            <td style="display: flex; justify-content: space-around;">
+                                <a data-toggle="modal"
+                                   data-target="#@item.IDDC">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#007B5E" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                    </svg>
+                                </a>
+                                <a href="/home/XoaDC/@item.IDDC" onclick="return confirmAction()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="red" class="bi bi-x" viewBox="0 0 16 16">
+                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                    </svg>
+                                </a>
+
+                                <script type="text/javascript">
+                                    function confirmAction() {
+                                        return confirm("Bạn thật sự muốn xoá Địa Chỉ này?")
+                                    }</script>
+                            </td>
+
+                        </tr>
+
+
+
+                    </tbody>
+                }
+            </table>
+        </div>
+        <div class="product__pagination">
+            @Html.PagedListPager(Model, page => Url.Action("addNewAdress",new {page}))
+        </div>
     </div>
-<div class="container table-responsive py-5"> 
-<table class="table table-bordered table-hover">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col" style="background-color: #007B5E !important;">STT</th>
-      <th scope="col" style="background-color: #007B5E !important;">Họ tên</th>
-      <th scope="col" style="background-color: #007B5E !important;">Điện thoại</th>
-      <th scope="col" style="background-color: #007B5E !important;">Địa chỉ</th>
-      <th scope="col" style="background-color: #007B5E !important;">Chức năng</th>
-
-
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Bùi Bá Lộc</td>
-      <td>0333380274</td>
-      <td>76 Trần Văn Dư, Phường 13, Tân Bình, Hồ Chí Minh</td>
-      <td style="display: flex; justify-content: space-around;">
-        <a data-toggle="modal"
-         data-target="#exampleModalEditAddAdress">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#007B5E" class="bi bi-pencil-square" viewBox="0 0 16 16">
-             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-        </svg>
-         </a>  
-        <a>  
-        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="red" class="bi bi-x" viewBox="0 0 16 16">
-         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-         </svg>
-         </a> 
-      </td>
-
-    </tr>
-        
-    
-  </tbody>
-</table>
-</div>
-
-    </div>
-
+   
     <div class="col-lg-12 container">
         <div class="shoping__cart__btns">
             <a href="../Product" class="primary-btn cart-btn">Tiếp tục mua sắm</a>
@@ -78,14 +111,17 @@
     </div>
 </section>
 
- <!-- Modal add Adress-->
-    <div class="modal fade"
-         id="exampleModalAddAdress"
-         tabindex="-1"
-         role="dialog"
-         aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+<!-- Modal add Adress-->
+<div class="modal fade"
+     id="exampleModalAddAdress"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        @using (Html.BeginForm("insertDC", "Home", FormMethod.Post))
+        {
+
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Thêm địa chỉ mới  </h5>
@@ -96,6 +132,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
                     <div class="sl-container">
                         <div class="sl-wrapper">
@@ -118,22 +155,19 @@
 
                             <input placeholder="Thành phố/ tỉnh" class="form-control custom-input" name="edit-city" id="edit-city" />
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
 
                             <input placeholder="Quận/ huyện" class="form-control custom-input" name="edit-district" id="edit-district" />
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
 
                             <input placeholder="Phường/ xã" class="form-control custom-input" name="edit-ward" id="edit-ward" />
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
 
                             <input placeholder="Địa chỉ cụ thể" class="form-control custom-input" name="edit-address" id="edit-address" />
                         </div>
 
-
-
-                        
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -142,85 +176,108 @@
                             data-dismiss="modal">
                         Trở lại
                     </button>
-                    <button type="button" class="btn btn-primary" style="background: #007B5E; color:#fff;">Hoàn thành</button>
+                    <button type="submit" class="btn btn-primary" style="background: #007B5E; color:#fff;">Hoàn thành</button>
                 </div>
             </div>
 
+        }
 
-
-        </div>
     </div>
-    <!-- ./ Modal add Adress -->
+</div>
+<!-- ./ Modal add Adress -->
 <!-- Modal Edit Adress-->
+@foreach (var i in Model)
+{
     <div class="modal fade"
-         id="exampleModalEditAddAdress"
+         id="@i.IDDC"
          tabindex="-1"
          role="dialog"
          aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa địa chỉ</h5>
-                    <button type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="sl-container">
-                        <div class="sl-wrapper">
-                            <div class="sl-vertical social-wrap oxi_icon_center login">
+            @using (Html.BeginForm("EditDC/" + i.IDDC, "Home", FormMethod.Post))
+            {
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa địa chỉ</h5>
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="sl-container">
+                            <div class="sl-wrapper">
+                                <div class="sl-vertical social-wrap oxi_icon_center login">
 
+                                </div>
                             </div>
                         </div>
+                        <form>
+                            <div class="form-group">
+
+                                <input value="@i.HOTEN" placeholder="Họ tên" class="form-control custom-input" name="update-yourname" id="update-yourname" />
+                            </div>
+                            <div class="form-group">
+
+                                <input value="@i.SDT" placeholder="Số điện thoại" class="form-control custom-input" name="update-numberphone" id="update-numberphone" />
+                            </div>
+                            @if (i.DIACHI != null)
+                            {
+                                string[] dc = i.DIACHI.Split(',');
+                                <div class="form-group">
+
+                                    <input value="@dc[3].ToString()" placeholder="Thành phố/ tỉnh" class="form-control custom-input" name="update-city" id="update-city" />
+                                </div>
+                                <div class="form-group">
+
+                                    <input value="@dc[2].ToString()" placeholder="Quận/ huyện" class="form-control custom-input" name="update-district" id="update-district" />
+                                </div>
+                                <div class="form-group">
+
+                                    <input value="@dc[1].ToString()" placeholder="Phường/ xã" class="form-control custom-input" name="update-ward" id="update-ward" />
+                                </div>
+                                <div class="form-group">
+
+                                    <input value="@dc[0].ToString()" placeholder="Địa chỉ cụ thể" class="form-control custom-input" name="update-address" id="update-address" />
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="form-group">
+
+                                    <input value="" placeholder="Thành phố/ tỉnh" class="form-control custom-input" name="update-city" id="update-city" />
+                                </div>
+                                <div class="form-group">
+
+                                    <input placeholder="Quận/ huyện" class="form-control custom-input" name="update-district" id="update-district" />
+                                </div>
+                                <div class="form-group">
+
+                                    <input placeholder="Phường/ xã" class="form-control custom-input" name="update-ward" id="update-ward" />
+                                </div>
+                                <div class="form-group">
+
+                                    <input placeholder="Địa chỉ cụ thể" class="form-control custom-input" name="update-address" id="update-address" />
+                                </div>
+                            }
+                        </form>
                     </div>
-                    <form>
-                        <div class="form-group">
-
-                            <input placeholder="Họ tên" class="form-control custom-input" name="update-yourname" id="update-yourname" />
-                        </div>
-                        <div class="form-group">
-
-                            <input placeholder="Số điện thoại" class="form-control custom-input" name="update-numberphone" id="update-numberphone" />
-                        </div>
-
-                        <div class="form-group">
-
-                            <input placeholder="Thành phố/ tỉnh" class="form-control custom-input" name="update-city" id="update-city" />
-                        </div>
-                         <div class="form-group">
-
-                            <input placeholder="Quận/ huyện" class="form-control custom-input" name="update-district" id="update-district" />
-                        </div>
-                         <div class="form-group">
-
-                            <input placeholder="Phường/ xã" class="form-control custom-input" name="update-ward" id="update-ward" />
-                        </div>
-                         <div class="form-group">
-
-                            <input placeholder="Địa chỉ cụ thể" class="form-control custom-input" name="update-address" id="update-address" />
-                        </div>
-
-
-
-                        
-                    </form>
+                    <div class="modal-footer">
+                        <button type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal">
+                            Trở lại
+                        </button>
+                        <button type="submit" class="btn btn-primary" style="background: #007B5E; color:#fff;">Hoàn thành</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal">
-                        Trở lại
-                    </button>
-                    <button type="button" class="btn btn-primary" style="background: #007B5E; color:#fff;">Hoàn thành</button>
-                </div>
-            </div>
 
-
+            }
 
         </div>
     </div>
-    <!-- ./ Modal Edit Adress -->
+}
+<!-- ./ Modal Edit Adress -->

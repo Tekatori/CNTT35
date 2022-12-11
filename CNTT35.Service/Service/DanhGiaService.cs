@@ -67,6 +67,7 @@ namespace CNTT35.Service.Service
                     ph.IDND = IDND;
                     ph.HoTenDG = HoTenDG;
                     ph.NOIDUNG = NOIDUNG;
+                    ph.NGAYPHANHOI = DateTime.Now;
                     db.PHANHOI.Add(ph);
                     db.SaveChanges();
                     return 1;

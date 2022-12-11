@@ -56,7 +56,13 @@
     <Compile Include="DANHMUC.cs">
       <DependentUpon>PhanBon.tt</DependentUpon>
     </Compile>
+    <Compile Include="DIACHIKHAC.cs">
+      <DependentUpon>PhanBon.tt</DependentUpon>
+    </Compile>
     <Compile Include="DONHANG.cs">
+      <DependentUpon>PhanBon.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getDiaChiKhac_Result.cs">
       <DependentUpon>PhanBon.tt</DependentUpon>
     </Compile>
     <Compile Include="GetTop10Category_Result.cs">

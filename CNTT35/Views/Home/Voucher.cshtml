@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Voucher";
 }
-
+@model List<CNTT35.Data.KHUYENMAI>
 
 <div class="collection-hero collection-hero--with-image collection-hero--contrast section-template--15208910487684__banner-padding">
     <div class="collection-hero__inner">
@@ -34,20 +34,20 @@
         </div>
     </div>
 </div>
-  <div class="container">
-            <div class="coupon-card">
-                <img src="~/Content/img/logo/low-res-logo.png" class="logo">
-                <h3>Mã giảm 20k trên tổng giá trị đơn hàng<br>Áp dụng cho thanh toán trực tuyến</h3>
-                <di class="coupon-row">
-                    <span id="cpnCode">STEALDEAL20</span>
-                    <span id="cpnBtn">Copy Code</span>
-                </di>
-                <p>Có hiệu lực từ  20.12</p>
-                <div class="circle1"></div>
-                <div class="circle2"></div>
-            </div>
-        </div>
-<script> 
+<div class="container">
+    <div class="coupon-card">
+        <img src="~/Content/img/logo/low-res-logo.png" class="logo">
+        <h3>Mã giảm 20k trên tổng giá trị đơn hàng<br>Áp dụng cho thanh toán trực tuyến</h3>
+        <di class="coupon-row">
+            <span id="cpnCode">@Model[0].MAKHUYENMAI</span>
+            <span id="cpnBtn">Copy Code</span>
+        </di>
+        <p>Có hiệu lực từ  @Model[0].NGAYBD.Value.Day/@Model[0].NGAYBD.Value.Month</p>
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+    </div>
+</div>
+<script>
     var cpnBtn = document.getElementById("cpnBtn");
     var cpnCode = document.getElementById("cpnCode");
 
@@ -58,74 +58,78 @@
             cpnBtn.innerHTML = "COPY CODE";
         }, 3000);
     }
-</script> 
+</script>
 
- <div class="voucher2" >
-      <div class="card" style="height: 192px;">
-        <div class="main">
-          <div class="co-img">
-           <img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t39.30808-6/318132546_3336337809915404_2625833431154750342_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=QUSQaSez3NkAX9o9K0I&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfDJ4BDjF2sqGJDoXDhBC6peCiddJWImohk2OV9H4I318w&oe=639772E3" class="logo">
+@for (int i = 1; i < Model.Count; i= i + 2)
+{
+    <div class="voucher2">
+        <div class="card" style="height: 192px;">
+            <div class="main">
+                <div class="co-img">
+                    <img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t39.30808-6/318132546_3336337809915404_2625833431154750342_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=QUSQaSez3NkAX9o9K0I&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfDJ4BDjF2sqGJDoXDhBC6peCiddJWImohk2OV9H4I318w&oe=639772E3" class="logo">
 
-          </div>
-          <div class="vertical"></div>
-          <div class="content">
-            <h2>Miễn phí vận chuyển</h2>
-            <h1>35k <span>Giảm giá</span></h1>
-            <p>Có hiệu lực từ 30.12</p>
-          </div>
-        </div>
-        <div class="copy-button">
-          <input id="copyvalue" type="text" readonly value="GOFREE" />
-          <button onclick="copyIt()" class="copybtn">COPY</button>
-        </div>
-      </div>
-    <div class="card" style="height: 192px;">
-        <div class="main">
-          <div class="co-img">
-           <img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t39.30808-6/318132546_3336337809915404_2625833431154750342_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=QUSQaSez3NkAX9o9K0I&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfDJ4BDjF2sqGJDoXDhBC6peCiddJWImohk2OV9H4I318w&oe=639772E3" class="logo">
+                </div>
+                <div class="vertical"></div>
+                <div class="content">
+                    <h2>Miễn phí vận chuyển</h2>
+                    <h1>@string.Format("{0:#,### đ}", @Model[i].GIATIENKM)</h1>
+                    <p>Có hiệu lực từ @Model[i].NGAYBD.Value.Day/@Model[i].NGAYBD.Value.Month</p>
+                </div>
+            </div>
+            <div class="copy-button">
+                <input id="copyvalue" type="text" readonly value="@Model[i].MAKHUYENMAI" />
+                <button onclick="copyIt()" class="copybtn">COPY</button>
+            </div>
+        </div>       
+        <div class="card" style="height: 192px;">
+            <div class="main">
+                <div class="co-img">
+                    <img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t39.30808-6/318132546_3336337809915404_2625833431154750342_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=QUSQaSez3NkAX9o9K0I&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfDJ4BDjF2sqGJDoXDhBC6peCiddJWImohk2OV9H4I318w&oe=639772E3" class="logo">
 
-          </div>
-          <div class="vertical"></div>
-          <div class="content">
-            <h2>Đơn hàng đầu tiên</h2>
-           <h1>20k <span>Giảm giá</span></h1>
-            <p>Có hiệu lực từ 30.12</p>
-          </div>
+                </div>
+                <div class="vertical"></div>
+                <div class="content">
+                    <h2>Đơn hàng đầu tiên</h2>
+                    <h1>@string.Format("{0:#,### đ}", @Model[i+1].GIATIENKM)</h1>
+                    <p>Có hiệu lực từ @Model[i+1].NGAYBD.Value.Day/@Model[i+1].NGAYBD.Value.Month</p>
+                </div>
+            </div>
+            <div class="copy-button">
+                <input id="copyvalue2" type="text" readonly value="@Model[i+1].MAKHUYENMAI" />
+                <button onclick="copyIt2()" class="copybtn2">COPY</button>
+            </div>
         </div>
-        <div class="copy-button">
-          <input id="copyvalue2" type="text" readonly value="GOFREE" />
-          <button onclick="copyIt2()" class="copybtn2">COPY</button>
-        </div>
-      </div>
+
     </div>
+    }
 
-<script> 
-  let copybtn = document.querySelector(".copybtn");
-  
- 
-function copyIt() {
-    let copyInput = document.querySelector('#copyvalue');
+<script>
+    let copybtn = document.querySelector(".copybtn");
 
-    copyInput.select();
 
-    document.execCommand("copy");
+    function copyIt() {
+        let copyInput = document.querySelector('#copyvalue');
 
-    copybtn.textContent = "COPIED";
-}
+        copyInput.select();
 
-     let copybtn2 = document.querySelector(".copybtn2");
-  
+        document.execCommand("copy");
 
-function copyIt2() {
-    let copyInput2 = document.querySelector('#copyvalue2');
+        copybtn.textContent = "COPIED";
+    }
 
-    copyInput2.select();
+    let copybtn2 = document.querySelector(".copybtn2");
 
-    document.execCommand("copy");
 
-    copybtn2.textContent = "COPIED";
-}
-</script> 
+    function copyIt2() {
+        let copyInput2 = document.querySelector('#copyvalue2');
+
+        copyInput2.select();
+
+        document.execCommand("copy");
+
+        copybtn2.textContent = "COPIED";
+    }
+</script>
 
 
 

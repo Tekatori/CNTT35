@@ -14,12 +14,20 @@ namespace CNTT35.Data
     
     public partial class KHACHHANG
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public KHACHHANG()
+        {
+            this.DIACHIKHAC = new HashSet<DIACHIKHAC>();
+        }
+    
         public int IDND { get; set; }
         public string HOTEN { get; set; }
         public string DIACHI { get; set; }
         public string SDT { get; set; }
         public Nullable<System.DateTime> NGAYDK { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DIACHIKHAC> DIACHIKHAC { get; set; }
         public virtual NGUOIDUNG NGUOIDUNG { get; set; }
     }
 }

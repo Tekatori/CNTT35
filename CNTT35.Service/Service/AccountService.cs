@@ -58,6 +58,24 @@ namespace CNTT35.Service.Service
                 return db.NGUOIDUNG.Where(t => (t.TENND == username || t.EMAIL == username) && t.MATKHAU == pass).FirstOrDefault();
             }
         }
+        public NGUOIDUNG CheckLoginFB(string username)
+        {
+            using (var db = new QL_PHANBONEntities())
+            {
+                return db.NGUOIDUNG.Where(t => t.TENND == username || t.EMAIL == username).FirstOrDefault();
+            }
+        }
+        public NGUOIDUNG CheckEmail(string Email)
+        {
+                using (var db = new QL_PHANBONEntities())
+                {
+                    return db.NGUOIDUNG.Where(t => t.EMAIL == Email).FirstOrDefault();
+                  
+                }   
+        }
+
+
+
         public NGUOIDUNG GetND(int id)
         {
             using (var db = new QL_PHANBONEntities())
@@ -183,6 +201,46 @@ namespace CNTT35.Service.Service
             }
 
         }
+        public int ThemAccountFB(string username,string email,string hoten)
+        {
+            using (var db = new QL_PHANBONEntities())
+            {
+                NGUOIDUNG d = null;
+                try
+                {
+                    d = db.NGUOIDUNG.First(t => t.TENND == username || t.EMAIL == email);
+                }
+                catch
+                {
+                    d = null;
+                }
+                if (d != null)
+                {
+                    return d.IDND;
+                }
+                else
+                {
+                    NGUOIDUNG nGUOIDUNG = new NGUOIDUNG();
+                    nGUOIDUNG.TENND = username;
+                    nGUOIDUNG.EMAIL = email;
+                    nGUOIDUNG.PHANQUYEN = 0;
+                    nGUOIDUNG.MATKHAU =null;
+                    db.NGUOIDUNG.Add(nGUOIDUNG);
+                    db.SaveChanges();
+                    KHACHHANG kHACHHANG = new KHACHHANG();
+                    var nd = db.NGUOIDUNG.SingleOrDefault(t => t.TENND == username || t.EMAIL == email);
+                    kHACHHANG.IDND = nd.IDND;
+                    kHACHHANG.HOTEN = hoten;
+                    kHACHHANG.SDT = null;
+                    kHACHHANG.NGAYDK = DateTime.Now.Date;
+                    kHACHHANG.DIACHI = null;
+                    db.KHACHHANG.Add(kHACHHANG);
+                    db.SaveChanges();
+                    return 1;
+                }
+            }
+
+        }
         public List<LichSuMuaHang_Result> GetLichSuDonHang(int id)
         {
             try
@@ -198,6 +256,92 @@ namespace CNTT35.Service.Service
                 return null;
             }
         }
-
+        public List<getDiaChiKhac_Result> GetDiachiKhac(int id)
+        {
+            try
+            {
+                using (var db = new QL_PHANBONEntities())
+                {
+                    var ls = db.getDiaChiKhac(id);
+                    return ls.ToList();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public DIACHIKHAC DiachiKhac(int id)
+        {
+            try
+            {
+                using (var db = new QL_PHANBONEntities())
+                {
+                    var ls = db.DIACHIKHAC.First(t=>t.IDDC == id);
+                    return ls;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public int insertDiaChi(int idnd,string hoten,string sdt,string diachi)
+        {
+            try
+            {
+                using (var db = new QL_PHANBONEntities())
+                {
+                    DIACHIKHAC dc = new DIACHIKHAC();
+                    dc.IDND = idnd;
+                    dc.HOTEN = hoten;
+                    dc.SDT = sdt;
+                    dc.DIACHI = diachi;
+                    db.DIACHIKHAC.Add(dc);
+                    db.SaveChanges();
+                    return 1;
+                }
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+        public int UpdateDiaChi(int iddc, string hoten, string sdt, string diachi)
+        {
+            try
+            {
+                using (var db = new QL_PHANBONEntities())
+                {
+                    var dc = db.DIACHIKHAC.First(t => t.IDDC == iddc);
+                    dc.HOTEN = hoten;
+                    dc.SDT= sdt;
+                    dc.DIACHI = diachi;
+                    db.SaveChanges();
+                    return 1;
+                }
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+        public int XoaDiaChi(int iddc)
+        {
+            try
+            {
+                using (var db = new QL_PHANBONEntities())
+                {
+                    var dc = db.DIACHIKHAC.First(t => t.IDDC == iddc);
+                    db.DIACHIKHAC.Remove(dc);
+                    db.SaveChanges();
+                    return 1;
+                }
+            }
+            catch
+            {
+                return 0;
+            }
+        }
     }
 }
