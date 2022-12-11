@@ -91,5 +91,15 @@ namespace CNTT35.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<getDiaChiKhac_Result>("[QL_PHANBONEntities].[getDiaChiKhac](@IDND)", iDNDParameter);
         }
+    
+        [DbFunction("QL_PHANBONEntities", "getPhanHoiID")]
+        public virtual IQueryable<getPhanHoiID_Result> getPhanHoiID(Nullable<int> iDND)
+        {
+            var iDNDParameter = iDND.HasValue ?
+                new ObjectParameter("IDND", iDND) :
+                new ObjectParameter("IDND", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<getPhanHoiID_Result>("[QL_PHANBONEntities].[getPhanHoiID](@IDND)", iDNDParameter);
+        }
     }
 }

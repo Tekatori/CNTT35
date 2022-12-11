@@ -343,5 +343,37 @@ namespace CNTT35.Service.Service
                 return 0;
             }
         }
+
+        public List<getPhanHoiID_Result> GetallPH(int id)
+        {
+            try
+            {
+                using (var db = new QL_PHANBONEntities())
+                {
+                    return db.getPhanHoiID(id).ToList();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public int XoaPhanHoi(int id)
+        {
+            try
+            {
+                using (var db = new QL_PHANBONEntities())
+                {
+                    var dc = db.PHANHOI.First(t => t.IDPHANHOI == id);
+                    db.PHANHOI.Remove(dc);
+                    db.SaveChanges();
+                    return 1;
+                }
+            }
+            catch
+            {
+                return 0;
+            }
+        }
     }
 }

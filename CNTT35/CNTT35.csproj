@@ -553,7 +553,7 @@
     <Content Include="Views\Product\DanhGia.cshtml" />
     <Content Include="Views\Home\Voucher.cshtml" />
     <Content Include="Views\Home\addNewAdress.cshtml" />
-    <Content Include="Views\Product\xemDanhGia.cshtml" />
+    <Content Include="Views\Home\xemDanhGia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -118,10 +118,15 @@
                     <div class="col-lg-6">
                         <div class="checkout__input">
                             <div style="display:flex;">
-                                    <p>Nội dung<span>*</span></p> 
-                                     <a href="/Product/xemDanhGia"
-                                          style="color: #007B5E;margin-left: 1rem;text-decoration:none;"> Xem tất cả đánh giá</a>
-                                    </div>
+                                <p>Nội dung<span>*</span></p>
+                                @if (Session["username"] != null)
+                                {
+                                <a href="/Home/xemDanhGia"
+                                   style="color: #007B5E;margin-left: 1rem;text-decoration:none;">
+                                    Xem tất cả đánh giá
+                                </a>
+                                }
+                            </div>
                             <textarea type="text" required="" name="NoiDung"></textarea>
                         </div>
                     </div>

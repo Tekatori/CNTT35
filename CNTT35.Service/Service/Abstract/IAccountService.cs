@@ -21,5 +21,7 @@ namespace CNTT35.Service.Service
         int XoaDiaChi(int iddc);
         DIACHIKHAC DiachiKhac(int id);
         NGUOIDUNG CheckEmail(string Email);
+        List<getPhanHoiID_Result> GetallPH(int id);
+        int XoaPhanHoi(int id);
     }
 }

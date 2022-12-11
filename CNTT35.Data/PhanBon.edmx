@@ -356,6 +356,23 @@
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="getPhanHoiID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDND" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IDPHANHOI" Type="int" Nullable="false" />
+                <Property Name="TENSP" Type="nvarchar" MaxLength="50" />
+                <Property Name="HoTenDG" Type="nvarchar" MaxLength="50" />
+                <Property Name="NOIDUNG" Type="ntext" />
+                <Property Name="CHATLUONGSANPHAM" Type="ntext" />
+                <Property Name="DUNGVOIMOTA" Type="ntext" />
+                <Property Name="RATE" Type="float" />
+                <Property Name="NGAYPHANHOI" Type="date" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="GetTop10" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <ReturnType>
             <CollectionType>
@@ -1015,6 +1032,9 @@
           <Parameter Name="IDND" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getDiaChiKhac" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.getDiaChiKhac_Result)">
+          <Parameter Name="IDND" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getPhanHoiID" IsComposable="true" ReturnType="Collection(QL_PHANBONModel.getPhanHoiID_Result)">
             <Parameter Name="IDND" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -1023,6 +1043,16 @@
           <Property Type="String" Name="HOTEN" Nullable="true" MaxLength="Max" />
           <Property Type="String" Name="SDT" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="DIACHI" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="getPhanHoiID_Result">
+          <Property Type="Int32" Name="IDPHANHOI" Nullable="false" />
+          <Property Type="String" Name="TENSP" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HoTenDG" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOIDUNG" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="CHATLUONGSANPHAM" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="DUNGVOIMOTA" Nullable="true" MaxLength="Max" />
+          <Property Type="Double" Name="RATE" Nullable="true" />
+          <Property Type="DateTime" Name="NGAYPHANHOI" Nullable="true" Precision="10" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1293,6 +1323,20 @@
                 <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
                 <ScalarProperty Name="SDT" ColumnName="SDT" />
                 <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getPhanHoiID" FunctionName="QL_PHANBONModel.Store.getPhanHoiID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QL_PHANBONModel.getPhanHoiID_Result">
+                <ScalarProperty Name="IDPHANHOI" ColumnName="IDPHANHOI" />
+                <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+                <ScalarProperty Name="HoTenDG" ColumnName="HoTenDG" />
+                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+                <ScalarProperty Name="CHATLUONGSANPHAM" ColumnName="CHATLUONGSANPHAM" />
+                <ScalarProperty Name="DUNGVOIMOTA" ColumnName="DUNGVOIMOTA" />
+                <ScalarProperty Name="RATE" ColumnName="RATE" />
+                <ScalarProperty Name="NGAYPHANHOI" ColumnName="NGAYPHANHOI" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

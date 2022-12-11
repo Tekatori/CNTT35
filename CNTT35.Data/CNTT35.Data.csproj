@@ -65,6 +65,9 @@
     <Compile Include="getDiaChiKhac_Result.cs">
       <DependentUpon>PhanBon.tt</DependentUpon>
     </Compile>
+    <Compile Include="getPhanHoiID_Result.cs">
+      <DependentUpon>PhanBon.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetTop10Category_Result.cs">
       <DependentUpon>PhanBon.tt</DependentUpon>
     </Compile>

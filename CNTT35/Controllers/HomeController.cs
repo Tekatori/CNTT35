@@ -162,9 +162,26 @@ namespace CNTT35.Controllers
         {
             var nd2 = LoginSession.GetSessionInfoLogin();
             var nd = _accountService.GetAccount(nd2.IDND);
+
+         
             return View(nd);
         }
+        public ActionResult xemDanhGia()
+        {
+            var nd = LoginSession.GetSessionInfoLogin();
 
+            var dg = _accountService.GetallPH(nd.IDND);
+            if(dg!=null)
+                return View(dg);
+            return View();
+        }
+        public ActionResult XoaPH(int id)
+        {
+            var dc = _accountService.XoaPhanHoi(id);
+            if (dc == 0)
+                return RedirectToAction("xemDanhGia", "Home", new { ac2 = "trungdiachi" });
+            return RedirectToAction("xemDanhGia", "Home");
+        }
         public ActionResult XoaDC(int id)
         {
             var dc = _accountService.XoaDiaChi(id);
@@ -172,6 +189,7 @@ namespace CNTT35.Controllers
                 return RedirectToAction("addNewAdress", "Home", new { ac2 = "trungdiachi" });
             return RedirectToAction("addNewAdress", "Home");
         }
+   
         [HttpPost]
         public ActionResult Login(FormCollection c)
         {
@@ -196,13 +214,13 @@ namespace CNTT35.Controllers
                     //session
                     LoginSession.createSession(res);
                     Session["username"] = res;
-                    return RedirectToAction("Index", "Home", new { ac = "tk" });
+                    return RedirectToAction("Index", "Home");
 
 
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home", new { ac = "tk" });
                 }
             }
         }
