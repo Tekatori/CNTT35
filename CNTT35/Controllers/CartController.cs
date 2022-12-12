@@ -142,12 +142,15 @@ namespace CNTT35.Controllers
                     tong = (decimal)gh.TongThanhTien();
                 }
                 DONHANG dh = DonHangService.ThanhToanDonHang(idkm, nd.IDND, hoten, diachi, phone, email, ghichu, gh, tong, thanhtoan, loaivc);
-                gh.XoaGioHang();
-                clearSessionGiamGia();
+               
 
                 // gửi mail
-              
-
+                string sanpham = "";
+                foreach(var item in gh.ds)
+                {
+                    sanpham = sanpham + item.iSoLuong+" x " + item.sTenSP + ":"+ string.Format("{0:#,### đ}",item.dDonGia) + "<br>";
+                }
+               
                 string fromMail = "banhangcntt35@gmail.com";
                 string fromPassword = "treisvognntadjxn";
 
@@ -155,7 +158,7 @@ namespace CNTT35.Controllers
                 message.From = new MailAddress(fromMail);
                 message.Subject = "Đặt Hàng Thành Công";
                 message.To.Add(new MailAddress(nd.EMAIL));
-                message.Body = "<html><body> Sincerely thanks!" + nd.TENND + "<br>"+ "<br> ĐƠN ĐẶT HÀNG CỦA BẠN ĐÃ ĐƯỢC XÁC NHẬN THÀNH CÔNG <br> Cảm ơn bạn đã mua hàng của chúng tôi!</body></html>";
+                message.Body = "<html><body> Sincerely thanks!" + nd.TENND + "<br> "+ sanpham + " ĐƠN ĐẶT HÀNG CỦA BẠN ĐÃ ĐƯỢC XÁC NHẬN THÀNH CÔNG <br> Cảm ơn bạn đã mua hàng của chúng tôi!</body></html>";
                 message.IsBodyHtml = true;
 
                 var smtpClient = new SmtpClient("smtp.gmail.com")
@@ -171,7 +174,8 @@ namespace CNTT35.Controllers
 
 
                 ////
-
+                gh.XoaGioHang();
+                clearSessionGiamGia();
                 return View(dh);
             }
             catch

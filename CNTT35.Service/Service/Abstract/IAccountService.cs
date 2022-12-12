@@ -23,5 +23,6 @@ namespace CNTT35.Service.Service
         NGUOIDUNG CheckEmail(string Email);
         List<getPhanHoiID_Result> GetallPH(int id);
         int XoaPhanHoi(int id);
+        int UpdatePhanHoi(int id, string hoten, string NoiDung, string chatluong, string dungvoimota, int rate);
     }
 }

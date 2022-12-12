@@ -194,7 +194,7 @@ namespace CNTT35.Controllers
             }    
         }
         [HttpPost]
-        public ActionResult DanhGiaSP(FormCollection c,int id)
+        public ActionResult DanhGiaSP(FormCollection c, int id)
         {
             NGUOIDUNG nd2 = LoginSession.GetSessionInfoLogin();
             if (nd2 == null)
@@ -203,11 +203,11 @@ namespace CNTT35.Controllers
             if (c["rating1"] != null)
             {
                 rate = int.Parse(c["rating1"].ToString());
-            }           
-   
-
-                string NoiDung = c["NoiDung"].ToString();
+            }
+            string NoiDung = c["NoiDung"].ToString();
             string TenDG = c["TenDG"].ToString();
+            if (TenDG == null)
+                TenDG = nd2.TENND;
             string ChatLuong = c["ChatLuong"].ToString();
             string DungVoiMota = c["DungVoiMota"].ToString();
             DanhGiaService.PhanHoiSP(id, nd2.IDND, TenDG, NoiDung, ChatLuong, DungVoiMota, rate);

@@ -158,6 +158,20 @@ namespace CNTT35.Controllers
                 return RedirectToAction("addNewAdress", "Home", new { ac2 = "sdt" });
             return RedirectToAction("addNewAdress", "Home");
         }
+        [HttpPost]
+        public ActionResult EditPhanHoi(FormCollection c, int id)
+        {
+            string hoten = c["update-yourname"].ToString();
+            string NoiDung = c["update-content"].ToString();
+            string chatluong= c["update-quality"].ToString();
+            string dungvoimota = c["update-describe"].ToString();
+            string rate = c["update-star"].ToString();
+
+            var dc = _accountService.UpdatePhanHoi(id, hoten, NoiDung, chatluong, dungvoimota, int.Parse(rate));
+            if (dc == 0)
+                return RedirectToAction("xemDanhGia", "Home", new { ac2 = "updatethatbai" });
+            return RedirectToAction("xemDanhGia", "Home");
+        }
         public ActionResult Account()
         {
             var nd2 = LoginSession.GetSessionInfoLogin();
@@ -166,13 +180,20 @@ namespace CNTT35.Controllers
          
             return View(nd);
         }
-        public ActionResult xemDanhGia()
+        public ActionResult xemDanhGia(int? page, int? pagesize)
         {
             var nd = LoginSession.GetSessionInfoLogin();
 
             var dg = _accountService.GetallPH(nd.IDND);
-            if(dg!=null)
-                return View(dg);
+            if (page == null)
+                page = 1;
+            if (pagesize == null)
+                pagesize = 10;
+
+
+
+            if (dg!=null)
+                return View(dg.ToPagedList((int)page, (int)pagesize));
             return View();
         }
         public ActionResult XoaPH(int id)
