@@ -17,5 +17,6 @@ namespace CNTT35.Service.Service
         List<GetTop30Random_Result> Get30ProductRandom();
         List<SANPHAM> SearchSPTheoDonGia(int val, int val2);
         SANPHAM GetSP(int id);
+        int SanPhamTru(int id);
     }
 }

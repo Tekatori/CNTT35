@@ -31,7 +31,7 @@ namespace CNTT35.Controllers
         {
             Session["giamgia"] = null;
             Session["maGiamGia"] = null;
-            var sp = _productService.GetAllSanPham();
+            var sp = _productService.GetAllSanPham().Where(t=>t.SOLUONGTON >0);
 
             if (page == null)
                 page = 1;
@@ -110,8 +110,10 @@ namespace CNTT35.Controllers
             List<GetTop10Category_Result> top10KMCate = _productService.GetTop10SanPhamCategory((int)sp[0].IDDM);
             ViewBag.top10KMCate = top10KMCate;
 
-            
-
+            var jj = DanhGiaService.TBRate(int.Parse(id));
+            ViewBag.ttsp = jj;
+            var dg = DanhGiaService.GetAllDanhGiaSP(int.Parse(id));
+            ViewBag.dg = dg;
             return View(sp);
         }
         public ActionResult DanhGia(int id, int? page, int? pagesize)

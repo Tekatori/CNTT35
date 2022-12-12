@@ -19,6 +19,22 @@ namespace CNTT35.Service.Service
                 return db.SANPHAM.ToList();
             }
         }
+        public int SanPhamTru(int id)
+        {
+            try
+            {
+                using (var db = new QL_PHANBONEntities())
+                {
+                    var tru = db.SANPHAM.FirstOrDefault(t => t.IDSP == id);
+                    tru.SOLUONGTON--;
+                    db.SaveChanges();
+                    return 1;
+                }
+            }catch
+            {
+                return 0;
+            }
+        }
         public List<SANPHAM> SearchSPTheoDonGia(int val,int val2)
         {
             using (var db = new QL_PHANBONEntities())

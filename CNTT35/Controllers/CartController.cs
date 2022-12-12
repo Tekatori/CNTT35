@@ -26,10 +26,12 @@ namespace CNTT35.Controllers
         // GET: Cart
         IAccountService _accountService;
         IDonHangService DonHangService;
-        public CartController(IAccountService account, IDonHangService donHangService)
+        IProductService ProductService;
+        public CartController(IAccountService account, IDonHangService donHangService,IProductService product)
         {
             _accountService = account;
             DonHangService = donHangService;
+            ProductService = product;
         }
         public ActionResult Index()
         {
@@ -148,6 +150,7 @@ namespace CNTT35.Controllers
                 string sanpham = "";
                 foreach(var item in gh.ds)
                 {
+                    ProductService.SanPhamTru(item.iMaSP);
                     sanpham = sanpham + item.iSoLuong+" x " + item.sTenSP + ":"+ string.Format("{0:#,### đ}",item.dDonGia) + "<br>";
                 }
                
@@ -171,7 +174,9 @@ namespace CNTT35.Controllers
                 smtpClient.Send(message);
 
 
+                
 
+                
 
                 ////
                 gh.XoaGioHang();
