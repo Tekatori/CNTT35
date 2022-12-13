@@ -1929,6 +1929,7 @@ input[type=range]:focus::-ms-fill-upper {
 
     .product-comment .people {
         display: flex;
+        margin-top:1rem;
     }
 
         .product-comment .people a {
