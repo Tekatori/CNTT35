@@ -55,7 +55,11 @@ namespace CNTT35.Controllers
                     return View(sp.OrderBy(t => t.TENSP).Where(t=>t.IDDM==1).ToPagedList((int)page, (int)pagesize));
                 else if (sapxep == "z-a")
                     return View(sp.OrderByDescending(t => t.TENSP).Where(t => t.IDDM == 1).ToPagedList((int)page, (int)pagesize));
-                else
+                else if (sapxep == "GiaTang")
+                    return View(sp.OrderBy(t => t.DONGIA).Where(t => t.IDDM == 1).ToPagedList((int)page, (int)pagesize));
+                else if (sapxep == "GiaGiam")
+                    return View(sp.OrderByDescending(t => t.DONGIA).Where(t => t.IDDM == 1).ToPagedList((int)page, (int)pagesize));
+                else 
                     return View(sp.Where(t => t.IDDM == 1).ToPagedList((int)page, (int)pagesize));
             }
             else if(loai== "PhanBonla")
@@ -64,6 +68,10 @@ namespace CNTT35.Controllers
                     return View(sp.OrderBy(t => t.TENSP).Where(t => t.IDDM == 2).ToPagedList((int)page, (int)pagesize));
                 else if (sapxep == "z-a")
                     return View(sp.OrderByDescending(t => t.TENSP).Where(t => t.IDDM == 2).ToPagedList((int)page, (int)pagesize));
+                else if (sapxep == "GiaTang")
+                    return View(sp.OrderBy(t => t.DONGIA).Where(t => t.IDDM == 2).ToPagedList((int)page, (int)pagesize));
+                else if (sapxep == "GiaGiam")
+                    return View(sp.OrderByDescending(t => t.DONGIA).Where(t => t.IDDM == 2).ToPagedList((int)page, (int)pagesize));
                 else
                     return View(sp.Where(t => t.IDDM == 2).ToPagedList((int)page, (int)pagesize));
             }
@@ -73,6 +81,10 @@ namespace CNTT35.Controllers
                     return View(sp.OrderBy(t => t.TENSP).Where(t => t.IDDM == 3).ToPagedList((int)page, (int)pagesize));
                 else if (sapxep == "z-a")
                     return View(sp.OrderByDescending(t => t.TENSP).Where(t => t.IDDM == 3).ToPagedList((int)page, (int)pagesize));
+                else if (sapxep == "GiaTang")
+                    return View(sp.OrderBy(t => t.DONGIA).Where(t => t.IDDM == 3).ToPagedList((int)page, (int)pagesize));
+                else if (sapxep == "GiaGiam")
+                    return View(sp.OrderByDescending(t => t.DONGIA).Where(t => t.IDDM == 3).ToPagedList((int)page, (int)pagesize));
                 else
                     return View(sp.Where(t => t.IDDM == 3).ToPagedList((int)page, (int)pagesize));
             }
@@ -82,6 +94,10 @@ namespace CNTT35.Controllers
                     return View(sp.OrderBy(t => t.TENSP).Where(t => t.IDDM == 4).ToPagedList((int)page, (int)pagesize));
                 else if (sapxep == "z-a")
                     return View(sp.OrderByDescending(t => t.TENSP).Where(t => t.IDDM == 4).ToPagedList((int)page, (int)pagesize));
+                else if (sapxep == "GiaTang")
+                    return View(sp.OrderBy(t => t.DONGIA).Where(t => t.IDDM == 4).ToPagedList((int)page, (int)pagesize));
+                else if (sapxep == "GiaGiam")
+                    return View(sp.OrderByDescending(t => t.DONGIA).Where(t => t.IDDM == 4).ToPagedList((int)page, (int)pagesize));
                 else
                     return View(sp.Where(t => t.IDDM == 4).ToPagedList((int)page, (int)pagesize));
             }    
@@ -91,6 +107,10 @@ namespace CNTT35.Controllers
                     return View(sp.OrderBy(t => t.TENSP).ToPagedList((int)page, (int)pagesize));
                 else if (sapxep == "z-a")
                     return View(sp.OrderByDescending(t => t.TENSP).ToPagedList((int)page, (int)pagesize));
+                else if (sapxep == "GiaTang")
+                    return View(sp.OrderBy(t => t.DONGIA).ToPagedList((int)page, (int)pagesize));
+                else if (sapxep == "GiaGiam")
+                    return View(sp.OrderByDescending(t => t.DONGIA).ToPagedList((int)page, (int)pagesize));
                 else
                     return View(sp.ToPagedList((int)page, (int)pagesize));
             }    

@@ -325,12 +325,16 @@
                         <h2>Sản phẩm chính</h2>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4 col-md-5">
+                        <div class="col-lg-5 col-md-5">
                             <div class="filter__sort">
                                 <span>Sắp xếp theo</span>
-                                <a>@Html.ActionLink("A - Z", "Index", new {loai = ViewBag.hatgiong, sapxep = "a-z",style="text-decoration:none!important; color: #007B5E !important;" })</a>
+                                <a>@Html.ActionLink("A - Z", "Index", new { loai = ViewBag.hatgiong, sapxep = "a-z", style = "text-decoration:none!important; color: #007B5E !important;" })</a>
                                 :
-                                <a>@Html.ActionLink("Z - A", "Index", new {style="text-decoration:none!important; color: #007B5E !important;",loai = ViewBag.hatgiong,sapxep = "z-a" })</a>
+                                <a>@Html.ActionLink("Z - A", "Index", new { style = "text-decoration:none!important; color: #007B5E !important;", loai = ViewBag.hatgiong, sapxep = "z-a" })</a>
+                                :
+                                <a>@Html.ActionLink("Giá tăng", "Index", new { style = "text-decoration:none!important; color: #007B5E !important;", loai = ViewBag.hatgiong, sapxep = "GiaTang" })</a>
+                                :
+                                <a>@Html.ActionLink("Giá giảm", "Index", new { style = "text-decoration:none!important; color: #007B5E !important;", loai = ViewBag.hatgiong, sapxep = "GiaGiam" })</a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4">
@@ -338,7 +342,7 @@
                                 <h6><span>@Model.Count</span> Sản phẩm được tìm thấy</h6>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-3">
+                        <div class="col-lg-3 col-md-3">
                             <div class="filter__option">
                                 <a>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-grid" viewBox="0 0 16 16">
