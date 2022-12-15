@@ -12,38 +12,71 @@ using CNTT35.ViewModel;
 using CNTT35.Data;
 using System.Xml.Linq;
 using Facebook;
-using System.Configuration;
+//using System.Configuration;
 using System.Net.Mail;
 using System.Net;
 using System.Web.Helpers;
+using System.IO;
+//using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Ajax.Utilities;
+using System.Web.Http.Controllers;
 
 namespace CNTT35.Controllers
 {
+
     public class HomeController : Controller
     {
         IProductService _productService;
         IAccountService _accountService;
         ILienHeService _lienHeService;
         IKhuyenMaiService _ikhuyenMaiService;
+        string appid = string.Empty;
+        string appsecret = string.Empty;
         public HomeController(IProductService productService, IAccountService account, ILienHeService lienHeService, IKhuyenMaiService ikhuyenMaiService)
         {
             _productService = productService;
             _accountService = account;
             _lienHeService = lienHeService;
             _ikhuyenMaiService = ikhuyenMaiService;
+            var configuration = GetConfiguration();
+            appid = "956578625314895";
+            appsecret = "a3943837c2ea4f88b8b61aeb5e11003d";
+        }
+     
+
+        public IConfiguration GetConfiguration()
+        {
+            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional:true, reloadOnChange: true);
+            return builder.Build();
+        }
+        private Uri RedirectUri
+        {
+            get
+            {
+                var uriBuilder = new UriBuilder(Request.Url);
+                uriBuilder.Query = null;
+                uriBuilder.Fragment = null;
+                uriBuilder.Path = Url.Action("FacebookCallback");
+                return uriBuilder.Uri;
+            }
+        }
+        public ActionResult Facebook()
+        {
+            var fb = new FacebookClient();
+            var loginUrl = fb.GetLoginUrl(new
+            {
+                client_id = appid,
+                client_secret = appsecret,
+                redirect_uri = RedirectUri.AbsoluteUri,
+                response_type = "code",
+                scope = "email" // Add other permissions as needed
+            });
+
+            return Redirect(loginUrl.AbsoluteUri);
         }
 
-        //private Uri RedirectUri
-        //{
-        //    get
-        //    {
-        //        var uriBuilder = new UriBuilder(Request.Url);
-        //        uriBuilder.Query = null;
-        //        uriBuilder.Fragment = null;
-        //        uriBuilder.Path = Url.Action("FacebookCallback");
-        //        return uriBuilder.Uri;
-        //    }
-        //}
+
         public ActionResult Index()
         {
             //_cartController.clearSessionGiamGia();
@@ -161,12 +194,13 @@ namespace CNTT35.Controllers
         [HttpPost]
         public ActionResult EditPhanHoi(FormCollection c, int id)
         {
+       
             string hoten = c["update-yourname"].ToString();
             string NoiDung = c["update-content"].ToString();
             string chatluong= c["update-quality"].ToString();
             string dungvoimota = c["update-describe"].ToString();
-            string rate = c["update-star"].ToString();
-
+            //string rate = c["update-star"].ToString();
+            string rate = c[id.ToString()].ToString();
             var dc = _accountService.UpdatePhanHoi(id, hoten, NoiDung, chatluong, dungvoimota, int.Parse(rate));
             if (dc == 0)
                 return RedirectToAction("xemDanhGia", "Home", new { ac2 = "updatethatbai" });
@@ -235,7 +269,7 @@ namespace CNTT35.Controllers
                     //session
                     LoginSession.createSession(res);
                     Session["username"] = res;
-                    return RedirectToAction("Index", "Home");
+                    return Redirect("/");
 
 
                 }
@@ -251,8 +285,8 @@ namespace CNTT35.Controllers
         //    var fb = new FacebookClient();
         //    var loginUrl = fb.GetLoginUrl(new
         //    {
-        //        client_id = "956578625314895",
-        //        client_secret = "a3943837c2ea4f88b8b61aeb5e11003d",
+        //        client_id = "1855259208191738",
+        //        client_secret = "78550ec0c934b421d64b12d23ac7ca6d",
         //        redirect_uri = RedirectUri.AbsoluteUri,
         //        response_type = "code",
         //        scope = "email"
@@ -262,62 +296,71 @@ namespace CNTT35.Controllers
         //    return Redirect(RedirectUri.AbsoluteUri);
         //}
 
-        //public ActionResult FacebookCallback(string code)
-        //{
-        //    var fb = new FacebookClient();
-        //    dynamic result = fb.Post("oauth/access_token", new
-        //    {
-        //        client_id = "956578625314895",
-        //        client_secret = "a3943837c2ea4f88b8b61aeb5e11003d",
-        //        redirect_uri = RedirectUri.AbsoluteUri,
-        //        code = code
-        //    });
-        //    var accessToken = result.access_token;
+        public ActionResult FacebookCallback(string code)
+        {
+            var fb = new FacebookClient();
+            dynamic result = fb.Post("oauth/access_token", new
+            {
+                client_id = appid,
+                client_secret = appsecret,
+                redirect_uri = RedirectUri.AbsoluteUri,
+                code = code
+            });
 
-        //    if (!string.IsNullOrEmpty(accessToken))
-        //    {
-        //        fb.AccessToken = accessToken;
-        //        dynamic me = fb.Get("me?fields=first_name,middle_name,last_name,id,email");
-        //        string email = me.email;
-        //        string username = me.email;
-        //        string firstname = me.first_name;
-        //        string middlename = me.middle_name;
-        //        string lastname = me.last_name;
-        //        string hoten =firstname+ " " + middlename + " " + lastname;
-        //        int res2 = _accountService.ThemAccountFB(username,email,hoten);
-        //        if (res2 == 1)
-        //        {
-        //            var res = _accountService.CheckLoginFB(username);
-        //            if (res != null)
-        //            {
-        //                //cooki
-        //                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, FormsAuthentication.FormsCookieName, DateTime.Now, DateTime.Now.AddDays(2), false, username, FormsAuthentication.FormsCookiePath);
+            var accessToken = result.access_token;
+            fb.AccessToken = accessToken;
 
-        //                string encTicket = FormsAuthentication.Encrypt(ticket);
+            if (!string.IsNullOrEmpty(accessToken))
+            {
+                dynamic me = fb.Get("me?fields=first_name,middle_name,last_name,id,email");
+                string email = me.email;
+                string username = me.email;
+                string middle_name = me.middle_name;
+                string firstname = me.first_name;
+                string lastname = me.last_name;
+                string hoten = firstname + " " + middle_name + "" + lastname;
+                var res = _accountService.CheckLoginFB(username);
 
-        //                Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+                if (res == null)
+                {
+                    int res2 = _accountService.ThemAccountFB(username, email, hoten);
+                    if (res2 == 1)
+                    {
+                        //cooki
+                        var res3 = _accountService.CheckLoginFB(username);
+                        FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, FormsAuthentication.FormsCookieName, DateTime.Now, DateTime.Now.AddDays(2), false, username, FormsAuthentication.FormsCookiePath);
 
-        //                //session
-        //                LoginSession.createSession(res);
-        //                Session["username"] = res;
-        //                return RedirectToAction("Index", "Home");
-        //            }
-        //            else
-        //            {
-        //                return RedirectToAction("Index", "Home", new { ac = "error" });
-        //            }
-        //        }
-        //        else
-        //        {
-        //            return RedirectToAction("Index", "Home", new { ac = "error" });
-        //        }
+                        string encTicket = FormsAuthentication.Encrypt(ticket);
 
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Index", "Home", new { ac = "error" });
-        //    }
-        //}
+                        Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+
+                        //session
+                        LoginSession.createSession(res3);
+                        Session["username"] = res3;
+                        return Redirect("/");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home", new { ac = "error" });
+                    }
+                }
+                else
+                {
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, FormsAuthentication.FormsCookieName, DateTime.Now, DateTime.Now.AddDays(2), false, username, FormsAuthentication.FormsCookiePath);
+
+                    string encTicket = FormsAuthentication.Encrypt(ticket);
+
+                    Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+
+                    //session
+                    LoginSession.createSession(res);
+                    Session["username"] = res;
+                    return RedirectToAction("Index", "Home");
+                }
+
+            }
+            return RedirectToAction("Index", "Home", new { ac = "error" });
+        }
 
         //GuiLoiNhan //LoginFB
         [HttpPost]
@@ -375,7 +418,7 @@ namespace CNTT35.Controllers
         {
             FormsAuthentication.SignOut();
             LoginSession.clear();
-            return RedirectToAction("Index", "Product");
+            return Redirect("/");
         }
         public ActionResult ChonMua(int id)
         {
@@ -424,7 +467,7 @@ namespace CNTT35.Controllers
             }
             else
             {
-                return RedirectToAction("Account/" + id, "Home");
+                return RedirectToAction("Account/" + id, "Home",new { ac3 = "succes" });
             }
         }
      

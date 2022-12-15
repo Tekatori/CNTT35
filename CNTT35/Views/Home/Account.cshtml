@@ -7,16 +7,17 @@
 <section class="checkout spad">
     <div class="container">
         <div class="checkout__form">
-           <div style="display: flex; justify-content: space-between;">
-            <h4>Quản lí hồ sơ của bạn</h4>
-               <a href="/Home/xemDanhGia" class="primary-btn cart-btn" style="height: 54px; ">Xem tất cả đánh giá</a>
-               <a href="/Cart/paymentHistory" class="primary-btn cart-btn" style="height: 54px; ">Xem lịch sử mua hàng</a>
-             </div>
-           
-        
+            <div style="display: flex; justify-content: space-between;">
+                <h4>Quản lí hồ sơ của bạn</h4>
+                <a href="/Home/xemDanhGia" class="primary-btn cart-btn" style="height: 54px; ">Xem tất cả đánh giá</a>
+                <a href="/Cart/paymentHistory" class="primary-btn cart-btn" style="height: 54px; ">Xem lịch sử mua hàng</a>
+            </div>
+
+
             @foreach (var item in Model)
             {
                 string[] diachi;
+                string checkpass = item.Password;
                 if (item.DIACHI != null)
                 {
                     diachi = item.DIACHI.ToString().Split(',');
@@ -43,7 +44,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
-                                        <p>Ngày Đăng Ký</p> 
+                                        <p>Ngày Đăng Ký</p>
                                         <p style="padding:15px">@String.Format("{0:MM/dd/yyyy}", @item.NGAYDK)</p>
                                     </div>
                                 </div>
@@ -58,11 +59,11 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
-                                       <div style="display:flex;">
-                                    <p>Phường/Xã<span>*</span></p> 
-                                     <a href="/Home/addNewAdress"
-                                          style="color: #007B5E;margin-left: 1rem; text-decoration:none;"> Thêm địa chỉ mới</a>
-                                    </div>
+                                        <div style="display:flex;">
+                                            <p>Phường/Xã<span>*</span></p>
+                                            <a href="/Home/addNewAdress"
+                                               style="color: #007B5E;margin-left: 1rem; text-decoration:none;"> Thêm địa chỉ mới</a>
+                                        </div>
                                         <input type="text" value="@diachi[1].ToString()" placeholder="Chưa có Thông tin" name="xa">
                                     </div>
                                 </div>
@@ -104,11 +105,22 @@
                         {
                             <div class="checkout__order">
                                 <h4>Thay đổi mật khẩu</h4>
-                                <div class="checkout__input">
-                                    <p>Mật khẩu hiện tại<span>*</span></p>
-                                    <input type="password" name="passcu" placeholder="Nhập mật khẩu hiện tại" class="checkout__input__add" required>
+                                @if (checkpass == null)
+                                {
+                                    <div class="checkout__input">
+                                        <p>Mật khẩu hiện tại<span>*</span></p>
+                                        <input placeholder="Nhập mật khẩu hiện tại" class="checkout__input__add" disabled>
+                                        <input type="password" name="passcu" placeholder="Nhập mật khẩu hiện tại" class="checkout__input__add" hidden="hidden">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="checkout__input">
+                                        <p>Mật khẩu hiện tại<span>*</span></p>
+                                        <input type="password" name="passcu" placeholder="Nhập mật khẩu hiện tại" class="checkout__input__add" required>
 
-                                </div>
+                                    </div>
+                                }
                                 <div class="checkout__input">
                                     <p>Mật khẩu mới<span>*</span></p>
                                     <input type="password" name="passnew" placeholder="Nhập mật khẩu mới" class="checkout__input__add" required>
@@ -147,7 +159,14 @@
                 {
                     <div class="alert alert-success alert-dismissable" style="text-align:center">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Mật khẩu cũ không đúng hoặc mật khẩu mới ko trùng nhau !</strong>
+                        <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Mật khẩu cũ không đúng hoặc mật khẩu mới ko trùng nhau Hoạc sai Password cũ !</strong>
+                    </div>
+                }
+                if (parameter2 == "succes")
+                {
+                    <div class="alert alert-success alert-dismissable" style="text-align:center">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Thay đổi mật khẩu thành công!</strong>
                     </div>
                 }
             }

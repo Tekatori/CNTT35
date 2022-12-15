@@ -140,42 +140,84 @@
                         </div>
 
                         <div class="form-group">
-
+                            <h6> Họ tên</h6>
                             <input placeholder="Họ tên" class="form-control custom-input" name="update-yourname" id="update-yourname" value="@i.HoTenDG" />
                         </div>
                         <div class="form-group">
-
-                            <input placeholder="Nội dung" class="form-control custom-input" name="update-content" id="update-content" value="@i.NOIDUNG" />
+                            <h6> Nội dung</h6>
+                            <textarea placeholder="Nội dung" class="form-control custom-input" name="update-content" id="update-content" rows="3">@i.NOIDUNG</textarea>
+                            @*<input placeholder="Nội dung" class="form-control custom-input" name="update-content" id="update-content" value="@i.NOIDUNG" />*@
                         </div>
 
                         <div class="form-group">
-
+                            <h6> Chất lượng sản phẩm</h6>
                             <input placeholder="Chất lượng sản phẩm" class="form-control custom-input" name="update-quality" id="update-quality" value="@i.CHATLUONGSANPHAM" />
                         </div>
                         <div class="form-group">
-
+                            <h6> Đúng với mô tả</h6>
                             <input placeholder="Đúng với mô tả" class="form-control custom-input" name="update-describe" id="update-describe" value="@i.DUNGVOIMOTA" />
                         </div>
-                        <div class="form-group">
+                        @*<div class="form-group">
 
                             <input placeholder="số sao" class="form-control custom-input" name="update-star" id="update-star" value="@i.RATE" />
-                        </div>
+                        </div>*@
                          <div class="form-group">
                            <h6> Thay đổi đánh giá sao</h6>
                            <div class="rating-css">
-                            <div class="star-icon">
-                                <input type="radio" name="rating1" id="rating1" value="1">
-                                <label class="bi bi-star-fill" for="rating1"></label>
-                                <input type="radio" name="rating1" id="rating2" value="2">
-                                <label class="bi bi-star-fill" for="rating2"></label>
-                                <input type="radio" name="rating1" id="rating3" value="3">
-                                <label class="bi bi-star-fill" for="rating3"></label>
-                                <input type="radio" name="rating1" id="rating4" value="4">
-                                <label class="bi bi-star-fill" for="rating4"></label>
-                                <input type="radio" name="rating1" id="rating5" value="5">
-                                <label class="bi bi-star-fill" for="rating5"></label>
+                               <div class="star-icon">
+                                   @if (i.RATE == 1)
+                                   {
+                                       <input type="radio" name="@i.IDPHANHOI" id="@i.IDPHANHOI+1" value="1" checked>
+                                       <label class="bi bi-star-fill" for="@i.IDPHANHOI+1"></label>
+                                   }
+                                   else
+                                   {
+                                       <input type="radio" name="@i.IDPHANHOI" id="@i.IDPHANHOI+1" value="1">
+                                       <label class="bi bi-star-fill" for="@i.IDPHANHOI+1"></label>
+                                   }
+                                   @if (i.RATE == 2)
+                                   {
+                                       <input type="radio" name="@i.IDPHANHOI" id="@i.IDPHANHOI+2" value="2" checked>
+                                       <label class="bi bi-star-fill" for="@i.IDPHANHOI+2"></label>
+                                   }
+                                   else
+                                   {
+                                       <input type="radio" name="@i.IDPHANHOI" id="@i.IDPHANHOI+2" value="2">
+                                       <label class="bi bi-star-fill" for="@i.IDPHANHOI+2"></label>
+                                   }
+                                   @if (i.RATE == 3)
+                                   {
+                                       <input type="radio" name="@i.IDPHANHOI" id="@i.IDPHANHOI+3" value="3" checked>
+                                       <label class="bi bi-star-fill" for="@i.IDPHANHOI+3"></label>
+                                   }
+                                   else
+                                   {
 
-                          </div>
+                                       <input type="radio" name="@i.IDPHANHOI" id="@i.IDPHANHOI+3" value="3">
+                                       <label class="bi bi-star-fill" for="@i.IDPHANHOI+3"></label>
+                                   }
+                                   @if (i.RATE == 4)
+                                   {
+                                       <input type="radio" name="@i.IDPHANHOI" id="@i.IDPHANHOI+4" value="4" checked>
+                                       <label class="bi bi-star-fill" for="@i.IDPHANHOI+4"></label>
+                                   }
+                                   else
+                                   {
+                                       <input type="radio" name="@i.IDPHANHOI" id="@i.IDPHANHOI+4" value="4">
+                                       <label class="bi bi-star-fill" for="@i.IDPHANHOI+4"></label>
+                                   }
+                                   @if (i.RATE == 5)
+                                   {
+                                       <input type="radio" name="@i.IDPHANHOI" id="@i.IDPHANHOI+5" value="5" checked>
+                                       <label class="bi bi-star-fill" for="@i.IDPHANHOI+5"></label>
+                                   }
+                                   else
+                                   {
+                                       <input type="radio" name="@i.IDPHANHOI" id="@i.IDPHANHOI+5" value="5">
+                                       <label class="bi bi-star-fill" for="@i.IDPHANHOI+5"></label>
+                                   }
+
+                               </div>
                          </div>
                         </div>
 

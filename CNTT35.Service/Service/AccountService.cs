@@ -32,7 +32,9 @@ namespace CNTT35.Service.Service
                               SDT = kh.SDT,
                               DIACHI = kh.DIACHI,
                               MATKHAU = person.MATKHAU,
-                              NGAYDK = (DateTime)kh.NGAYDK
+                              NGAYDK = (DateTime)kh.NGAYDK,
+                              Password = person.MATKHAU
+                                
                           };
                 List<AccountInfo> accountInfos = new List<AccountInfo>();
                 foreach (var item in res)
@@ -46,6 +48,7 @@ namespace CNTT35.Service.Service
                     accountInfo.DIACHI = item.DIACHI;
                     accountInfo.MATKHAU = item.MATKHAU;
                     accountInfo.NGAYDK = item.NGAYDK;
+                    accountInfo.Password = item.Password;
                     accountInfos.Add(accountInfo);
                 }
                 return accountInfos;
@@ -140,7 +143,7 @@ namespace CNTT35.Service.Service
                     NGUOIDUNG d = null;
                     try
                     {
-                        d = db.NGUOIDUNG.First(t => t.IDND == id && t.MATKHAU == passOld);
+                        d = db.NGUOIDUNG.First(t => t.IDND == id && (t.MATKHAU == passOld || t.MATKHAU ==null));
                     }
                     catch
                     {
@@ -216,7 +219,7 @@ namespace CNTT35.Service.Service
                 }
                 if (d != null)
                 {
-                    return d.IDND;
+                    return 0;
                 }
                 else
                 {

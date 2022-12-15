@@ -16,5 +16,6 @@ namespace CNTT35.Service.Model
         public string DIACHI { get; set; }
         public string SDT { get; set; }
         public DateTime NGAYDK { get; set; }
+        public string Password { get; set; }
     }
 }
