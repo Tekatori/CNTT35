@@ -27,11 +27,13 @@ namespace CNTT35.Controllers
         IAccountService _accountService;
         IDonHangService DonHangService;
         IProductService ProductService;
-        public CartController(IAccountService account, IDonHangService donHangService,IProductService product)
+        IKhuyenMaiService khuyenMaiService;
+        public CartController(IAccountService account, IDonHangService donHangService,IProductService product,IKhuyenMaiService km)
         {
             _accountService = account;
             DonHangService = donHangService;
             ProductService = product;
+            khuyenMaiService = km;
         }
         public ActionResult Index()
         {
@@ -137,14 +139,20 @@ namespace CNTT35.Controllers
                     string magg = Session["maGiamGia"].ToString();
                     idkm = DonHangService.findidGiamGia(magg);
                     tong = gh.TongThanhTienGiamGia(magg);
+                   
                 }
                 else
                 {
                     idkm = 0;
                     tong = (decimal)gh.TongThanhTien();
                 }
+
+
                 DONHANG dh = DonHangService.ThanhToanDonHang(idkm, nd.IDND, hoten, diachi, phone, email, ghichu, gh, tong, thanhtoan, loaivc);
-               
+                if (idkm != 0)
+                {
+                    var res = khuyenMaiService.updateSL(idkm);
+                }
 
                 // gửi mail
                 string sanpham = "";

@@ -6,5 +6,6 @@ namespace CNTT35.Service.Service
     public interface IKhuyenMaiService
     {
         List<KHUYENMAI> GettAllKM();
+        int updateSL(int id);
     }
 }
