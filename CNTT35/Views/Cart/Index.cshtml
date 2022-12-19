@@ -141,7 +141,7 @@
                             {
                                 Session["tien"] = Session["giamgia"];
                                 Session["tienKM"] = Model.TongThanhTien() - double.Parse(Session["giamgia"].ToString());
-                                 <li>Mã giảm giá<span>-20,000 đ </span></li>
+                                 <li>Mã giảm giá<span>@string.Format("{0:#,### đ}", Session["tienKM"]) </span></li>
                                 <li>Tổng cộng <span>@string.Format("{0:#,### đ}", Session["giamgia"])</span></li>
                             }
                         </ul>
