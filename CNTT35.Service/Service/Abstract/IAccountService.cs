@@ -9,7 +9,7 @@ namespace CNTT35.Service.Service
         NGUOIDUNG CheckLogin(string username, string pass);
         int ThemAccount(string username, string password, string phone, string email);
         List<AccountInfo> GetAccount(int id);
-        int ChangeInfo(int id, string hoten, string diachi, string sdt, string email);
+        int ChangeInfo(int id, string hoten, string diachi, string sdt);
         int ChangePassword(int id, string passOld, string passNew, string rePassNew);
         NGUOIDUNG GetND(int id);
         List<LichSuMuaHang_Result> GetLichSuDonHang(int id);
@@ -24,5 +24,6 @@ namespace CNTT35.Service.Service
         List<getPhanHoiID_Result> GetallPH(int id);
         int XoaPhanHoi(int id);
         int UpdatePhanHoi(int id, string hoten, string NoiDung, string chatluong, string dungvoimota, int rate);
+   
     }
 }
