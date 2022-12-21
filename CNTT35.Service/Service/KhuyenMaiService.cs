@@ -23,5 +23,27 @@ namespace CNTT35.Service.Service
                 return null;
             }
         }
+        public int updateSL(int id)
+        {
+
+            try
+            {
+                using (var db = new QL_PHANBONEntities())
+                {
+                    var dt = db.KHUYENMAI.FirstOrDefault(t => t.IDKM == id);
+                    if (dt.SOLUONGKM == 0) return 0;
+                    else
+                    {
+                        dt.SOLUONGKM = dt.SOLUONGKM - 1;
+                        db.SaveChanges();
+                        return 1;
+                    }
+                }
+            }
+            catch
+            {
+                return 0;
+            }
+        }
     }
 }

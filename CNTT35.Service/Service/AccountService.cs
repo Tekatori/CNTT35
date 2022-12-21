@@ -86,7 +86,7 @@ namespace CNTT35.Service.Service
                 return db.NGUOIDUNG.FirstOrDefault(t => t.IDND == id);
             }
         }
-        public int ChangeInfo(int id, string hoten, string diachi, string sdt, string email)
+        public int ChangeInfo(int id, string hoten, string diachi, string sdt)
         {
             using (var db = new QL_PHANBONEntities())
             {
@@ -111,25 +111,7 @@ namespace CNTT35.Service.Service
                     kh.SDT = sdt;
                     db.SaveChanges();
 
-                    NGUOIDUNG nGUOIDUNG = null;
-                    try
-                    {
-                        nGUOIDUNG = db.NGUOIDUNG.First(t => t.EMAIL == email);
-                    }
-                    catch
-                    {
-                        nGUOIDUNG = null;
-                    }
-                    if (nGUOIDUNG != null)
-                    {
-                        return 0;
-                    }
-                    else
-                    {
-                        d.EMAIL = email;
-                        db.SaveChanges();
-                        return 1;
-                    }
+                   return 1;
                 }
 
             }
@@ -244,6 +226,7 @@ namespace CNTT35.Service.Service
             }
 
         }
+   
         public List<LichSuMuaHang_Result> GetLichSuDonHang(int id)
         {
             try

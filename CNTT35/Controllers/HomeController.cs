@@ -12,7 +12,7 @@ using CNTT35.ViewModel;
 using CNTT35.Data;
 using System.Xml.Linq;
 using Facebook;
-//using System.Configuration;
+using System.Configuration;
 using System.Net.Mail;
 using System.Net;
 using System.Web.Helpers;
@@ -21,6 +21,14 @@ using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Ajax.Utilities;
 using System.Web.Http.Controllers;
+
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using GoogleAuthentication.Services;
+using static System.Net.WebRequestMethods;
+using System.Threading.Tasks;
+using CNTT35.GoogleModel;
+using Microsoft.Practices.ObjectBuilder2;
 
 namespace CNTT35.Controllers
 {
@@ -33,23 +41,23 @@ namespace CNTT35.Controllers
         IKhuyenMaiService _ikhuyenMaiService;
         string appid = string.Empty;
         string appsecret = string.Empty;
+        string appGgid = string.Empty;
+        string appGgsecret = string.Empty;
         public HomeController(IProductService productService, IAccountService account, ILienHeService lienHeService, IKhuyenMaiService ikhuyenMaiService)
         {
             _productService = productService;
             _accountService = account;
             _lienHeService = lienHeService;
             _ikhuyenMaiService = ikhuyenMaiService;
-            var configuration = GetConfiguration();
-            appid = "956578625314895";
-            appsecret = "a3943837c2ea4f88b8b61aeb5e11003d";
+            appid = ConfigurationManager.AppSettings["FbAppId"];
+            appsecret = ConfigurationManager.AppSettings["FbAppSecret"];
+            appGgid = ConfigurationManager.AppSettings["GgAppId"];
+            appGgsecret = ConfigurationManager.AppSettings["GgAppSecret"];
+          
         }
      
 
-        public IConfiguration GetConfiguration()
-        {
-            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional:true, reloadOnChange: true);
-            return builder.Build();
-        }
+    
         private Uri RedirectUri
         {
             get
@@ -85,6 +93,10 @@ namespace CNTT35.Controllers
             var sp = _productService.Get30ProductRandom();
             List<GetTop10_Result> top10 = _productService.GetTop10SanPham();
             ViewBag.Greeting = top10;
+
+
+            var res = GoogleAuth.GetAuthUrl(appGgid, "https://localhost:44353/Home/GoogleLoginCallback");
+            ViewBag.respongg = res;
             return View(sp);
         }
 
@@ -264,7 +276,7 @@ namespace CNTT35.Controllers
 
                     string encTicket = FormsAuthentication.Encrypt(ticket);
 
-                    Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+                    Response.Cookies.Add(new System.Web.HttpCookie(FormsAuthentication.FormsCookieName,encTicket));
 
                     //session
                     LoginSession.createSession(res);
@@ -332,7 +344,7 @@ namespace CNTT35.Controllers
 
                         string encTicket = FormsAuthentication.Encrypt(ticket);
 
-                        Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+                        Response.Cookies.Add(new System.Web.HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
 
                         //session
                         LoginSession.createSession(res3);
@@ -350,7 +362,7 @@ namespace CNTT35.Controllers
 
                     string encTicket = FormsAuthentication.Encrypt(ticket);
 
-                    Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+                    Response.Cookies.Add(new System.Web.HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
 
                     //session
                     LoginSession.createSession(res);
@@ -396,7 +408,7 @@ namespace CNTT35.Controllers
 
                         string encTicket = FormsAuthentication.Encrypt(ticket);
 
-                        Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+                        Response.Cookies.Add(new System.Web.HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
 
                         //session
                         LoginSession.createSession(res);
@@ -439,10 +451,9 @@ namespace CNTT35.Controllers
             string xa = c["xa"].ToString();
             string huyen = c["huyen"].ToString();
             string tinh = c["tinh"].ToString();
-            string email = c["email"].ToString();
             string sdt = c["sdt"].ToString();
             string dichi = sonha + "," + xa + "," + huyen + "," + tinh;
-            int res = _accountService.ChangeInfo(id, hoten, dichi, sdt, email);
+            int res = _accountService.ChangeInfo(id, hoten, dichi, sdt);
             if (res == 0)
             {
                 return RedirectToAction("Account/" + id, "Home", new { ac2 = "error2" });
@@ -470,6 +481,68 @@ namespace CNTT35.Controllers
                 return RedirectToAction("Account/" + id, "Home",new { ac3 = "succes" });
             }
         }
-     
+
+
+        ////login google
+        public async Task <ActionResult> GoogleLoginCallback(string code)
+        {
+            if (code != null)
+            {
+                var clientId = appGgid;
+                var url = "https://localhost:44353/Home/GoogleLoginCallback";
+                var seret = appGgsecret;
+                var token = await GoogleAuth.GetAuthAccessToken(code,clientId,seret,url);
+
+                var user = await GoogleAuth.GetProfileResponseAsync(token.AccessToken.ToString());
+
+                var googleuser = JsonConvert.DeserializeObject<GoogleProfile>(user);
+
+                string username = googleuser.Email.ToString();
+                string email = googleuser.Email.ToString();
+                string hoten = googleuser.Name;
+
+                var res = _accountService.CheckLoginFB(username);
+
+                if (res == null)
+                {
+                    int res2 = _accountService.ThemAccountFB(username, email, hoten);
+                    if (res2 == 1)
+                    {
+                        //cooki
+                        var res3 = _accountService.CheckLoginFB(username);
+                        FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, FormsAuthentication.FormsCookieName, DateTime.Now, DateTime.Now.AddDays(2), false, username, FormsAuthentication.FormsCookiePath);
+
+                        string encTicket = FormsAuthentication.Encrypt(ticket);
+
+                        Response.Cookies.Add(new System.Web.HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+
+                        //session
+                        LoginSession.createSession(res3);
+                        Session["username"] = res3;
+                        return Redirect("/");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home", new { ac = "error" });
+                    }
+                }
+                else
+                {
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, FormsAuthentication.FormsCookieName, DateTime.Now, DateTime.Now.AddDays(2), false, username, FormsAuthentication.FormsCookiePath);
+
+                    string encTicket = FormsAuthentication.Encrypt(ticket);
+
+                    Response.Cookies.Add(new System.Web.HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+
+                    //session
+                    LoginSession.createSession(res);
+                    Session["username"] = res;
+                    return RedirectToAction("Index", "Home");
+                }
+
+            }
+            return RedirectToAction("Index", "Home", new { ac = "error" });
+        }
+
     }
 }
