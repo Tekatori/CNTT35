@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "addNewAdress";
     int stt = 0;
+    
 }
 @using PagedList.Mvc;
 @using PagedList;
@@ -144,12 +145,15 @@
                     <form>
                         <div class="form-group">
 
-                            <input placeholder="Họ tên" class="form-control custom-input" name="edit-yourname" id="edit-yourname" />
+                            <input placeholder="Họ tên" class="form-control custom-input" name="edit-yourname" id="username" />
+                          
                         </div>
                         <div class="form-group">
 
-                            <input placeholder="Số điện thoại" class="form-control custom-input" name="edit-numberphone" id="edit-numberphone"  maxlength="10"/>
+                            <input placeholder="Số điện thoại" class="form-control custom-input" name="edit-numberphone" id="mobile"  maxlength="10"/>
+
                         </div>
+                       
 
                         <div class="form-group">
 
@@ -176,7 +180,9 @@
                             data-dismiss="modal">
                         Trở lại
                     </button>
-                    <button type="submit" class="btn btn-primary" style="background: #007B5E; color:#fff;">Hoàn thành</button>
+                    <button type="submit" class="btn btn-primary checkmobile" style="background: #007B5E; color:#fff;">Hoàn thành</button>
+                    
+                       
                 </div>
             </div>
 

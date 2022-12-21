@@ -66,12 +66,12 @@
         <div class="card" style="height: 192px;">
             <div class="main">
                 <div class="co-img">
-                    <img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t39.30808-6/318132546_3336337809915404_2625833431154750342_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=QUSQaSez3NkAX9o9K0I&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfDJ4BDjF2sqGJDoXDhBC6peCiddJWImohk2OV9H4I318w&oe=639772E3" class="logo">
+                    <img src="https://i.imgur.com/wzE9jUk.png" class="logo">
 
                 </div>
                 <div class="vertical"></div>
                 <div class="content">
-                    <h2>Miễn phí vận chuyển</h2>
+                    <h2> Miễn phí vận chuyển</h2>
                     <h1>@string.Format("{0:#,### đ}", @Model[i].GIATIENKM)</h1>
                     <p>Có hiệu lực từ @Model[i].NGAYBD.Value.Day/@Model[i].NGAYBD.Value.Month</p>
                 </div>
@@ -84,7 +84,7 @@
         <div class="card" style="height: 192px;">
             <div class="main">
                 <div class="co-img">
-                    <img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t39.30808-6/318132546_3336337809915404_2625833431154750342_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=QUSQaSez3NkAX9o9K0I&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfDJ4BDjF2sqGJDoXDhBC6peCiddJWImohk2OV9H4I318w&oe=639772E3" class="logo">
+                    <img src="https://i.imgur.com/wzE9jUk.png" class="logo">
 
                 </div>
                 <div class="vertical"></div>
@@ -99,18 +99,14 @@
                 <button onclick="copyIt2()" class="copybtn2">COPY</button>
             </div>
         </div>
-
-    </div>
-    }
-
-<script>
+        <script>
     let copybtn = document.querySelector(".copybtn");
-
+    
 
     function copyIt() {
         let copyInput = document.querySelector('#copyvalue');
-
-        copyInput.select();
+         var getModelData="@Model[i].MAKHUYENMAI";
+         copyInput.select();
 
         document.execCommand("copy");
 
@@ -130,6 +126,10 @@
         copybtn2.textContent = "COPIED";
     }
 </script>
+    </div>
+    }
+
+
 
 
 

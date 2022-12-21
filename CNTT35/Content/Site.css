@@ -3224,13 +3224,13 @@ a.slide_btn {
 
 
 .card {
-  width: 400px;
-  height: 180px;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
-  background-color: #fff;
-  padding: 10px 10px;
-  position: relative;
+    width: 400px;
+    height: 180px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #e580cb, #f8f1ff);
+    padding: 10px 10px;
+    position: relative;
 }
 
 .main,

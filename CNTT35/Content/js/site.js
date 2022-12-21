@@ -147,4 +147,84 @@ $(function () {
 });
 
 
+// Javascript validate phonenumber                   
+
+
+$(document).ready(function () {
+    $('body').on('click', '.checkmobile', function () {
+        var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+        var mobile = $('#mobile').val();
+        if (mobile !== '') {
+            if (vnf_regex.test(mobile) == false) {
+                confirm('Số điện thoại của bạn không đúng định dạng!');
+               
+            
+            } else {
+                confirm('Số điện thoại của bạn hợp lệ!');
+            }
+        } else {
+            confirm('Bạn chưa điền số điện thoại!');
+        }
+    });
+});
+
+
+
+// Javascript validate form
+
+const btnRegister = document.getElementById('btn-register');
+
+btnRegister.addEventListener('click', function () {
+    let isValid = checkValidate();
+
+    if (isValid) {
+        alert('Gửi đăng ký thành công');
+    }
+});
+
+// Truy cập vào các ô input
+const usernameEle = document.getElementById('username');
+const emailEle = document.getElementById('email');
+const phoneEle = document.getElementById('phone');
+
+// Validate dữ liệu trong các ô input và highlight
+function checkValidate() {
+    let usernameValue = usernameEle.value;
+    let emailValue = emailEle.value;
+    let phoneValue = phoneEle.value;
+
+    let isCheck = true;
+
+    // Kiểm tra trường username
+    if (usernameValue == '') {
+        setError(usernameEle, 'Tên không được để trống');
+        isCheck = false;
+    } else {
+        setSuccess(usernameEle);
+    }
+
+    // Kiểm tra trường email
+    if (emailValue == '') {
+        setError(emailEle, 'Email không được để trống');
+        isCheck = false;
+    } else if (!isEmail(emailValue)) {
+        setError(emailEle, 'Email không đúng định dạng');
+        isCheck = false;
+    } else {
+        setSuccess(emailEle);
+    }
+
+    // Kiểm tra trường phone
+    if (phoneValue == '') {
+        setError(phoneEle, 'Số điện thoại không được để trống');
+        isCheck = false;
+    } else if (!isPhone(phoneValue)) {
+        setError(phoneEle, 'Số điện thoại không đúng định dạng');
+        isCheck = false;
+    } else {
+        setSuccess(phoneEle);
+    }
+
+    return isCheck;
+}
 
