@@ -145,31 +145,31 @@
                     <form>
                         <div class="form-group">
 
-                            <input placeholder="Họ tên" class="form-control custom-input" name="edit-yourname" id="username" />
+                            <input placeholder="Họ tên" class="form-control custom-input" name="edit-yourname" id="username" required />
                           
                         </div>
                         <div class="form-group">
 
-                            <input placeholder="Số điện thoại" class="form-control custom-input" name="edit-numberphone" id="mobile"  maxlength="10"/>
+                            <input placeholder="Số điện thoại" class="form-control custom-input" name="edit-numberphone" id="mobile"  maxlength="10"  type="tel"  pattern="0[0-9\s.-]{9,13}" required />
 
                         </div>
                        
 
                         <div class="form-group">
 
-                            <input placeholder="Thành phố/ tỉnh" class="form-control custom-input" name="edit-city" id="edit-city" />
+                            <input placeholder="Thành phố/ tỉnh" class="form-control custom-input" name="edit-city" id="edit-city" required />
                         </div>
                         <div class="form-group">
 
-                            <input placeholder="Quận/ huyện" class="form-control custom-input" name="edit-district" id="edit-district" />
+                            <input placeholder="Quận/ huyện" class="form-control custom-input" name="edit-district" id="edit-district" required />
                         </div>
                         <div class="form-group">
 
-                            <input placeholder="Phường/ xã" class="form-control custom-input" name="edit-ward" id="edit-ward" />
+                            <input placeholder="Phường/ xã" class="form-control custom-input" name="edit-ward" id="edit-ward" required />
                         </div>
                         <div class="form-group">
 
-                            <input placeholder="Địa chỉ cụ thể" class="form-control custom-input" name="edit-address" id="edit-address" />
+                            <input placeholder="Địa chỉ cụ thể" class="form-control custom-input" name="edit-address" id="edit-address" required />
                         </div>
 
                     </form>
@@ -224,49 +224,49 @@
                         <form>
                             <div class="form-group">
 
-                                <input value="@i.HOTEN" placeholder="Họ tên" class="form-control custom-input" name="update-yourname" id="update-yourname" />
+                                <input value="@i.HOTEN" placeholder="Họ tên" class="form-control custom-input" name="update-yourname" id="update-yourname" required />
                             </div>
                             <div class="form-group">
 
-                                <input value="@i.SDT" placeholder="Số điện thoại" class="form-control custom-input" name="update-numberphone" id="update-numberphone" maxlength="10" />
+                                <input value="@i.SDT" placeholder="Số điện thoại" class="form-control custom-input" name="update-numberphone" id="mobile" maxlength="10" type="tel"  pattern="0[0-9\s.-]{9,13}" required/>
                             </div>
                             @if (i.DIACHI != null)
                             {
                                 string[] dc = i.DIACHI.Split(',');
                                 <div class="form-group">
 
-                                    <input value="@dc[3].ToString()" placeholder="Thành phố/ tỉnh" class="form-control custom-input" name="update-city" id="update-city" />
+                                    <input value="@dc[3].ToString()" placeholder="Thành phố/ tỉnh" class="form-control custom-input" name="update-city" id="update-city" required  />
                                 </div>
                                 <div class="form-group">
 
-                                    <input value="@dc[2].ToString()" placeholder="Quận/ huyện" class="form-control custom-input" name="update-district" id="update-district" />
+                                    <input value="@dc[2].ToString()" placeholder="Quận/ huyện" class="form-control custom-input" name="update-district" id="update-district" required />
                                 </div>
                                 <div class="form-group">
 
-                                    <input value="@dc[1].ToString()" placeholder="Phường/ xã" class="form-control custom-input" name="update-ward" id="update-ward" />
+                                    <input value="@dc[1].ToString()" placeholder="Phường/ xã" class="form-control custom-input" name="update-ward" id="update-ward" required />
                                 </div>
                                 <div class="form-group">
 
-                                    <input value="@dc[0].ToString()" placeholder="Địa chỉ cụ thể" class="form-control custom-input" name="update-address" id="update-address" />
+                                    <input value="@dc[0].ToString()" placeholder="Địa chỉ cụ thể" class="form-control custom-input" name="update-address" id="update-address" required />
                                 </div>
                             }
                             else
                             {
                                 <div class="form-group">
 
-                                    <input value="" placeholder="Thành phố/ tỉnh" class="form-control custom-input" name="update-city" id="update-city" />
+                                    <input value="" placeholder="Thành phố/ tỉnh" class="form-control custom-input" name="update-city" id="update-city" required />
                                 </div>
                                 <div class="form-group">
 
-                                    <input placeholder="Quận/ huyện" class="form-control custom-input" name="update-district" id="update-district" />
+                                    <input placeholder="Quận/ huyện" class="form-control custom-input" name="update-district" id="update-district" required />
                                 </div>
                                 <div class="form-group">
 
-                                    <input placeholder="Phường/ xã" class="form-control custom-input" name="update-ward" id="update-ward" />
+                                    <input placeholder="Phường/ xã" class="form-control custom-input" name="update-ward" id="update-ward" required />
                                 </div>
                                 <div class="form-group">
 
-                                    <input placeholder="Địa chỉ cụ thể" class="form-control custom-input" name="update-address" id="update-address" />
+                                    <input placeholder="Địa chỉ cụ thể" class="form-control custom-input" name="update-address" id="update-address" required />
                                 </div>
                             }
                         </form>
@@ -277,7 +277,7 @@
                                 data-dismiss="modal">
                             Trở lại
                         </button>
-                        <button type="submit" class="btn btn-primary" style="background: #007B5E; color:#fff;">Hoàn thành</button>
+                        <button type="submit" class="btn btn-primary " style="background: #007B5E; color:#fff;">Hoàn thành</button>
                     </div>
                 </div>
 
