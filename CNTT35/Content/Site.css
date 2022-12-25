@@ -2195,11 +2195,13 @@ a.social_login.facebook {
     border-color: #2d5073;
     background-color: #124ac0;
 }
-
-a.social_login.google {
-    border-color: #c23321;
-    background-color: #dd4b39;
-}
+    a.social_login.facebook:hover {
+        background-color: #3d6ac9;
+    }
+    a.social_login.google {
+        border-color: #c23321;
+        background-color: #dd4b39;
+    }
 
 .sl-vertical a.social_login {
     text-align: left;
@@ -2217,6 +2219,7 @@ a.social_login.google {
     -webkit-font-smoothing: antialiased;
     line-height: 40px;
     cursor: pointer;
+    text-decoration:none;
 }
 
 .login {
