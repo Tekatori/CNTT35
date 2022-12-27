@@ -98,35 +98,35 @@
                         //Check parameter here and display Message
                         if (parameter == "error")
                         {
-                            <div class="alert alert-success alert-dismissable" style="text-align:center">
+                            <div class="alert alert-success alert-dismissable style-alert">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Tài khoản Hoặc email đã Có , làm ơn bạn hãy đăng ký lại!</strong>
+                                <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Tài khoản hoặc email đã có, làm ơn đăng ký lại!</strong>
                             </div>
                         }
                         else if (parameter == "GioHangNull")
                         {
-                            <div class="alert alert-success alert-dismissable" style="text-align:center">
+                            <div class="alert alert-success alert-dismissable style-alert" >
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Giỏ Hàng trống Hãy mua gì đó,cảm ơn!</strong>
+                                <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Giỏ Hàng trống Hãy mua gì đó, cảm ơn!</strong>
                             </div>
                         }
                         else if (parameter == "guimail")
                         {
-                            <div class="alert alert-success alert-dismissable" style="text-align:center">
+                            <div class="alert alert-success alert-dismissable style-aler" >
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                 <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Đã gửi thông tin quên mật khẩu của bạn về email, mời bạn kiểm tra!</strong>
                             </div>
                         }
                         else if (parameter == "Emailnot")
                         {
-                            <div class="alert alert-success alert-dismissable" style="text-align:center">
+                            <div class="alert alert-success alert-dismissable style-aler">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                 <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Email chưa được đăng ký,cảm ơn!</strong>
                             </div>
                         }
                         else if (parameter == "tk")
                         {
-                            <div class="alert alert-success alert-dismissable" style="text-align:center">
+                            <div class="alert alert-success alert-dismissable" style="text-align:center;position: absolute;left: 34rem;top: 18px;">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                 <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Đăng Nhập thất bại!</strong>
                             </div>
@@ -445,11 +445,12 @@
 
                         <div class="form-group">
 
-                            <input name="Email" placeholder="Email" class="form-control custom-input" id="recipient-Firstname" required />
+                            <input name="Email" placeholder="Email" class="form-control custom-input" id="email" required />
+                            <h6 id="result" style="margin-top:8px;"></h6>
                         </div>
 
                         <div class="form-group">
-                            <input name="SDT" placeholder="Số điện thoại" class="form-control custom-input" id="recipient-nameRegister" required />
+                            <input name="SDT" placeholder="Số điện thoại" class="form-control custom-input" id="mobile"  maxlength="10"  type="tel"  pattern="0[0-9\s.-]{9,13}" required />
                         </div>
                         <div class="form-group">
                             <input name="pass" type="password" placeholder="Mật khẩu" class="form-control custom-input" id="message-text2" required />
@@ -469,7 +470,7 @@
                                 data-dismiss="modal">
                             Hủy bỏ
                         </button>
-                        <button type="submit" class="btn btn-primary" style="background: #007B5E; color:#fff;">Đăng ký</button>
+                        <button type="submit" class="btn btn-primary checkmobile" style="background: #007B5E; color:#fff;">Đăng ký</button>
                     </div>
                 }
            
