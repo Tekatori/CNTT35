@@ -85,6 +85,20 @@ namespace CNTT35.Service.Service
                 }
             }
         }
+        public List<Fn_GetCTSP_Result> GetCTDH(int id)
+        {
+            using (var db = new QL_PHANBONEntities())
+            {
+                try
+                {
+                    return db.Fn_GetCTSP(id).ToList();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
 
     }
 

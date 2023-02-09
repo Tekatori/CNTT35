@@ -65,7 +65,6 @@ namespace CNTT35.Service.Service
                     ph.RATE = Rate;
                     ph.CHATLUONGSANPHAM = CHATLUONGSANPHAM;
                     ph.IDND = IDND;
-                    ph.HoTenDG = HoTenDG;
                     ph.NOIDUNG = NOIDUNG;
                     ph.NGAYPHANHOI = DateTime.Now;
                     db.PHANHOI.Add(ph);

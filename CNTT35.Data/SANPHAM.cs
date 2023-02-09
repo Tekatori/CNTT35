@@ -18,8 +18,8 @@ namespace CNTT35.Data
         public SANPHAM()
         {
             this.CTDONHANG = new HashSet<CTDONHANG>();
-            this.PHANHOI = new HashSet<PHANHOI>();
             this.SANPHAMKHUYENMAI = new HashSet<SANPHAMKHUYENMAI>();
+            this.PHANHOI = new HashSet<PHANHOI>();
         }
     
         public int IDSP { get; set; }
@@ -38,8 +38,8 @@ namespace CNTT35.Data
         public virtual DANHMUC DANHMUC { get; set; }
         public virtual NHACUNGCAP NHACUNGCAP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PHANHOI> PHANHOI { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SANPHAMKHUYENMAI> SANPHAMKHUYENMAI { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PHANHOI> PHANHOI { get; set; }
     }
 }

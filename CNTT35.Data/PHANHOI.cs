@@ -17,7 +17,7 @@ namespace CNTT35.Data
         public int IDPHANHOI { get; set; }
         public Nullable<int> IDND { get; set; }
         public Nullable<int> IDSP { get; set; }
-        public string HoTenDG { get; set; }
+        public string HOTENDG { get; set; }
         public string NOIDUNG { get; set; }
         public string CHATLUONGSANPHAM { get; set; }
         public string DUNGVOIMOTA { get; set; }

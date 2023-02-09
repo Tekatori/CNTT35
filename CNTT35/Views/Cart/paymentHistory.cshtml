@@ -95,6 +95,7 @@
                             <tr>
                                 <th scope="col">STT</th>
                                 <th scope="col">ID đơn hàng</th>
+                                <th scope="col">Sản phẩm mua</th>
                                 <th scope="col">Tên khách hàng</th>
                                 <th scope="col">Ngày tạo đơn</th>
                                 <th scope="col">Trạng thái đơn hàng</th>
@@ -108,8 +109,18 @@
                                 <tr>
                                     <th scope="row">@stt</th>
                                     <td>@item.IDDH</td>
+                                    <td style="text-align:center">
+                                        <div class="navbar" style="padding:0px;">
+                                            <div class="dropdown" style="padding:0px">
+                                                <a href="#" id="menudrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><u style="text-align:center">Chi Tiêt</u> </a>
+                                                <div class="dropdown-menu" aria-labelledby="menudrop" style="padding:0px">
+                                                    @Html.Action("HienTenSP", "Cart", new { iddh = @item.IDDH })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td>@item.HOTEN</td>
-                                    <td>@item.NGAYLAP.Value.ToString("MM/dd/yyyy")</td>
+                                    <td>@item.NGAYLAP.Value.ToString("dd/MM/yyyy")</td>
                                     @if (@item.NGAYGIAOHANG != null)
                                     {
                                         <td><input type="checkbox" checked disabled />Đã Giao</td>
@@ -121,6 +132,7 @@
 
                                     }
                                     <td>@string.Format("{0:#,### đ}", @item.THANHTIEN) </td>
+
                                 </tr>
                             </tbody>
                         }
@@ -132,6 +144,7 @@
                             <tr>
                                 <th scope="col">STT</th>
                                 <th scope="col">ID đơn hàng</th>
+                                <th scope="col">Sản phẩm mua</th>
                                 <th scope="col">Tên khách hàng</th>
                                 <th scope="col">Ngày tạo đơn</th>
                                 <th scope="col">Trạng thái đơn hàng</th>
@@ -147,9 +160,19 @@
                                 <tr>
                                     <th scope="row">@stt</th>
                                     <td>@item.IDDH</td>
+                                    <td style="text-align:center">
+                                        <div class="navbar" style="padding:0px;">
+                                            <div class="dropdown" style="padding:0px">
+                                                <a href="#" id="menudrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><u style="text-align:center">Chi Tiêt</u> </a>
+                                                <div class="dropdown-menu" aria-labelledby="menudrop" style="padding:0px">
+                                                    @Html.Action("HienTenSP", "Cart", new { iddh = @item.IDDH })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td>@item.HOTEN</td>
-                                    <td>@item.NGAYLAP.Value.ToString("MM/dd/yyyy")</td>
-                
+                                    <td>@item.NGAYLAP.Value.ToString("dd/MM/yyyy")</td>
+
                                     <td>Đang chờ giao</td>
 
 
@@ -166,6 +189,7 @@
                             <tr>
                                 <th scope="col">STT</th>
                                 <th scope="col">ID đơn hàng</th>
+                                <th scope="col">Sản phẩm mua</th>
                                 <th scope="col">Tên khách hàng</th>
                                 <th scope="col">Ngày tạo đơn</th>
                                 <th scope="col"> Ngày Vận Chuyển</th>
@@ -183,10 +207,20 @@
                                     <tr>
                                         <th scope="row">@stt2</th>
                                         <td>@item.IDDH</td>
+                                        <td style="text-align:center">
+                                            <div class="navbar" style="padding:0px;">
+                                                <div class="dropdown" style="padding:0px">
+                                                    <a href="#" id="menudrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><u style="text-align:center">Chi Tiêt</u> </a>
+                                                    <div class="dropdown-menu" aria-labelledby="menudrop" style="padding:0px">
+                                                        @Html.Action("HienTenSP", "Cart", new { iddh = @item.IDDH })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td>@item.HOTEN</td>
-                                        <td>@item.NGAYLAP.Value.ToString("MM/dd/yyyy")</td>
-                                        <td>@item.NGAYVANCHUYEN.Value.ToString("MM/dd/yyyy")</td>
-                                        <td>@item.NGAYGIAOHANG.Value.ToString("MM/dd/yyyy")</td>
+                                        <td>@item.NGAYLAP.Value.ToString("dd/MM/yyyy")</td>
+                                        <td>@item.NGAYVANCHUYEN.Value.ToString("dd/MM/yyyy")</td>
+                                        <td>@item.NGAYGIAOHANG.Value.ToString("dd/MM/yyyy")</td>
                                         <td>@string.Format("{0:#,### đ}", @item.THANHTIEN)</td>
                                     </tr>
                                 </tbody>
@@ -200,6 +234,7 @@
                             <tr>
                                 <th scope="col">STT</th>
                                 <th scope="col">ID đơn hàng</th>
+                                <th scope="col">Sản phẩm mua</th>
                                 <th scope="col">Tên khách hàng</th>
                                 <th scope="col">Ngày tạo đơn</th>
                                 <th scope="col"> Ngày Vận Chuyển</th>
@@ -217,10 +252,20 @@
                                     <tr>
                                         <th scope="row">@stt2</th>
                                         <td>@item.IDDH</td>
+                                        <td style="text-align:center">
+                                            <div class="navbar" style="padding:0px;">
+                                                <div class="dropdown" style="padding:0px">
+                                                    <a href="#" id="menudrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><u style="text-align:center">Chi Tiêt</u> </a>
+                                                    <div class="dropdown-menu" aria-labelledby="menudrop" style="padding:0px">
+                                                        @Html.Action("HienTenSP", "Cart", new { iddh = @item.IDDH })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td>@item.HOTEN</td>
-                                        <td>@item.NGAYLAP.Value.ToString("MM/dd/yyyy")</td>
-                                        <td>@item.NGAYVANCHUYEN.Value.ToString("MM/dd/yyyy")</td>
-                                        <td>@item.NGAYGIAOHANG.Value.ToString("MM/dd/yyyy")</td>
+                                        <td>@item.NGAYLAP.Value.ToString("dd/MM/yyyy")</td>
+                                        <td>@item.NGAYVANCHUYEN.Value.ToString("dd/MM/yyyy")</td>
+                                        <td>@item.NGAYGIAOHANG.Value.ToString("dd/MM/yyyy")</td>
                                         <td>@string.Format("{0:#,### đ}", @item.THANHTIEN)</td>
                                     </tr>
                                 </tbody>

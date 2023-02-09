@@ -1,0 +1,20 @@
+﻿
+
+@model List<CNTT35.Data.Fn_GetCTSP_Result>
+<table class="table">
+    <tr>
+        <th>Mã Sản Phẩm</th>
+        <th>Tên Sản Phẩm</th>
+        <th>số Lượng</th>
+        <th>Đơn Giá</th>
+    </tr>
+    @foreach (var ct in Model)
+    {
+        <tr>
+            <th>@ct.IDSP</th>
+            <th>@ct.TENSP</th>
+            <th>@ct.SOLUONGSP</th>
+            <th>@string.Format("{0:#,### đ}", @ct.DONGIA)</th>
+        </tr>
+    }
+</table>

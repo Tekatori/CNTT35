@@ -62,6 +62,9 @@
     <Compile Include="DONHANG.cs">
       <DependentUpon>PhanBon.tt</DependentUpon>
     </Compile>
+    <Compile Include="Fn_GetCTSP_Result.cs">
+      <DependentUpon>PhanBon.tt</DependentUpon>
+    </Compile>
     <Compile Include="getDiaChiKhac_Result.cs">
       <DependentUpon>PhanBon.tt</DependentUpon>
     </Compile>

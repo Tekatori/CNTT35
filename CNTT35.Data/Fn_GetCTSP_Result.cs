@@ -10,16 +10,12 @@
 namespace CNTT35.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class SANPHAMKHUYENMAI
+    public partial class Fn_GetCTSP_Result
     {
-        public int IDSANPHAMKM { get; set; }
         public Nullable<int> IDSP { get; set; }
-        public Nullable<decimal> GIATIENKM { get; set; }
-        public Nullable<System.DateTime> NGAYBD { get; set; }
-        public Nullable<System.DateTime> NGAYKT { get; set; }
-    
-        public virtual SANPHAM SANPHAM { get; set; }
+        public string TENSP { get; set; }
+        public Nullable<int> SOLUONGSP { get; set; }
+        public Nullable<decimal> DONGIA { get; set; }
     }
 }

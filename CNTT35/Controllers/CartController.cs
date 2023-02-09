@@ -273,6 +273,12 @@ namespace CNTT35.Controllers
             Session["giamgia"] = null;
             Session["maGiamGia"] = null;
         }
+        public ActionResult HienTenSP(int iddh)
+        {
+            List<Fn_GetCTSP_Result> cthd = DonHangService.GetCTDH(iddh);
+
+            return PartialView(cthd);
+        }
 
     }
 }

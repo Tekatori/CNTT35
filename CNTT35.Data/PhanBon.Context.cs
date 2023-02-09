@@ -37,12 +37,12 @@ namespace CNTT35.Data
         public virtual DbSet<MUCGIAOTIEP> MUCGIAOTIEP { get; set; }
         public virtual DbSet<NGUOIDUNG> NGUOIDUNG { get; set; }
         public virtual DbSet<NHACUNGCAP> NHACUNGCAP { get; set; }
-        public virtual DbSet<PHANHOI> PHANHOI { get; set; }
         public virtual DbSet<QLVANCHUYEN> QLVANCHUYEN { get; set; }
         public virtual DbSet<SANPHAM> SANPHAM { get; set; }
-        public virtual DbSet<SANPHAMKHUYENMAI> SANPHAMKHUYENMAI { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<THANHTOAN> THANHTOAN { get; set; }
+        public virtual DbSet<SANPHAMKHUYENMAI> SANPHAMKHUYENMAI { get; set; }
+        public virtual DbSet<PHANHOI> PHANHOI { get; set; }
     
         [DbFunction("QL_PHANBONEntities", "GetTop10")]
         public virtual IQueryable<GetTop10_Result> GetTop10()
@@ -100,6 +100,16 @@ namespace CNTT35.Data
                 new ObjectParameter("IDND", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<getPhanHoiID_Result>("[QL_PHANBONEntities].[getPhanHoiID](@IDND)", iDNDParameter);
+        }
+    
+        [DbFunction("QL_PHANBONEntities", "Fn_GetCTSP")]
+        public virtual IQueryable<Fn_GetCTSP_Result> Fn_GetCTSP(Nullable<int> iDDH)
+        {
+            var iDDHParameter = iDDH.HasValue ?
+                new ObjectParameter("IDDH", iDDH) :
+                new ObjectParameter("IDDH", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Fn_GetCTSP_Result>("[QL_PHANBONEntities].[Fn_GetCTSP](@IDDH)", iDDHParameter);
         }
     }
 }
