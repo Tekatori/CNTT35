@@ -368,6 +368,7 @@ namespace CNTT35.Service.Service
                 using (var db = new QL_PHANBONEntities())
                 {
                     var dc = db.PHANHOI.FirstOrDefault(t => t.IDPHANHOI == id);
+                    dc.HOTENDG = hoten;
                     dc.NOIDUNG = NoiDung;
                     dc.CHATLUONGSANPHAM = chatluong;
                     dc.DUNGVOIMOTA = dungvoimota;

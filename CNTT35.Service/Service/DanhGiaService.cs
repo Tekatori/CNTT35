@@ -62,6 +62,7 @@ namespace CNTT35.Service.Service
                     PHANHOI ph = new PHANHOI();
                     ph.IDSP = idsp;
                     ph.DUNGVOIMOTA = DUNGVOIMOTA;
+                    ph.HOTENDG = HoTenDG;
                     ph.RATE = Rate;
                     ph.CHATLUONGSANPHAM = CHATLUONGSANPHAM;
                     ph.IDND = IDND;

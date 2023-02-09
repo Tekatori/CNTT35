@@ -14,6 +14,7 @@ using CNTT35.Session;
 using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Reflection;
+using Microsoft.Ajax.Utilities;
 
 namespace CNTT35.Controllers
 {
@@ -228,8 +229,10 @@ namespace CNTT35.Controllers
             }
             string NoiDung = c["NoiDung"].ToString();
             string TenDG = c["TenDG"].ToString();
-            if (TenDG == null)
-                TenDG = nd2.TENND;
+            if (TenDG.IsNullOrWhiteSpace())
+            {
+                TenDG = nd2.TENND.ToString();
+            }
             string ChatLuong = c["ChatLuong"].ToString();
             string DungVoiMota = c["DungVoiMota"].ToString();
             DanhGiaService.PhanHoiSP(id, nd2.IDND, TenDG, NoiDung, ChatLuong, DungVoiMota, rate);
