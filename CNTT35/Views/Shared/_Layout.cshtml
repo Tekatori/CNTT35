@@ -16,15 +16,17 @@
 
     @Scripts.Render("~/bundles/modernizr")
 </head>
+<!--Start of Fchat.vn-->
+<script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/webchat.js?id=63e49d8a6a2c3837b2740104" async="async"></script><!--End of Fchat.vn-->
 @using CNTT35.ViewModel
 <body>
-    <header> 
+    <header>
         <div style="position: relative;"> </div>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow nav-header" style="margin-top: -3rem; margin-bottom: 5rem;">
             <div class="container-fluid">
-               
+
                 <a href="/Home">
-               <img  src="~/Content/img/logo/low-res-logo.png" alt="">
+                    <img src="~/Content/img/logo/low-res-logo.png" alt="">
 
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -33,14 +35,14 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between box-menu">
                     @*<ul class="navbar-nav flex-grow-1">
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="index">home</a>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="index">home</a>
 
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="privacy">privacy</a>
-            </li>
-        </ul>*@
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="privacy">privacy</a>
+                            </li>
+                        </ul>*@
                     <ul>
                         <li><a>@Html.ActionLink("Trang Chủ", "Index", "Home")</a></li>
                         <li><a>@Html.ActionLink("Giới Thiệu", "About", "Home")</a></li>
@@ -54,35 +56,35 @@
                                 <li><a>@Html.ActionLink("Phân Bón Lá", "Index", "Product", new { loai = "PhanBonla" }, null)</a></li>
                                 <li><a>@Html.ActionLink("Hạt Giống", "Index", "Product", new { loai = "HatGiong" }, null)</a></li>
                                 @* <li>
-                        <a href="#" title="Lập trình Web ASP.NET">Lập trình Web với ASP.NET MVC 5</a>
-                        <!-- menu con sổ ngang cấp 2 -->
-                        <ul>
-                            <li><a href="#" title="Lập Trình hướng đối tượng với C# (30h)">1. Lập trình hướng đối tượng với C#(30h)</a></li>
-                            <li><a href="#" title="Lập trình cơ sở dữ liệu SQL Server (20h)">2. Lập trình cơ sở dữ liệu SQL Server (20h)</a></li>
-                            <li><a href="#" title="Lập trình giao diện web với HTML5 (30h)">3. Lập trình giao diện web với HTML5 (30h)</a></li>
-                            <li><a href="#" title="Lập trình ứng dụng với ASP.NET MVC 5 (20h)">4. Lập trình ứng dụng ASP.NET MVC 5 (20h)</a></li>
-                            <li>
-                                <a href="#" title="Xây dựng dự án với ASP.NET MVC 5(30h)">5. Xây dựng dự án với ASP.NET MVC 5(30h)</a>
-                                <!-- menu con sổ ngang cấp 3 -->
-                                <ul>
-                                    <li><a href="#" title="Xây dựng bài toán">Xây dựng bài toán</a></li>
-                                    <li><a href="#" title="Thiết kế giao diện chức năng">Thiết kế giao diện chức năng</a></li>
-                                    <li><a href="#" title="Phát triển dự án">Phát triển dự án</a></li>
-                                </ul>
+                                        <a href="#" title="Lập trình Web ASP.NET">Lập trình Web với ASP.NET MVC 5</a>
+                                        <!-- menu con sổ ngang cấp 2 -->
+                                        <ul>
+                                            <li><a href="#" title="Lập Trình hướng đối tượng với C# (30h)">1. Lập trình hướng đối tượng với C#(30h)</a></li>
+                                            <li><a href="#" title="Lập trình cơ sở dữ liệu SQL Server (20h)">2. Lập trình cơ sở dữ liệu SQL Server (20h)</a></li>
+                                            <li><a href="#" title="Lập trình giao diện web với HTML5 (30h)">3. Lập trình giao diện web với HTML5 (30h)</a></li>
+                                            <li><a href="#" title="Lập trình ứng dụng với ASP.NET MVC 5 (20h)">4. Lập trình ứng dụng ASP.NET MVC 5 (20h)</a></li>
+                                            <li>
+                                                <a href="#" title="Xây dựng dự án với ASP.NET MVC 5(30h)">5. Xây dựng dự án với ASP.NET MVC 5(30h)</a>
+                                                <!-- menu con sổ ngang cấp 3 -->
+                                                <ul>
+                                                    <li><a href="#" title="Xây dựng bài toán">Xây dựng bài toán</a></li>
+                                                    <li><a href="#" title="Thiết kế giao diện chức năng">Thiết kế giao diện chức năng</a></li>
+                                                    <li><a href="#" title="Phát triển dự án">Phát triển dự án</a></li>
+                                                </ul>
 
-                            </li>
-                        </ul>
-                    </li>*@
+                                            </li>
+                                        </ul>
+                                    </li>*@
 
                             </ul>
                         </li>
                         @*<li>
-                <a href="#" title="Dịch vụ">Dịch vụ</a>
-                <ul>
-                    <li><a href="#" title="Vận chuyển hàng hóa">Vận chuyển hàng hóa</a></li>
-                    <li><a href="#" title="Khuyến mãi">Khuyến mãi</a></li>
-                </ul>
-            </li>*@
+                                <a href="#" title="Dịch vụ">Dịch vụ</a>
+                                <ul>
+                                    <li><a href="#" title="Vận chuyển hàng hóa">Vận chuyển hàng hóa</a></li>
+                                    <li><a href="#" title="Khuyến mãi">Khuyến mãi</a></li>
+                                </ul>
+                            </li>*@
                         <li>
                             <a>@Html.ActionLink("Khuyến mãi", "Voucher", "Home")</a>
 
@@ -105,14 +107,14 @@
                         }
                         else if (parameter == "GioHangNull")
                         {
-                            <div class="alert alert-success alert-dismissable style-alert" >
+                            <div class="alert alert-success alert-dismissable style-alert">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                 <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Giỏ Hàng trống Hãy mua gì đó, cảm ơn!</strong>
                             </div>
                         }
                         else if (parameter == "guimail")
                         {
-                            <div class="alert alert-success alert-dismissable style-aler" >
+                            <div class="alert alert-success alert-dismissable style-aler">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                 <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Đã gửi thông tin quên mật khẩu của bạn về email, mời bạn kiểm tra!</strong>
                             </div>
@@ -335,7 +337,7 @@
          aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content"> 
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Đăng nhập</h5>
                     <button type="button"
@@ -365,7 +367,7 @@
                                     </a>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            
+
                                             <a class="btn btn-outline-dark google " href="@ViewBag.respongg" role="button" style="text-transform:none">
                                                 <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
                                                 Google
@@ -450,7 +452,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input name="SDT" placeholder="Số điện thoại" class="form-control custom-input" id="mobile"  maxlength="10"  type="tel"  pattern="0[0-9\s.-]{9,13}" required />
+                            <input name="SDT" placeholder="Số điện thoại" class="form-control custom-input" id="mobile" maxlength="10" type="tel" pattern="0[0-9\s.-]{9,13}" required />
                         </div>
                         <div class="form-group">
                             <input name="pass" type="password" placeholder="Mật khẩu" class="form-control custom-input" id="message-text2" required />
@@ -473,7 +475,7 @@
                         <button type="submit" class="btn btn-primary checkmobile" style="background: #007B5E; color:#fff;">Đăng ký</button>
                     </div>
                 }
-           
+
             </div>
 
 
@@ -529,7 +531,7 @@
                                 Tạo tài khoản mới
                             </h6>
                         </div>
-                        
+
                     </div>
                     <div class="modal-footer">
                         <button type="button"
@@ -543,7 +545,7 @@
 
             }
 
-            </div>
+        </div>
     </div>
     <!-- ./ Modal Forgot Password -->
 
@@ -561,8 +563,8 @@
     @Scripts.Render("~/Content/js/owl.carousel.min.js")
     @Scripts.Render("~/Content/js/site.js")
 
-   
-   
+
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
