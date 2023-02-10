@@ -19,7 +19,7 @@ namespace CNTT35.Service.Service
 
                     var listdanhgia = db.PHANHOI.Where(t => t.IDSP == id).ToList();
 
-                    return listdanhgia.ToList();
+                    return listdanhgia.OrderByDescending(t=>t.IDPHANHOI).ToList();
                 }
             }
             catch
