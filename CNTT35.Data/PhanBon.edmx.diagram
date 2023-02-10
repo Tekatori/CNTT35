@@ -8,7 +8,6 @@
         <EntityTypeShape EntityType="QL_PHANBONModel.CTDONHANG" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_PHANBONModel.DANHMUC" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_PHANBONModel.DIACHIKHAC" Width="1.5" PointX="5.25" PointY="17.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QL_PHANBONModel.DONHANG" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_PHANBONModel.KHACHHANG" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_PHANBONModel.KHUYENMAI" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_PHANBONModel.LIENHE" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
@@ -19,14 +18,9 @@
         <EntityTypeShape EntityType="QL_PHANBONModel.SANPHAM" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_PHANBONModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_PHANBONModel.THANHTOAN" Width="1.5" PointX="5.25" PointY="21" IsExpanded="true" />
-        <AssociationConnector Association="QL_PHANBONModel.FK_CTDONHANG_IDDH" ManuallyRouted="false" />
         <AssociationConnector Association="QL_PHANBONModel.FK_CTDONHANG_IDSP" ManuallyRouted="false" />
         <AssociationConnector Association="QL_PHANBONModel.FK_SANPHAM_IDDM" ManuallyRouted="false" />
         <AssociationConnector Association="QL_PHANBONModel.FK_DIACHIKHAC_IDND" ManuallyRouted="false" />
-        <AssociationConnector Association="QL_PHANBONModel.FK_DONHANG_IDKM" ManuallyRouted="false" />
-        <AssociationConnector Association="QL_PHANBONModel.FK_DONHANG_IDND" ManuallyRouted="false" />
-        <AssociationConnector Association="QL_PHANBONModel.FK_QLVANCHUYEN_IDDH" ManuallyRouted="false" />
-        <AssociationConnector Association="QL_PHANBONModel.FK_THANHTOAN_IDDH" ManuallyRouted="false" />
         <AssociationConnector Association="QL_PHANBONModel.FK_KHACHHANG_IDND" ManuallyRouted="false" />
         <AssociationConnector Association="QL_PHANBONModel.FK_MUCGIAOTIEP_IDND" ManuallyRouted="false" />
         <AssociationConnector Association="QL_PHANBONModel.FK_SANPHAM_IDNCC" ManuallyRouted="false" />
@@ -35,6 +29,12 @@
         <EntityTypeShape EntityType="QL_PHANBONModel.PHANHOI" Width="1.5" PointX="8.25" PointY="9.375" />
         <AssociationConnector Association="QL_PHANBONModel.FK_PHANHOI_IDND" />
         <AssociationConnector Association="QL_PHANBONModel.FK_PHANHOI_IDSP" />
+        <EntityTypeShape EntityType="QL_PHANBONModel.DONHANG" Width="1.5" PointX="3" PointY="12.375" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_CTDONHANG_IDDH" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_DONHANG_IDKM" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_DONHANG_IDND" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_QLVANCHUYEN_IDDH" />
+        <AssociationConnector Association="QL_PHANBONModel.FK_THANHTOAN_IDDH" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

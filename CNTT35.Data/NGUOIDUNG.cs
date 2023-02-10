@@ -17,9 +17,9 @@ namespace CNTT35.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NGUOIDUNG()
         {
-            this.DONHANG = new HashSet<DONHANG>();
             this.MUCGIAOTIEP = new HashSet<MUCGIAOTIEP>();
             this.PHANHOI = new HashSet<PHANHOI>();
+            this.DONHANG = new HashSet<DONHANG>();
         }
     
         public int IDND { get; set; }
@@ -28,12 +28,12 @@ namespace CNTT35.Data
         public Nullable<int> PHANQUYEN { get; set; }
         public string EMAIL { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DONHANG> DONHANG { get; set; }
         public virtual KHACHHANG KHACHHANG { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MUCGIAOTIEP> MUCGIAOTIEP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PHANHOI> PHANHOI { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DONHANG> DONHANG { get; set; }
     }
 }

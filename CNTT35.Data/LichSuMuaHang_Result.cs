@@ -26,5 +26,6 @@ namespace CNTT35.Data
         public string LOAIVANCHUYEN { get; set; }
         public Nullable<decimal> THANHTIEN { get; set; }
         public string HINHTHUCTT { get; set; }
+        public string TrangThai { get; set; }
     }
 }

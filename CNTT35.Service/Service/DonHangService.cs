@@ -30,6 +30,7 @@ namespace CNTT35.Service.Service
                     donhang.EMAIL = email;
                     donhang.GHICHU = ghichu;
                     donhang.NGAYLAP = DateTime.Now;
+                    donhang.TrangThai = "Chờ Giao";
                     db.DONHANG.Add(donhang);
                     db.SaveChanges();
                     foreach (var item in gh.ds)
@@ -106,7 +107,7 @@ namespace CNTT35.Service.Service
                 try
                 {
                     var donhang = db.DONHANG.FirstOrDefault(t=>t.IDDH == id);
-                    donhang.GHICHU = "Yêu cầu huỷ";
+                    donhang.TrangThai = "Chờ Huỷ";
                     return db.SaveChanges() > 0;
                 }
                 catch
@@ -122,7 +123,7 @@ namespace CNTT35.Service.Service
                 try
                 {
                     var donhang = db.DONHANG.FirstOrDefault(t => t.IDDH == id);
-                    donhang.GHICHU = "Chờ giao";
+                    donhang.TrangThai = "Chờ Giao";
                     return db.SaveChanges() > 0;
                 }
                 catch

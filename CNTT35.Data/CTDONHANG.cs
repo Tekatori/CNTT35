@@ -19,7 +19,7 @@ namespace CNTT35.Data
         public Nullable<int> IDSP { get; set; }
         public Nullable<int> SOLUONGSP { get; set; }
     
-        public virtual DONHANG DONHANG { get; set; }
         public virtual SANPHAM SANPHAM { get; set; }
+        public virtual DONHANG DONHANG { get; set; }
     }
 }

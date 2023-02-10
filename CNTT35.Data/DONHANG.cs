@@ -31,6 +31,7 @@ namespace CNTT35.Data
         public string EMAIL { get; set; }
         public string GHICHU { get; set; }
         public Nullable<System.DateTime> NGAYLAP { get; set; }
+        public string TrangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTDONHANG> CTDONHANG { get; set; }

@@ -283,15 +283,15 @@ namespace CNTT35.Controllers
         {
             bool res = DonHangService.YeuCauHuyDon(id);
             if(res)
-                return RedirectToAction("paymentHistory", "Cart", new { ac = "yeucauhuyTC" });
-            return RedirectToAction("paymentHistory", "Cart", new { ac = "yeucauhuyTB" });
+                return RedirectToAction("paymentHistory", "Cart");
+            return RedirectToAction("paymentHistory", "Cart");
         }
         public ActionResult HoanTacHuy(int id)
         {
             bool res = DonHangService.HoanTacHuy(id);
             if (res)
-                return RedirectToAction("paymentHistory", "Cart", new { ac = "yeucauhuyTC" });
-            return RedirectToAction("paymentHistory", "Cart", new { ac = "yeucauhuyTB" });
+                return RedirectToAction("paymentHistory", "Cart");
+            return RedirectToAction("paymentHistory", "Cart");
         }
     }
 }

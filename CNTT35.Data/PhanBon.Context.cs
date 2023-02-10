@@ -30,7 +30,6 @@ namespace CNTT35.Data
         public virtual DbSet<CTDONHANG> CTDONHANG { get; set; }
         public virtual DbSet<DANHMUC> DANHMUC { get; set; }
         public virtual DbSet<DIACHIKHAC> DIACHIKHAC { get; set; }
-        public virtual DbSet<DONHANG> DONHANG { get; set; }
         public virtual DbSet<KHACHHANG> KHACHHANG { get; set; }
         public virtual DbSet<KHUYENMAI> KHUYENMAI { get; set; }
         public virtual DbSet<LIENHE> LIENHE { get; set; }
@@ -43,6 +42,7 @@ namespace CNTT35.Data
         public virtual DbSet<THANHTOAN> THANHTOAN { get; set; }
         public virtual DbSet<SANPHAMKHUYENMAI> SANPHAMKHUYENMAI { get; set; }
         public virtual DbSet<PHANHOI> PHANHOI { get; set; }
+        public virtual DbSet<DONHANG> DONHANG { get; set; }
     
         [DbFunction("QL_PHANBONEntities", "GetTop10")]
         public virtual IQueryable<GetTop10_Result> GetTop10()
@@ -70,16 +70,6 @@ namespace CNTT35.Data
         public virtual IQueryable<GetTop30Random_Result> GetTop30Random()
         {
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetTop30Random_Result>("[QL_PHANBONEntities].[GetTop30Random]()");
-        }
-    
-        [DbFunction("QL_PHANBONEntities", "LichSuMuaHang")]
-        public virtual IQueryable<LichSuMuaHang_Result> LichSuMuaHang(Nullable<int> iDND)
-        {
-            var iDNDParameter = iDND.HasValue ?
-                new ObjectParameter("IDND", iDND) :
-                new ObjectParameter("IDND", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<LichSuMuaHang_Result>("[QL_PHANBONEntities].[LichSuMuaHang](@IDND)", iDNDParameter);
         }
     
         [DbFunction("QL_PHANBONEntities", "getDiaChiKhac")]
@@ -110,6 +100,16 @@ namespace CNTT35.Data
                 new ObjectParameter("IDDH", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Fn_GetCTSP_Result>("[QL_PHANBONEntities].[Fn_GetCTSP](@IDDH)", iDDHParameter);
+        }
+    
+        [DbFunction("QL_PHANBONEntities", "LichSuMuaHang")]
+        public virtual IQueryable<LichSuMuaHang_Result> LichSuMuaHang(Nullable<int> iDND)
+        {
+            var iDNDParameter = iDND.HasValue ?
+                new ObjectParameter("IDND", iDND) :
+                new ObjectParameter("IDND", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<LichSuMuaHang_Result>("[QL_PHANBONEntities].[LichSuMuaHang](@IDND)", iDNDParameter);
         }
     }
 }
