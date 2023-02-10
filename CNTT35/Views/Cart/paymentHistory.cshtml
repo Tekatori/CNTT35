@@ -70,6 +70,8 @@
     <div class="container">
         <div class="checkout__form">
             <h4>Thông tin đơn hàng</h4>
+            <span style="color:red;">*</span>
+            <span> Chọn để xem tất cả sản phẩm đã mua trong đơn hàng </span>
 
         </div>
     </div>
@@ -110,10 +112,10 @@
                                     <th scope="row">@stt</th>
                                     <td>@item.IDDH</td>
                                     <td style="text-align:center">
-                                        <div class="navbar" style="padding:0px;">
+                                        <div class="navbar" style="padding:0px;margin-left: 3rem;">
                                             <div class="dropdown" style="padding:0px">
-                                                <a href="#" id="menudrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><u style="text-align:center">Chi Tiêt</u> </a>
-                                                <div class="dropdown-menu" aria-labelledby="menudrop" style="padding:0px">
+                                                <a href="#" id="menudrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-decoration: none;"><span style="color:red;">*</span><u style="text-align:center;text-decoration: none;color: #007B5E;font-weight: 700;"> Chi Tiết</u> </a>
+                                                <div class="dropdown-menu" aria-labelledby="menudrop" style="padding:0px;width: max-content;">
                                                     @Html.Action("HienTenSP", "Cart", new { iddh = @item.IDDH })
                                                 </div>
                                             </div>
@@ -161,10 +163,10 @@
                                     <th scope="row">@stt</th>
                                     <td>@item.IDDH</td>
                                     <td style="text-align:center">
-                                        <div class="navbar" style="padding:0px;">
+                                        <div class="navbar" style="padding:0px;margin-left: 3rem;">
                                             <div class="dropdown" style="padding:0px">
-                                                <a href="#" id="menudrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><u style="text-align:center">Chi Tiêt</u> </a>
-                                                <div class="dropdown-menu" aria-labelledby="menudrop" style="padding:0px">
+                                                <a href="#" id="menudrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-decoration: none;"><span style="color:red;">*</span><u style="text-align:center;text-decoration: none;color: #007B5E;font-weight: 700;">Chi Tiết</u> </a>
+                                                <div class="dropdown-menu" aria-labelledby="menudrop" style="padding:0px;width: max-content;">
                                                     @Html.Action("HienTenSP", "Cart", new { iddh = @item.IDDH })
                                                 </div>
                                             </div>
@@ -208,10 +210,10 @@
                                         <th scope="row">@stt2</th>
                                         <td>@item.IDDH</td>
                                         <td style="text-align:center">
-                                            <div class="navbar" style="padding:0px;">
+                                            <div class="navbar" style="padding:0px;margin-left: 3rem;">
                                                 <div class="dropdown" style="padding:0px">
-                                                    <a href="#" id="menudrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><u style="text-align:center">Chi Tiêt</u> </a>
-                                                    <div class="dropdown-menu" aria-labelledby="menudrop" style="padding:0px">
+                                                    <a href="#" id="menudrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-decoration: none;"><span style="color:red;">*</span><u style="text-align:center;text-decoration: none;color: #007B5E;font-weight: 700;">Chi Tiết</u> </a>
+                                                    <div class="dropdown-menu" aria-labelledby="menudrop" style="padding:0px;width: max-content;">
                                                         @Html.Action("HienTenSP", "Cart", new { iddh = @item.IDDH })
                                                     </div>
                                                 </div>
@@ -253,10 +255,10 @@
                                         <th scope="row">@stt2</th>
                                         <td>@item.IDDH</td>
                                         <td style="text-align:center">
-                                            <div class="navbar" style="padding:0px;">
+                                            <div class="navbar" style="padding:0px;margin-left: 3rem;">
                                                 <div class="dropdown" style="padding:0px">
-                                                    <a href="#" id="menudrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><u style="text-align:center">Chi Tiêt</u> </a>
-                                                    <div class="dropdown-menu" aria-labelledby="menudrop" style="padding:0px">
+                                                    <a href="#" id="menudrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-decoration: none;"><u style="text-align:center">Chi Tiêt</u> </a>
+                                                    <div class="dropdown-menu" aria-labelledby="menudrop" style="padding:0px;width: max-content;">
                                                         @Html.Action("HienTenSP", "Cart", new { iddh = @item.IDDH })
                                                     </div>
                                                 </div>
