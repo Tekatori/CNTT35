@@ -5,7 +5,7 @@
     <tr>
         <th>STT</th>
         <th>Tên Sản Phẩm</th>
-        <th>số Lượng</th>
+        <th>Số Lượng</th>
         <th>Đơn Giá</th>
     </tr>
     @foreach (var ct in Model)
@@ -14,7 +14,7 @@
         <tr>
             <td>@stt</td> 
             <th>@ct.TENSP</th>
-            <th>@ct.SOLUONGSP</th>
+            <th style="text-align:right">@ct.SOLUONGSP</th>
             <th>@string.Format("{0:#,### đ}", @ct.DONGIA)</th>
         </tr>
     }

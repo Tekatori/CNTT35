@@ -279,6 +279,19 @@ namespace CNTT35.Controllers
 
             return PartialView(cthd);
         }
-
+        public ActionResult YeuCauHuy(int id)
+        {
+            bool res = DonHangService.YeuCauHuyDon(id);
+            if(res)
+                return RedirectToAction("paymentHistory", "Cart", new { ac = "yeucauhuyTC" });
+            return RedirectToAction("paymentHistory", "Cart", new { ac = "yeucauhuyTB" });
+        }
+        public ActionResult HoanTacHuy(int id)
+        {
+            bool res = DonHangService.HoanTacHuy(id);
+            if (res)
+                return RedirectToAction("paymentHistory", "Cart", new { ac = "yeucauhuyTC" });
+            return RedirectToAction("paymentHistory", "Cart", new { ac = "yeucauhuyTB" });
+        }
     }
 }

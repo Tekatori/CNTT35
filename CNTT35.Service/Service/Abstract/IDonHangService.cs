@@ -9,5 +9,7 @@ namespace CNTT35.Service.Service
         int findidGiamGia(string ma);
         DONHANG ThanhToanDonHang(int idkm, int idnd, string hoten, string diachigiao, string sdt, string email, string ghichu, GioHang gh, decimal tong, string hinhthuctt, string loaivc);
         List<Fn_GetCTSP_Result> GetCTDH(int id);
+        bool YeuCauHuyDon(int id);
+        bool HoanTacHuy(int id);
     }
 }

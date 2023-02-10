@@ -3,6 +3,8 @@
     ViewBag.Title = "paymentHistory";
     int stt = 0;
     int stt2 = 0;
+    int sttcgh = 0;
+    int sttdhth = 0;
 }
 @using PagedList.Mvc;
 @using PagedList;
@@ -70,6 +72,24 @@
     <div class="container">
         <div class="checkout__form">
             <h4>Thông tin đơn hàng</h4>
+            @{
+                var parameter = Request.QueryString["ac"];
+                //Check parameter here and display Message
+                if (parameter == "yeucauhuyTC")
+                {
+                    <div class="alert alert-success alert-dismissable style-alert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Yêu cầu của bạn đang được xử lý!</strong>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-success alert-dismissable style-alert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Yêu cầu của bạn thất bại!</strong>
+                    </div>
+                }
+            }
             <span style="color:red;">*</span>
             <span> Chọn để xem tất cả sản phẩm đã mua trong đơn hàng </span>
 
@@ -151,16 +171,18 @@
                                 <th scope="col">Ngày tạo đơn</th>
                                 <th scope="col">Trạng thái đơn hàng</th>
                                 <th scope="col">Tổng tiền</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         @foreach (var item in Model)
                         {
+
                             if (item.NGAYGIAOHANG == null)
                             {
-                                stt = stt + 1;
+                             sttcgh++;
                             <tbody>
                                 <tr>
-                                    <th scope="row">@stt</th>
+                                    <th scope="row">@sttcgh</th>
                                     <td>@item.IDDH</td>
                                     <td style="text-align:center">
                                         <div class="navbar" style="padding:0px;margin-left: 3rem;">
@@ -174,11 +196,21 @@
                                     </td>
                                     <td>@item.HOTEN</td>
                                     <td>@item.NGAYLAP.Value.ToString("dd/MM/yyyy")</td>
+                                    @if (item.GHICHU == "Yêu cầu huỷ")
+                                    {
+                                        <td>Đang chờ huỷ</td>
+                                        <td>@string.Format("{0:#,### đ}", @item.THANHTIEN) </td>
+                                        <td><a class="btn btn-success" href="/Cart/HoanTacHuy/@item.IDDH">Hoàn tác huỷ</a></td>
+                                    }
+                                    else
+                                    {
+                                        <td>Đang chờ giao</td>
+                                        <td>@string.Format("{0:#,### đ}", @item.THANHTIEN) </td>
+                                        <td><a class="btn btn-danger" href="/Cart/YeuCauHuy/@item.IDDH">Yêu cầu huỷ</a></td>
+                                    }
 
-                                    <td>Đang chờ giao</td>
 
 
-                                    <td>@string.Format("{0:#,### đ}", @item.THANHTIEN) </td>
                                 </tr>
                             </tbody>
                             }
@@ -202,12 +234,13 @@
                         </thead>
                         @foreach (var item in Model)
                         {
-                            stt2 = stt2 + 1;
+
                             if (item.NGAYGIAOHANG != null)
                             {
+                                sttdhth = sttdhth + 1;
                                 <tbody>
                                     <tr>
-                                        <th scope="row">@stt2</th>
+                                        <th scope="row">@sttdhth</th>
                                         <td>@item.IDDH</td>
                                         <td style="text-align:center">
                                             <div class="navbar" style="padding:0px;margin-left: 3rem;">
@@ -230,51 +263,7 @@
                         }
                     </table>
                 </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <table class="table table-striped">
-                        <thead class="table-light">
-                            <tr>
-                                <th scope="col">STT</th>
-                                <th scope="col">ID đơn hàng</th>
-                                <th scope="col">Sản phẩm mua</th>
-                                <th scope="col">Tên khách hàng</th>
-                                <th scope="col">Ngày tạo đơn</th>
-                                <th scope="col"> Ngày Vận Chuyển</th>
-                                <th scope="col">Ngày Giao</th>
-                                <th scope="col">Tổng tiền</th>
-
-                            </tr>
-                        </thead>
-                        @foreach (var item in Model)
-                        {
-                            stt2 = stt2 + 1;
-                            if (item.NGAYGIAOHANG != null)
-                            {
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">@stt2</th>
-                                        <td>@item.IDDH</td>
-                                        <td style="text-align:center">
-                                            <div class="navbar" style="padding:0px;margin-left: 3rem;">
-                                                <div class="dropdown" style="padding:0px">
-                                                    <a href="#" id="menudrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-decoration: none;"><u style="text-align:center">Chi Tiêt</u> </a>
-                                                    <div class="dropdown-menu" aria-labelledby="menudrop" style="padding:0px;width: max-content;">
-                                                        @Html.Action("HienTenSP", "Cart", new { iddh = @item.IDDH })
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>@item.HOTEN</td>
-                                        <td>@item.NGAYLAP.Value.ToString("dd/MM/yyyy")</td>
-                                        <td>@item.NGAYVANCHUYEN.Value.ToString("dd/MM/yyyy")</td>
-                                        <td>@item.NGAYGIAOHANG.Value.ToString("dd/MM/yyyy")</td>
-                                        <td>@string.Format("{0:#,### đ}", @item.THANHTIEN)</td>
-                                    </tr>
-                                </tbody>
-                            }
-                        }
-                    </table>
-                </div>
+               
 
             </div>
 

@@ -99,7 +99,38 @@ namespace CNTT35.Service.Service
                 }
             }
         }
-
+        public bool YeuCauHuyDon(int id)
+        {
+            using (var db = new QL_PHANBONEntities())
+            {
+                try
+                {
+                    var donhang = db.DONHANG.FirstOrDefault(t=>t.IDDH == id);
+                    donhang.GHICHU = "Yêu cầu huỷ";
+                    return db.SaveChanges() > 0;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+        public bool HoanTacHuy(int id)
+        {
+            using (var db = new QL_PHANBONEntities())
+            {
+                try
+                {
+                    var donhang = db.DONHANG.FirstOrDefault(t => t.IDDH == id);
+                    donhang.GHICHU = "Chờ giao";
+                    return db.SaveChanges() > 0;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
     }
 
 }
