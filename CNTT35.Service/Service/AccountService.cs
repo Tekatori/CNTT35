@@ -234,7 +234,7 @@ namespace CNTT35.Service.Service
                 using (var db = new QL_PHANBONEntities())
                 {
                     var ls = db.LichSuMuaHang(id);
-                    return ls.ToList();
+                    return ls.OrderByDescending(t=>t.IDDH).ToList();
                 }
             }
             catch
